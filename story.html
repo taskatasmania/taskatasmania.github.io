@@ -96,9 +96,9 @@
 
     </div>
 
-    <div id="imageModal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-amber-300 bg-opacity-100 transition-opacity" onclick="closeModal()">
+    <div id="imageModal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-amber-300 bg-opacity-100 transition-opacity">
         
-        <div id="modalContainer" class="relative max-w-5xl max-h-[90vh] p-4 overflow-y-auto hide-scrollbar flex items-center justify-center" onclick="event.stopPropagation()">
+        <div id="modalContainer" class="relative max-w-5xl max-h-[90vh] p-4 overflow-auto hide-scrollbar flex items-center justify-center" onclick="event.stopPropagation()">
             
             <button onclick="closeModal()" class="absolute top-4 right-4 
                                                    text-amber-300 bg-amber-600 bg-opacity-85 
@@ -114,7 +114,7 @@
     <script>
         const modal = document.getElementById('imageModal');
         const modalImage = document.getElementById('modalImage');
-        const modalContainer = document.getElementById('modalContainer'); // Added ID for easier manipulation
+        const modalContainer = document.getElementById('modalContainer');
 
         /**
          * Opens the modal with the specified image source.
@@ -126,24 +126,15 @@
             modalImage.src = imgSrc;
             modalImage.alt = altText;
             
-            // Define classes for full size (evandale.3.jpg)
-            const fullSizeClasses = ['w-full', 'h-full', 'overflow-auto'];
-            // Define classes for constrained size (12.12.21.jpg)
-            const constrainedClasses = ['max-w-5xl', 'max-h-[90vh]', 'overflow-y-auto'];
+            // 1. Image fits within container by default (constrained behavior)
+            modalImage.classList.add('object-contain');
             
-            // Remove all specific size classes first
-            modalContainer.classList.remove(...fullSizeClasses, ...constrainedClasses);
-
             if (isFullSize) {
-                // Apply classes for full-size, scrollable behavior
-                modalContainer.classList.add(...fullSizeClasses);
-                modalImage.classList.remove('object-contain'); // Allow image to overflow if needed
-            } else {
-                // Apply classes for constrained, fit-to-screen behavior
-                modalContainer.classList.add(...constrainedClasses);
-                modalImage.classList.add('object-contain'); // Ensure small image fits
-            }
-
+                // 2. For full-size images, we only remove the object-contain class
+                //    to let the image display at native size and overflow the container.
+                modalImage.classList.remove('object-contain');
+            } 
+            
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden'; 
         }
