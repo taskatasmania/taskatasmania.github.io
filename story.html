@@ -26,11 +26,11 @@
     <div class="w-full max-w-4xl bg-white shadow-xl rounded-xl p-6 md:p-10 border border-gray-100 text-lg text-lime-800 leading-relaxed">
 
         <header class="mb-6 flex justify-center">
-            <a href="#" onclick="openModal('Evandale Market', 'photos/evandale.3.jpg', true); return false;" class="cursor-pointer">
+            <a href="#" onclick="openModal('Evandale Market', 'photos/evandale.3.jpg', true); return false;" class="cursor-pointer overflow-hidden rounded-lg">
                 <img 
                     src="photos/evandale.3.jpg"
                     alt="Evandale Sunday Market" 
-                    class="w-full h-auto rounded-lg shadow-md"
+                    class="w-full h-auto rounded-lg shadow-md transform transition duration-300 hover:scale-105"
                     onerror="this.onerror=null; this.src='https://placehold.co/192x64/cccccc/333333?text=Fallback+Logo';"
                 />
             </a>
@@ -98,7 +98,7 @@
 
     <div id="imageModal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-amber-300 bg-opacity-100 transition-opacity">
         
-        <div id="modalContainer" class="relative max-w-5xl max-h-[90vh] p-4 overflow-auto hide-scrollbar flex items-center justify-center" onclick="event.stopPropagation()">
+        <div id="modalContainer" class="relative p-4 overflow-auto hide-scrollbar flex items-center justify-center" onclick="event.stopPropagation()">
             
             <button onclick="closeModal()" class="absolute top-4 right-4 
                                                    text-amber-300 bg-amber-600 bg-opacity-85 
@@ -108,7 +108,7 @@
                 &times;
             </button>
             
-            <img id="modalImage" src="" alt="Enlarged Image" class="block w-full h-auto object-contain rounded-lg shadow-2xl">
+            <img id="modalImage" src="" alt="Enlarged Image" class="block rounded-lg shadow-2xl">
         </div>
     </div>
     <script>
@@ -120,21 +120,30 @@
          * Opens the modal with the specified image source.
          * @param {string} altText - Alt text for the modal image.
          * @param {string} imgSrc - Source URL of the image to display.
-         * @param {boolean} [isFullSize=false] - If true, removes size constraints for full-size viewing.
+         * @param {boolean} [isFullSize=false] - If true, displays the image full size with container scrolling.
          */
         function openModal(altText, imgSrc, isFullSize = false) {
             modalImage.src = imgSrc;
             modalImage.alt = altText;
             
-            // 1. Image fits within container by default (constrained behavior)
-            modalImage.classList.add('object-contain');
+            // Define classes for full size (allows image to be larger than viewport)
+            const fullSizeContainerClasses = ['w-full', 'h-full', 'max-w-none', 'max-h-none'];
+            const constrainedContainerClasses = ['max-w-5xl', 'max-h-[90vh]'];
+            
+            // Reset all potential size classes
+            modalContainer.classList.remove(...fullSizeContainerClasses, ...constrainedContainerClasses);
+            modalImage.classList.remove('w-full', 'h-auto', 'object-contain');
             
             if (isFullSize) {
-                // 2. For full-size images, we only remove the object-contain class
-                //    to let the image display at native size and overflow the container.
-                modalImage.classList.remove('object-contain');
-            } 
-            
+                // Apply classes for full-size, scrollable behavior
+                modalContainer.classList.add(...fullSizeContainerClasses);
+                modalImage.classList.add('w-full', 'h-auto');
+            } else {
+                // Apply classes for constrained, fit-to-screen behavior
+                modalContainer.classList.add(...constrainedContainerClasses);
+                modalImage.classList.add('w-full', 'h-auto', 'object-contain');
+            }
+
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden'; 
         }
