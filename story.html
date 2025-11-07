@@ -98,7 +98,7 @@
 
     <div id="imageModal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-amber-300 bg-opacity-100 transition-opacity" onclick="closeModal()">
         
-        <div class="relative max-w-5xl max-h-[90vh] p-4 overflow-y-auto hide-scrollbar" onclick="event.stopPropagation()">
+        <div class="relative w-full h-full p-4 overflow-auto hide-scrollbar" onclick="event.stopPropagation()">
             
             <button onclick="closeModal()" class="absolute top-4 right-4 
                                                    text-amber-900 bg-amber-300 bg-opacity-75 
@@ -108,7 +108,7 @@
                 &times;
             </button>
             
-            <img id="modalImage" src="" alt="Enlarged Image" class="block w-full h-auto object-contain rounded-lg shadow-2xl">
+            <img id="modalImage" src="" alt="Enlarged Image" class="block w-full h-auto rounded-lg shadow-2xl">
         </div>
     </div>
     <script>
