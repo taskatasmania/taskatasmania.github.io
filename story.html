@@ -10,6 +10,14 @@
         body {
             font-family: 'Georgia', serif; 
         }
+        /* Custom CSS to hide scrollbar specifically on the modal's inner content */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none; /* For Chrome, Safari, and Opera */
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;  /* For Internet Explorer and Edge */
+            scrollbar-width: none;  /* For Firefox */
+        }
     </style>
 </head>
 
@@ -18,9 +26,9 @@
     <div class="w-full max-w-4xl bg-white shadow-xl rounded-xl p-6 md:p-10 border border-gray-100 text-lg text-lime-800 leading-relaxed">
 
         <header class="mb-6 flex justify-center">
-            <a href="#" onclick="openModal('modalImage1', 'evandale.3.jpg'); return false;" class="cursor-pointer">
+            <a href="#" onclick="openModal('Evandale Market', 'photos/evandale.3.jpg'); return false;" class="cursor-pointer">
                 <img 
-                    src="evandale.3.jpg"
+                    src="photos/evandale.3.jpg"
                     alt="Evandale Sunday Market" 
                     class="w-full h-auto rounded-lg shadow-md"
                     onerror="this.onerror=null; this.src='https://placehold.co/192x64/cccccc/333333?text=Fallback+Logo';"
@@ -41,21 +49,21 @@
         </p>
 
         <p class="mb-4">
-            Magda's heritage is Hungarian and that's where the name Taska Tasmania comes from - “taska” is “bag” in Hungarian. 
+            Magda's heritage is Hungarian and that's where the name Taska Tasmania comes from - “ taska” is “bag” in Hungarian. 
         </p>
 
         <div class="my-6 flex justify-center">
             <img 
-                src="12.12.21.jpg"
+                src="photos/12.12.21.jpg"
                 alt="Taska Tasmania Graphic Break" 
                 class="w-full h-auto max-w-xs rounded-lg shadow-md cursor-pointer"
-                onclick="openModal('modalImage2', '12.12.21.jpg')"
+                onclick="openModal('Taska Graphic Break', 'photos/12.12.21.jpg')"
                 onerror="this.onerror=null; this.src='https://placehold.co/192x64/cccccc/333333?text=Fallback+Logo';"
             />
         </div>
 
         <p class="mb-4">
-            Turned out people weren't keen on shopping bags and the stall had to diversify. That lead to **aprons** …. with off-cut material used for **scrunchies** …. **lanyards** …. and what started out as a single table in Dec 2021 became a **pop up shop** hosted by Evandale Sunday Market – with occasional excursions.
+            Turned out people weren't keen on shopping bags and the stall had to diversify. That lead to aprons …. with off-cut material used for scrunchies …. lanyards …. and what started out as a single table in Dec 2021 became a pop up shop hosted by Evandale Sunday Market – with occasional excursions.
         </p>
 
         <h2 class="text-2xl font-bold text-lime-600 mt-8 mb-4 border-b border-lime-100">Gallery Highlights</h2>
@@ -73,26 +81,30 @@
             <figure class="col-span-3 sm:col-span-1 p-2 border rounded-md bg-gray-50 hover:bg-lime-50 transition"><figcaption>Fig 11</figcaption></figure>
         </div>
         <p class="mb-4">
-            Everything Taska sells is **handmade by Magda** in what used to be our living room which has now graduated to being the **Taska workshop**. The hobby stall has grown into the craft popup shop we're immensely proud of.
+            Everything Taska sells is handmade by Magda in what used to be our living room which has now graduated to being the Taska workshop. The hobby stall has grown into the craft popup shop we're immensely proud of.
         </p>
         
         <h2 class="text-xl font-semibold text-lime-700 mt-6 mb-2">The Tools of the Trade</h2>
 
         <p class="mb-4">
-            **Fig 12:** Magda with her original Singer ( and sewing tables ), now long gone in favour of a **Brother machine** and other stuff.
+            Fig 12: Magda with her original Singer ( and sewing tables ), now long gone in favour of a Brother machine and other stuff.
         </p>
         
         <p class="text-sm italic text-gray-500 mt-4 mb-2 text-center">
-            **Fig 13** and **Fig 14** (Not Magda :)
+            Fig 13 and Fig 14 (Not Magda :)
         </p>
 
     </div>
 
-    <div id="imageModal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-lime-900 bg-opacity-90 transition-opacity" onclick="closeModal()">
+    <div id="imageModal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-amber-300 bg-opacity-100 transition-opacity" onclick="closeModal()">
         
-        <div class="relative max-w-5xl max-h-[90vh] p-4" onclick="event.stopPropagation()">
+        <div class="relative max-w-5xl max-h-[90vh] p-4 overflow-y-auto hide-scrollbar" onclick="event.stopPropagation()">
             
-            <button onclick="closeModal()" class="absolute -top-10 right-0 text-white text-4xl font-light leading-none opacity-80 hover:opacity-100 transition-opacity">
+            <button onclick="closeModal()" class="absolute top-4 right-4 
+                                                   text-amber-900 bg-amber-300 bg-opacity-75 
+                                                   p-2 rounded-full h-10 w-10 flex items-center justify-center 
+                                                   text-2xl font-bold leading-none 
+                                                   hover:bg-opacity-100 transition-opacity drop-shadow-lg">
                 &times;
             </button>
             
