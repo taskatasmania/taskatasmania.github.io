@@ -26,7 +26,7 @@
     <div class="w-full max-w-4xl bg-white shadow-xl rounded-xl p-6 md:p-10 border border-gray-100 text-lg text-lime-800 leading-relaxed">
 
         <header class="mb-6 flex justify-center">
-            <a href="#" onclick="openModal('Evandale Market', 'photos/evandale.3.jpg'); return false;" class="cursor-pointer">
+            <a href="#" onclick="openModal('Evandale Market', 'photos/evandale.3.jpg', true); return false;" class="cursor-pointer">
                 <img 
                     src="photos/evandale.3.jpg"
                     alt="Evandale Sunday Market" 
@@ -57,7 +57,7 @@
                 src="photos/12.12.21.jpg"
                 alt="Taska Tasmania Graphic Break" 
                 class="w-full h-auto max-w-xs rounded-lg shadow-md cursor-pointer"
-                onclick="openModal('Taska Graphic Break', 'photos/12.12.21.jpg')"
+                onclick="openModal('Taska Graphic Break', 'photos/12.12.21.jpg', false)"
                 onerror="this.onerror=null; this.src='https://placehold.co/192x64/cccccc/333333?text=Fallback+Logo';"
             />
         </div>
@@ -98,33 +98,53 @@
 
     <div id="imageModal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-amber-300 bg-opacity-100 transition-opacity" onclick="closeModal()">
         
-        <div class="relative w-full h-full p-4 overflow-auto hide-scrollbar flex items-center justify-center" onclick="event.stopPropagation()">
+        <div id="modalContainer" class="relative max-w-5xl max-h-[90vh] p-4 overflow-y-auto hide-scrollbar flex items-center justify-center" onclick="event.stopPropagation()">
             
             <button onclick="closeModal()" class="absolute top-4 right-4 
-                                                   text-amber-900 bg-amber-300 bg-opacity-75 
+                                                   text-amber-300 bg-amber-600 bg-opacity-85 
                                                    p-2 rounded-full h-10 w-10 flex items-center justify-center 
                                                    text-2xl font-bold leading-none 
                                                    hover:bg-opacity-100 transition-opacity drop-shadow-lg">
                 &times;
             </button>
             
-            <img id="modalImage" src="" alt="Enlarged Image" class="block w-full h-auto rounded-lg shadow-2xl">
+            <img id="modalImage" src="" alt="Enlarged Image" class="block w-full h-auto object-contain rounded-lg shadow-2xl">
         </div>
     </div>
     <script>
         const modal = document.getElementById('imageModal');
         const modalImage = document.getElementById('modalImage');
+        const modalContainer = document.getElementById('modalContainer'); // Added ID for easier manipulation
 
         /**
          * Opens the modal with the specified image source.
          * @param {string} altText - Alt text for the modal image.
          * @param {string} imgSrc - Source URL of the image to display.
+         * @param {boolean} [isFullSize=false] - If true, removes size constraints for full-size viewing.
          */
-        function openModal(altText, imgSrc) {
+        function openModal(altText, imgSrc, isFullSize = false) {
             modalImage.src = imgSrc;
             modalImage.alt = altText;
+            
+            // Define classes for full size (evandale.3.jpg)
+            const fullSizeClasses = ['w-full', 'h-full', 'overflow-auto'];
+            // Define classes for constrained size (12.12.21.jpg)
+            const constrainedClasses = ['max-w-5xl', 'max-h-[90vh]', 'overflow-y-auto'];
+            
+            // Remove all specific size classes first
+            modalContainer.classList.remove(...fullSizeClasses, ...constrainedClasses);
+
+            if (isFullSize) {
+                // Apply classes for full-size, scrollable behavior
+                modalContainer.classList.add(...fullSizeClasses);
+                modalImage.classList.remove('object-contain'); // Allow image to overflow if needed
+            } else {
+                // Apply classes for constrained, fit-to-screen behavior
+                modalContainer.classList.add(...constrainedClasses);
+                modalImage.classList.add('object-contain'); // Ensure small image fits
+            }
+
             modal.classList.remove('hidden');
-            // Optional: Prevent background scrolling
             document.body.style.overflow = 'hidden'; 
         }
 
@@ -133,7 +153,6 @@
          */
         function closeModal() {
             modal.classList.add('hidden');
-            // Optional: Re-enable background scrolling
             document.body.style.overflow = '';
         }
     </script>
