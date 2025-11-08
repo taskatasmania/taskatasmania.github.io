@@ -79,8 +79,19 @@
             <figure class="p-2 border rounded-md bg-gray-50 hover:bg-lime-50 transition"><figcaption>Fig 8</figcaption></figure>
             <figure class="p-2 border rounded-md bg-gray-50 hover:bg-lime-50 transition"><figcaption>Fig 9</figcaption></figure>
             <figure class="p-2 border rounded-md bg-gray-50 hover:bg-lime-50 transition"><figcaption>Fig 10</figcaption></figure>
-            <figure class="col-span-3 sm:col-span-1 p-2 border rounded-md bg-gray-50 hover:bg-lime-50 transition"><figcaption>Fig 11</figcaption></figure>
+            </div>
+        <div class="my-6 flex flex-col items-center">
+            <img 
+                src="photos/westbury.jpg"
+                alt="Westbury Market" 
+                class="w-full h-auto max-w-xs rounded-lg shadow-md cursor-pointer"
+                onclick="openModal('Westbury Market', 'photos/westbury.jpg', false)"
+                onerror="this.onerror=null; this.src='https://placehold.co/192x64/cccccc/333333?text=Fallback+Logo';"
+            />
+            <p class="text-sm font-medium text-gray-700 mt-2">Fig 11: Westbury Market</p>
         </div>
+
+
         <p class="mb-4">
             Everything Taska sells is handmade by Magda in what used to be our living room which has now graduated to being the Taska workshop. The hobby stall has grown into the craft popup shop we're immensely proud of.
         </p>
@@ -100,25 +111,28 @@
         </p>
 
         <div class="my-6 flex justify-center">
-            <a href="#" onclick="openModal('Studio', 'photos/studio.jpg', true); return false;" class="cursor-pointer overflow-hidden rounded-lg">
+            <a href="#" onclick="openModal('Studio', 'photos/studio.jpg', false); return false;" class="cursor-pointer overflow-hidden rounded-lg">
                 <img 
                     src="photos/studio.jpg"
                     alt="Living room studio" 
-                    class="w-full h-auto rounded-lg shadow-md transform transition duration-300"
+                    class="w-full h-auto rounded-lg shadow-md transform transition duration-300 max-w-xs"
                     onerror="this.onerror=null; this.src='https://placehold.co/192x64/cccccc/333333?text=Fallback+Logo';"
                 />
             </a>
         </div>
 
+
+
         <div class="my-6 flex justify-center">
             <img 
                 src="photos/spooky.jpg"
                 alt="Spooky sewer" 
-                class="w-full h-auto max-w-xs rounded-lg shadow-md cursor-pointer"
+                class="w-full h-auto max-w-[12rem] rounded-lg shadow-md cursor-pointer"
                 onclick="openModal('Spooky Sewer', 'photos/spooky.jpg', false)"
                 onerror="this.onerror=null; this.src='https://placehold.co/192x64/cccccc/333333?text=Fallback+Logo';"
             />
         </div>
+
 
 
         <p class="text-sm italic text-gray-500 mt-4 mb-2 text-center">
