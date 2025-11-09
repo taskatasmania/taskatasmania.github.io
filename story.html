@@ -18,6 +18,39 @@
             -ms-overflow-style: none;  /* For Internet Explorer and Edge */
             scrollbar-width: none;  /* For Firefox */
         }
+        /* Custom styles for the slideshow */
+        .slideshow-container {
+            position: relative;
+            max-width: 400px; /* Constrain the slideshow width */
+            margin: auto;
+        }
+        .slideshow-img {
+            display: none; /* Hidden by default */
+            width: 100%;
+            height: auto;
+        }
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            background-color: rgba(0,0,0,0.5);
+        }
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
     </style>
 </head>
 
@@ -40,7 +73,8 @@
             The Taska Tasmania Story
         </h1>
         
-        <p class="mb-4">
+
+<p class="mb-4">
             When Magda retired she realised that she was going to get very bored very quickly. She had a sewing machine which had seen little use because she couldn't find the time to sew, even though it was something she had always wanted to do. 
         </p>
 
@@ -62,24 +96,34 @@
             />
         </div>
 
-        <p class="mb-4">
-            Turned out people weren't keen on shopping bags and the stall had to diversify. That lead to aprons …. with off-cut material used for scrunchies …. lanyards …. and what started out as a single table in Dec 2021 became a pop up shop hosted by Evandale Sunday Market – with occasional excursions.
+
+
+<p class="mb-4">
+            Turned out people weren't keen on shopping bags and the stall had to diversify. That lead to aprons …. with off-cut material used for scrunchies …. lanyards …. and what started out as a single table in Dec 2021 became a pop up shop hosted by 
+            
+            <a href="#" class="font-bold text-lime-700 hover:text-lime-500 transition-colors" onclick="openModal('Evandale Sunday Market', 'photos/evandale.3.jpg', false); return false;">Evandale Sunday Market</a>
+            – with occasional excursions.
         </p>
 
 
-        <div class="grid grid-cols-3 sm:grid-cols-5 gap-4 mt-4 mb-4 text-center text-sm font-medium text-gray-700">
 
-            <figure class="p-2 border rounded-md bg-gray-50 hover:bg-lime-50 transition"><figcaption>Fig 1</figcaption></figure>
-            <figure class="p-2 border rounded-md bg-gray-50 hover:bg-lime-50 transition"><figcaption>Fig 2</figcaption></figure>
-            <figure class="p-2 border rounded-md bg-gray-50 hover:bg-lime-50 transition"><figcaption>Fig 3</figcaption></figure>
-            <figure class="p-2 border rounded-md bg-gray-50 hover:bg-lime-50 transition"><figcaption>Fig 4</figcaption></figure>
-            <figure class="p-2 border rounded-md bg-gray-50 hover:bg-lime-50 transition"><figcaption>Fig 5</figcaption></figure>
-            <figure class="p-2 border rounded-md bg-gray-50 hover:bg-lime-50 transition"><figcaption>Fig 6</figcaption></figure>
-            <figure class="p-2 border rounded-md bg-gray-50 hover:bg-lime-50 transition"><figcaption>Fig 7</figcaption></figure>
-            <figure class="p-2 border rounded-md bg-gray-50 hover:bg-lime-50 transition"><figcaption>Fig 8</figcaption></figure>
-            <figure class="p-2 border rounded-md bg-gray-50 hover:bg-lime-50 transition"><figcaption>Fig 9</figcaption></figure>
-            <figure class="p-2 border rounded-md bg-gray-50 hover:bg-lime-50 transition"><figcaption>Fig 10</figcaption></figure>
-            </div>
+<!-- SLIDESHOW BEGINS
+POSSIBLE BEHAVIOUR CHANGES: code changes to the slideshow's behavior (e.g., automatic cycling, adding indicators, or changing navigation style
+SLIDESHOW CAPTIONS TO BE REMOVED
+-->
+
+
+
+        <h2 class="text-2xl font-bold text-lime-700 tracking-tight mt-8 mb-4 border-b border-lime-200 text-center">
+            Our Products
+        </h2>
+        <div class="slideshow-container my-6">
+            <div id="slideshow-content" class="rounded-lg shadow-xl overflow-hidden h-96 flex items-center justify-center">
+                </div>
+
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
         <div class="my-6 flex flex-col items-center">
             <img 
                 src="photos/westbury.jpg"
@@ -92,7 +136,8 @@
         </div>
 
 
-        <p class="mb-4">
+
+<p class="mb-4">
             Everything Taska sells is handmade by Magda in what used to be our living room which has now graduated to being the Taska workshop. The hobby stall has grown into the craft popup shop we're immensely proud of.
         </p>
         
@@ -106,7 +151,8 @@
             />
         </div>
         
-        <p class="mb-4">
+
+<p class="mb-4">
             Magda with her original Singer ( and sewing tables ), now long gone in favour of a Brother machine and other stuff.
         </p>
 
@@ -121,23 +167,20 @@
             </a>
         </div>
 
-<div class="my-6 flex justify-center">
+
+        <div class="my-6 flex flex-col items-center">
             <img 
                 src="photos/spooky.jpg"
-                alt="Spooky sewer" 
+                alt="Spooky Sewer" 
                 class="w-full h-auto max-w-[12rem] rounded-lg shadow-md cursor-pointer"
                 onclick="openModal('Spooky Sewer', 'photos/spooky.jpg', false)"
                 onerror="this.onerror=null; this.src='https://placehold.co/192x64/cccccc/333333?text=Fallback+Logo';"
             />
+            <p class="text-sm font-medium text-gray-700 mt-1 mb-2 text-center">(Not Magda :)</p>
         </div>
 
-        <p class="text-sm font-medium text-gray-700 mt-1 mb-2 text-center">
-            (Not Magda :)
-        </p>
 
-    </div>
-
-    <div id="imageModal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-amber-300 bg-opacity-100 transition-opacity">
+</div> <div id="imageModal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-amber-300 bg-opacity-100 transition-opacity">
         
         <div id="modalContainer" class="relative p-4 overflow-auto hide-scrollbar flex items-center justify-center" onclick="event.stopPropagation()">
             
@@ -158,6 +201,54 @@
         const modalImage = document.getElementById('modalImage');
         const modalContainer = document.getElementById('modalContainer');
 
+        // SLIDESHOW SCRIPTING START
+        let slideIndex = 0;
+        const slides = [
+            { path: 'products/bows.jpg', caption: 'Bows' },
+            { path: 'products/boxies.jpg', caption: 'Boxies' },
+            { path: 'products/card_holders.jpg', caption: 'Card Holders' },
+            { path: 'products/headbands.jpg', caption: 'Headbands' },
+            { path: 'products/lanyards.jpg', caption: 'Lanyards' },
+            { path: 'products/makeup.jpg', caption: 'Makeup Bags' },
+            { path: 'products/scrunchies.jpg', caption: 'Scrunchies' },
+            { path: 'products/teas.jpg', caption: 'Tea Towels' },
+            { path: 'products/tote_bags.jpg', caption: 'Tote Bags' }
+        ];
+
+        function showSlides(n) {
+            if (slides.length === 0) return;
+            
+            slideIndex += n;
+            if (slideIndex > slides.length - 1) {slideIndex = 0}    
+            if (slideIndex < 0) {slideIndex = slides.length - 1}
+            
+            const currentSlide = slides[slideIndex];
+            const slideshowContent = document.getElementById('slideshow-content');
+
+            // Image uses h-full and object-contain to fit within the fixed h-96 container
+            slideshowContent.innerHTML = `
+                <img 
+                    src="${currentSlide.path}" 
+                    alt="${currentSlide.caption}" 
+                    class="slideshow-img rounded-lg shadow-md cursor-pointer h-full w-full object-contain" 
+                    style="display: block;"
+                    onclick="openModal('${currentSlide.caption}', '${currentSlide.path}', false)"
+                    onerror="this.onerror=null; this.src='https://placehold.co/400x400/cccccc/333333?text=Image+Error';"
+                />
+            `;
+        }
+        
+        function plusSlides(n) {
+            showSlides(n);
+        }
+
+        // Initialize slideshow
+        window.addEventListener('load', () => {
+            showSlides(0);
+        });
+
+        // SLIDESHOW SCRIPTING END
+        
         /**
          * Opens the modal with the specified image source.
          * @param {string} altText - Alt text for the modal image.
