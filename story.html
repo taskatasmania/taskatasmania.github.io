@@ -106,31 +106,16 @@
         </p>
 
 
-
-<!-- SLIDESHOW BEGINS
-POSSIBLE BEHAVIOUR CHANGES: code changes to the slideshow's behavior (e.g., automatic cycling, adding indicators, or changing navigation style
-SLIDESHOW CAPTIONS TO BE REMOVED
--->
-
-
-
         <h2 class="text-2xl font-bold text-lime-700 tracking-tight mt-8 mb-4 border-b border-lime-200 text-center">
             Our Products
         </h2>
         <div class="slideshow-container my-6">
-            <div id="slideshow-content" class="rounded-lg shadow-xl overflow-hidden h-96 flex items-center justify-center">
+            <div id="slideshow-content" class="rounded-lg shadow-xl overflow-hidden flex flex-col items-center justify-center">
                 </div>
 
             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
             <a class="next" onclick="plusSlides(1)">&#10095;</a>
         </div>
-
-
-<!-- SLIDESHOW CONTAINER ENDS -->
-
-
-
-
         <div class="my-10 flex flex-col items-center">
             <img 
                 src="photos/westbury.jpg"
@@ -139,7 +124,7 @@ SLIDESHOW CAPTIONS TO BE REMOVED
                 onclick="openModal('Westbury Market', 'photos/westbury.jpg', false)"
                 onerror="this.onerror=null; this.src='https://placehold.co/192x64/cccccc/333333?text=Fallback+Logo';"
             />
-            <p class="text-sm font-medium text-gray-700 mt-2">Westbury St Patrick's Day Market</p>
+            <p class="text-sm font-medium text-gray-700 mt-2">Westbury Market</p>
         </div>
 
 
@@ -210,6 +195,8 @@ SLIDESHOW CAPTIONS TO BE REMOVED
 
         // SLIDESHOW SCRIPTING START
         let slideIndex = 0;
+        let slideshowInterval; 
+
         const slides = [
             { path: 'products/bows.jpg', caption: 'Bows' },
             { path: 'products/boxies.jpg', caption: 'Boxies' },
@@ -225,6 +212,7 @@ SLIDESHOW CAPTIONS TO BE REMOVED
         function showSlides(n) {
             if (slides.length === 0) return;
             
+            // 1. Calculate the new slide index
             slideIndex += n;
             if (slideIndex > slides.length - 1) {slideIndex = 0}    
             if (slideIndex < 0) {slideIndex = slides.length - 1}
@@ -232,17 +220,42 @@ SLIDESHOW CAPTIONS TO BE REMOVED
             const currentSlide = slides[slideIndex];
             const slideshowContent = document.getElementById('slideshow-content');
 
-            // Image uses h-full and object-contain to fit within the fixed h-96 container
+            // 2. Inject the new slide HTML
+            // Fade duration is set here: duration-1000 for 1.0 second fade
             slideshowContent.innerHTML = `
                 <img 
                     src="${currentSlide.path}" 
                     alt="${currentSlide.caption}" 
-                    class="slideshow-img rounded-lg shadow-md cursor-pointer h-full w-full object-contain" 
-                    style="display: block;"
+                    class="slideshow-img rounded-lg shadow-md cursor-pointer h-96 w-full object-contain transition-opacity duration-1000" 
+                    style="display: block; opacity: 0;"
                     onclick="openModal('${currentSlide.caption}', '${currentSlide.path}', false)"
                     onerror="this.onerror=null; this.src='https://placehold.co/400x400/cccccc/333333?text=Image+Error';"
                 />
+                <p class="text-xl font-semibold text-lime-700 mt-2 p-2 text-center">
+                    ${currentSlide.caption}
+                </p>
             `;
+            
+            // 3. Trigger the fade-in after a very short delay (10ms)
+            setTimeout(() => {
+                const imgElement = slideshowContent.querySelector('img');
+                if(imgElement) {
+                    imgElement.style.opacity = 1;
+                }
+            }, 10); 
+
+            // 4. Logic to reset the timer every time the user clicks an arrow (manual navigation)
+            if (n !== 0) {
+                clearInterval(slideshowInterval);
+                autoShowSlides(); // Restart the cycle
+            }
+        }
+
+        function autoShowSlides() {
+            // Cycles every 4000 milliseconds (4 seconds)
+            slideshowInterval = setInterval(() => {
+                showSlides(1); // Advance to the next slide
+            }, 4000); 
         }
         
         function plusSlides(n) {
@@ -251,9 +264,10 @@ SLIDESHOW CAPTIONS TO BE REMOVED
 
         // Initialize slideshow
         window.addEventListener('load', () => {
-            showSlides(0);
+            slideIndex = -1; // Start before the first slide
+            showSlides(1); // Advance to the first slide (index 0)
+            autoShowSlides(); // START the automatic cycle
         });
-
         // SLIDESHOW SCRIPTING END
         
         /**
