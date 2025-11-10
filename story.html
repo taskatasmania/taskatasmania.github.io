@@ -136,7 +136,7 @@
                 alt="Mags Sewing" 
                 class="w-full h-auto max-w-xs rounded-lg shadow-md cursor-pointer"
                 onclick="openModal('Mags Sewing', 'photos/sewing.jpg', false)"
-                onerror="this.onerror=null; this.src='https://placehold.co/192x64/cccccc/333333?text=Fallback+Logo';"
+                onerror="this.onerror=null; this.src='https://placehold.co/192x64/cccccc/333333?text=Image+Error';"
             />
         </div>
         
@@ -176,7 +176,7 @@
         </h2>
         <form action="https://formsubmit.co/26fcd88ad65fed7c6558a2aad6e3cd12" method="POST" class="max-w-md mx-auto p-4 bg-lime-50 rounded-lg shadow-inner">
             
-            <input type="hidden" name="_next" value="[Your Page URL]">
+            <input type="hidden" name="_next" value="https://taskatasmania.github.io/story.html">
             
             <div class="mb-4">
                 <label for="name" class="block text-sm font-medium text-lime-800 mb-1">Your Name</label>
@@ -251,90 +251,4 @@
                 <img 
                     src="${currentSlide.path}" 
                     alt="${currentSlide.caption}" 
-                    class="slideshow-img rounded-lg shadow-md cursor-pointer h-96 w-full object-contain transition-opacity duration-1000" 
-                    style="display: block; opacity: 0;"
-                    onclick="openModal('${currentSlide.caption}', '${currentSlide.path}', false)"
-                    onerror="this.onerror=null; this.src='https://placehold.co/400x400/cccccc/333333?text=Image+Error';"
-                />
-                <p class="text-xl font-semibold text-lime-700 mt-2 p-2 text-center">
-                    ${currentSlide.caption}
-                </p>
-            `;
-            
-            // 3. Trigger the fade-in after a very short delay (10ms)
-            setTimeout(() => {
-                const imgElement = slideshowContent.querySelector('img');
-                if(imgElement) {
-                    imgElement.style.opacity = 1;
-                }
-            }, 10); 
-
-            // 4. Logic to reset the timer every time the user clicks an arrow (manual navigation)
-            if (n !== 0) {
-                clearInterval(slideshowInterval);
-                autoShowSlides(); // Restart the cycle
-            }
-        }
-
-        function autoShowSlides() {
-            // Cycles every 4000 milliseconds (4 seconds)
-            slideshowInterval = setInterval(() => {
-                showSlides(1); // Advance to the next slide
-            }, 4000); 
-        }
-        
-        function plusSlides(n) {
-            showSlides(n);
-        }
-
-        // Initialize slideshow
-        window.addEventListener('load', () => {
-            slideIndex = -1; // Start before the first slide
-            showSlides(1); // Advance to the first slide (index 0)
-            autoShowSlides(); // START the automatic cycle
-        });
-        // SLIDESHOW SCRIPTING END
-        
-        /**
-         * Opens the modal with the specified image source.
-         * @param {string} altText - Alt text for the modal image.
-         * @param {string} imgSrc - Source URL of the image to display.
-         * @param {boolean} [isFullSize=false] - If true, displays the image full size with container scrolling.
-         */
-        function openModal(altText, imgSrc, isFullSize = false) {
-            modalImage.src = imgSrc;
-            modalImage.alt = altText;
-            
-            // Define classes for full size (allows image to be larger than viewport)
-            const fullSizeContainerClasses = ['w-full', 'h-full', 'max-w-none', 'max-h-none'];
-            const constrainedContainerClasses = ['max-w-5xl', 'max-h-[90vh]'];
-            
-            // Reset all potential size classes
-            modalContainer.classList.remove(...fullSizeContainerClasses, ...constrainedContainerClasses);
-            modalImage.classList.remove('w-full', 'h-auto', 'object-contain');
-            
-            if (isFullSize) {
-                // Apply classes for full-size, scrollable behavior
-                modalContainer.classList.add(...fullSizeContainerClasses);
-                modalImage.classList.add('w-full', 'h-auto');
-            } else {
-                // Apply classes for constrained, fit-to-screen behavior
-                modalContainer.classList.add(...constrainedContainerClasses);
-                modalImage.classList.add('w-full', 'h-auto', 'object-contain');
-            }
-
-            modal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden'; 
-        }
-
-        /**
-         * Closes the modal.
-         */
-        function closeModal() {
-            modal.classList.add('hidden');
-            document.body.style.overflow = '';
-        }
-    </script>
-
-</body>
-</html>
+                    class="slideshow-img rounded-lg shadow-md cursor-pointer h
