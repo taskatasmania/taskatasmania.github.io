@@ -4,13 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Market Information</title>
-    <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* Custom font */
         body {
             font-family: 'Georgia', serif;
-             /* Note: The background color is set in the body class below */
+        }
+        /* Custom CSS to hide scrollbar specifically on the modal's inner content */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none; /* For Chrome, Safari, and Opera */
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;  /* For Internet Explorer and Edge */
+            scrollbar-width: none;  /* For Firefox */
         }
     </style>
 </head>
@@ -18,74 +24,40 @@
 
 <body class="p-4 sm:p-8 bg-neutral-100 min-h-screen flex items-start justify-center">
 
-    <!-- Main Container Card -->
-    <div class="w-full max-w-4xl bg-white shadow-xl rounded-xl p-6 md:p-10 border border-gray-100  text-lg">
+    <div class="w-full max-w-4xl bg-white shadow-xl rounded-xl p-6 md:p-10 border border-gray-100 text-lg">
 
-
-
-        <!-- H1: Graphic Heading -->
         <header class="mb-6 pb-4 flex justify-center">
-
- 
-            <!-- The class is changed to w-full max-w-sm.
-                w-full: takes up 100% of the available width (on smaller screens).
-                max-w-sm: caps the maximum size the image can grow to (on larger screens).
-		class="w-full max-w-sm h-auto rounded-lg shadow-md" -->
-
-            <a href="https://taskatasmania.github.io/" ><img 
-                src=graphics/logo.colour.main.jpg
-                alt="Market Information Logo" 
-                class="w-full h-auto rounded-lg shadow-md"
-                onerror="this.onerror=null; this.src='https://placehold.co/192x64/cccccc/333333?text=Fallback+Logo';"</a>
+            <a href="https://taskatasmania.github.io/story.html">
+                <img 
+                    src="graphics/logo.colour.main.jpg"
+                    alt="Market Information Logo" 
+                    class="w-full h-auto rounded-lg shadow-md"
+                    onerror="this.onerror=null; this.src='https://placehold.co/192x64/cccccc/333333?text=Fallback+Logo';"
+                />
+            </a>
          </header>
 
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-lime-700 tracking-tight mb-4 text-center">Market Information</h1>
 
-
- <!-- H1: Main Heading (Left-aligned) -->
-        <h1 class="text-3xl sm:text-4xl font-extrabold text-lime-700 tracking-tight mb-4  text-center">Market Information</h1>
-
-        <!-- Introductory Paragraph -->
         <p class="mb-6 text-lg text-lime-800 leading-relaxed text-center">
             This month we plan to be at the following markets
         </p>
 
-
-
-        <!-- Market Schedule Table -->
         <div class="overflow-x-auto shadow-lg rounded-lg mb-8">
             <table class="min-w-full divide-y divide-indigo-200">
-
-                <!-- Table Header -->
                 <thead class="bg-lime-100">
                     <tr>
-		<!-- Date Header (w-1/6) -->
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-lime-700 uppercase tracking-wider rounded-tl-lg w-1/6">
-                            Date
-                        </th>
-		<!-- Market Header (w-1/2 implicitly) -->
-                        <th scope="col" class="px-6 py-3 text-center text-xs font-semibold text-lime-700 uppercase tracking-wider">
-                            Market
-                        </th>
-		<!-- Time Header (w-1/4) -->
-                        <th scope="col" class="px-6 py-3 text-center text-xs font-semibold text-lime-700 uppercase tracking-wider rounded-tr-lg w-1/6">
-                            Time
-                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-lime-700 uppercase tracking-wider rounded-tl-lg w-1/6">Date</th>
+                        <th scope="col" class="px-6 py-3 text-center text-xs font-semibold text-lime-700 uppercase tracking-wider">Market</th>
+                        <th scope="col" class="px-6 py-3 text-center text-xs font-semibold text-lime-700 uppercase tracking-wider rounded-tr-lg w-1/6">Time</th>
                     </tr>
                 </thead>
-
-
-<!-- Table Body -->
                 <tbody class="bg-white divide-y divide-gray-200 text-lime-800">
-                    <!-- 02 Nov ROW: Strikethrough is REMOVED, as requested -->
                     <tr class="hover:bg-lime-50 transition duration-150">
-                        <!-- Date Cell (w-1/6) - CHANGED from text-sm to text-lg -->
                         <td class="px-6 py-4 whitespace-nowrap font-medium text-lg w-1/6">02 Nov</td>
-                        <!-- Market Cell (Center-aligned) - CHANGED from text-sm to text-lg -->
                         <td class="px-6 py-4 whitespace-nowrap text-lg text-center">Evandale Sunday Market</td>
-                        <!-- Time Cell (w-1/6) - CHANGED from text-sm to text-lg -->
                         <td class="px-6 py-4 whitespace-nowrap text-lg w-1/6">8am – 1:30pm</td>
                     </tr>
-
                     <tr class="hover:bg-lime-50 transition duration-150">
                         <td class="px-6 py-4 whitespace-nowrap font-medium text-lg w-1/6">09 Nov</td>
                         <td class="px-6 py-4 whitespace-nowrap text-lg text-center">Evandale Sunday Market</td>
@@ -110,49 +82,102 @@
             </table>
         </div>
 
-
-
-
-
-
-        <!-- Disclaimer Paragraph -->
-        <p class="mb-4 p-4 bg-yellow-50 border-l-4 border-yellow-400 text-lg text-amber-600 rounded-md">
-            <!-- Emphasize the weather factor -->
-            <!-- <strong class="font-semibold">Important Note:</strong> -->
-
-Since rain, very strong winds etc play havoc with our shop, we may have to miss a market every now and then. If we are not going to be able to attend any of the above markets we will notify Facebook followers and <span class="line-through">cross out that date</span> on this page as soon as possible.
+        <p class="my-6 p-4 bg-yellow-50 border-l-4 border-yellow-400 text-lg text-amber-600 rounded-md">
+            Since rain, very strong winds etc play havoc with our shop, we may have to miss a market every now and then. If we are not going to be able to attend any of the above markets we will notify Facebook followers and <span class="line-through">cross out that date</span> on this page as soon as possible.
         </p>
 
-
-
-
-        <!-- Contact/Confirmation Paragraph -->
         <p class="mb-6 text-lime-700 leading-relaxed text-center">
-            So if you want to catch up at a particular market please check here, on our <a href=https://www.facebook.com/taskatasmania/ class="text-indigo-600 hover:text-green-800 font-medium underline transition duration-150">Facebook</a> or by email to <a class="text-lime-950 hover:text-lime-700 font-medium transition duration-150">magda@taskatasmania.com</a> to make sure we are able to make it. We don't want to disappoint!
+            So if you want to catch up at a particular market please check here, on our  
+            <a href="https://www.facebook.com/taskatasmania/" class="text-indigo-600 hover:text-green-800 font-medium underline transition duration-150">Facebook</a>, 
+            or use this contact form to make sure we are able to make it. We don't want to disappoint!
         </p>
-        		
-<!-- removed href above <a href="mailto:magda@taskatasmania.com" class="text-indigo-600 hover:text-indigo-800 font-medium underline transition duration-150">magda@taskatasmania.com</a>
-	<a href="" >  </a> -->
+        
+        <form action="https://formsubmit.co/26fcd88ad65fed7c6558a2aad6e3cd12" method="POST" class="max-w-xs mx-auto p-4 bg-lime-50 rounded-lg shadow-inner mb-6">
+            <input type="hidden" name="_next" value="https://taskatasmania.github.io/index.html">
+            <input type="hidden" name="_subject" value="Market Query and Message">
+            <div class="mb-4">
+                <label for="email" class="block text-sm font-medium text-lime-800 mb-1">Your Email</label>
+                <input type="email" id="email" name="Email" required class="w-full px-3 py-2 border border-lime-300 rounded-md focus:outline-none focus:ring-2 focus:ring-lime-500 text-base">
+            </div>
+            <div class="mb-4">
+                <label for="message" class="block text-sm font-medium text-lime-800 mb-1">Your Message</label>
+                <textarea id="message" name="Message" rows="3" required class="w-full px-3 py-2 border border-lime-300 rounded-md focus:outline-none focus:ring-2 focus:ring-lime-500 text-base"></textarea>
+            </div>
+            <button type="submit" class="w-full bg-lime-700 text-white font-bold py-2 px-4 text-base rounded-md hover:bg-lime-600 transition duration-200">
+                Send Message
+            </button>
+        </form>
+        <hr class="border-lime-200"> 
 
-
-
-
-
-	
-        <!-- Closing Line -->
-
-        <footer class="mt-8 pt-8 border-t border-gray-200 text-center text-lime-600 italic">        
-
-           <p><strong class="font-semibold">Looking forward to seeing you soon</strong></p>
-
-
-                      <a href="https://taskatasmania.com" >
-                <img src=photos/evandale.3.jpg alt="Market Scene" class="mt-8 w-full h-auto rounded-lg shadow-md"
-                onerror="this.onerror=null; this.src='https://placehold.co/192x64/cccccc/333333?text=Fallback+Logo';"</a>
-
-        </footer>
-
+        <footer class="mt-8 text-center text-lime-600 italic">       
+            <p><strong class="font-semibold">Looking forward to seeing you soon</strong></p>
+            <a href="#" onclick="openModal('Market Scene', 'photos/evandale.3.jpg', true); return false;" class="cursor-pointer">
+                <img 
+                    src="photos/evandale.3.jpg" 
+                    alt="Market Scene" 
+                    class="mt-8 w-full h-auto rounded-lg shadow-md"
+                    onerror="this.onerror=null; this.src='https://placehold.co/192x64/cccccc/333333?text=Fallback+Image';"
+                />
+            </a>
+            </footer>
     </div>
+    <div id="imageModal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-amber-300 bg-opacity-100 transition-opacity" onclick="closeModal()">
+        <div id="modalContainer" class="relative p-4 overflow-auto hide-scrollbar flex items-center justify-center" onclick="event.stopPropagation()">
+            <button onclick="closeModal()" class="absolute top-4 right-4 
+                                                 text-amber-300 bg-amber-600 bg-opacity-85 
+                                                 p-2 rounded-full h-10 w-10 flex items-center justify-center 
+                                                 text-2xl font-bold leading-none 
+                                                 hover:bg-opacity-100 transition-opacity drop-shadow-lg">
+                &times;
+            </button>
+            <img id="modalImage" src="" alt="Enlarged Image" class="block rounded-lg shadow-2xl">
+        </div>
+    </div>
+    <script>
+        // Element definitions (MUST be outside functions but inside the script block)
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalContainer = document.getElementById('modalContainer');
 
-</body>
+        /**
+         * Opens the modal with the specified image source.
+         * @param {string} altText - Alt text for the modal image.
+         * @param {string} imgSrc - Source URL of the image to display.
+         * @param {boolean} [isFullSize=false] - If true, displays the image full size with container scrolling.
+         */
+        function openModal(altText, imgSrc, isFullSize = false) {
+            modalImage.src = imgSrc;
+            modalImage.alt = altText;
+            
+            // Define classes for full size (allows image to be larger than viewport)
+            const fullSizeContainerClasses = ['w-full', 'h-full', 'max-w-none', 'max-h-none'];
+            const constrainedContainerClasses = ['max-w-5xl', 'max-h-[90vh]'];
+            
+            // Reset all potential size classes
+            modalContainer.classList.remove(...fullSizeContainerClasses, ...constrainedContainerClasses);
+            modalImage.classList.remove('w-full', 'h-auto', 'object-contain');
+            
+            if (isFullSize) {
+                // Apply classes for full-size, scrollable behavior
+                modalContainer.classList.add(...fullSizeContainerClasses);
+                modalImage.classList.add('w-full', 'h-auto');
+            } else {
+                // Apply classes for constrained, fit-to-screen behavior
+                modalContainer.classList.add(...constrainedContainerClasses);
+                modalImage.classList.add('w-full', 'h-auto', 'object-contain');
+            }
+
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        /**
+         * Closes the modal.
+         */
+        function closeModal() {
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+    </script>
+    </body>
 </html>
