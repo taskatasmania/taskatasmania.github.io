@@ -109,8 +109,23 @@
         </form>
         <hr class="border-lime-200"> 
 
-        <footer class="mt-8 text-center text-lime-600 italic">       
-            <p><strong class="font-semibold">Looking forward to seeing you soon</strong></p>
+<!-- -----------------------------CHANGE TEXT TO CLICKABLE BUTTON POINTING TO STORY.HTML----------------------------------- -->
+
+<a href="story.html" class="block w-full text-center my-8">
+            <button class="bg-lime-700 text-white font-bold text-xl py-3 px-8 rounded-full shadow-lg hover:bg-lime-500 transition duration-300 transform hover:scale-105">
+                Read Our Story 📖
+            </button>
+        </a>
+
+
+
+
+
+
+        <!-- <footer class="mt-8 text-center text-lime-600 italic">       
+            <p><strong class="font-semibold">Looking forward to seeing you soon</strong></p> -->
+
+
             <a href="#" onclick="openModal('Market Scene', 'photos/evandale.3.jpg', true); return false;" class="cursor-pointer">
                 <img 
                     src="photos/evandale.3.jpg" 
@@ -120,6 +135,11 @@
                 />
             </a>
             </footer>
+
+
+<!-- ------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+
     </div>
     <div id="imageModal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-amber-300 bg-opacity-100 transition-opacity" onclick="closeModal()">
         <div id="modalContainer" class="relative p-4 overflow-auto hide-scrollbar flex items-center justify-center" onclick="event.stopPropagation()">
