@@ -90,33 +90,38 @@
         // SLIDESHOW SCRIPTING START
         let slideIndex = 0;
         let slideshowInterval;
-
+        let isPaused = false; // New flag to track pause state
+    
         // Data array with placeholder image URLs
         const slides = [
-            { path: 'products/bows.jpg', caption: 'Bows' },
-            { path: 'products/boxies.jpg', caption: 'Boxies' },
-            { path: 'products/card_holders.jpg', caption: 'Card Holders' },
-            { path: 'products/headbands.jpg', caption: 'Headbands' },
-            { path: 'products/lanyards.jpg', caption: 'Lanyards' },
-            { path: 'products/makeup.jpg', caption: 'Makeup Bags' },
-            { path: 'products/scrunchies.jpg', caption: 'Scrunchies' },
-            { path: 'products/teas.jpg', caption: 'Tea Towels' },
-            { path: 'products/tote_bags.jpg', caption: 'Tote Bags' }
+            // Replaced local paths with dynamic placeholder images
+            { path: 'https://placehold.co/400x400/77DD77/FFFFFF?text=Bows', caption: 'Bows' },
+            { path: 'https://placehold.co/400x400/ADD8E6/333333?text=Boxies', caption: 'Boxies' },
+            { path: 'https://placehold.co/400x400/FFB6C1/333333?text=Card+Holders', caption: 'Card Holders' },
+            { path: 'https://placehold.co/400x400/FFA07A/333333?text=Headbands', caption: 'Headbands' },
+            { path: 'https://placehold.co/400x400/87CEFA/333333?text=Lanyards', caption: 'Lanyards' },
+            { path: 'https://placehold.co/400x400/DA70D6/FFFFFF?text=Makeup+Bags', caption: 'Makeup Wipes' },
+            { path: 'https://placehold.co/400x400/F0E68C/333333?text=Scrunchies', caption: 'Scrunchies' },
+            { path: 'https://placehold.co/400x400/F4A460/333333?text=Tea+Towels', caption: 'Tea Towels' },
+            { path: 'https://placehold.co/400x400/4682B4/FFFFFF?text=Tote+Bags', caption: 'Tote Bags' }
         ];
-
-
+    
         function showSlides(n) {
             if (slides.length === 0) return;
-
+    
             // 1. Calculate the new slide index (wraps around)
-            slideIndex += n;
+            // Check if n is 0. If it is, we only want to display the current slideIndex, not change it.
+            if (n !== 0) {
+                slideIndex += n;
+            }
+            
             if (slideIndex > slides.length - 1) { slideIndex = 0 }
             if (slideIndex < 0) { slideIndex = slides.length - 1 }
-
+    
             const currentSlide = slides[slideIndex];
             const slideshowContent = document.getElementById('slideshow-content');
-
-            // 2. Inject the new slide HTML (Simplified: removed the openModal onclick)
+    
+            // 2. Inject the new slide HTML
             slideshowContent.innerHTML = `
                 <img
                     src="${currentSlide.path}"
@@ -129,7 +134,7 @@
                     ${currentSlide.caption}
                 </p>
             `;
-
+    
             // 3. Trigger the fade-in after a very short delay (10ms)
             setTimeout(() => {
                 const imgElement = slideshowContent.querySelector('img');
@@ -137,30 +142,62 @@
                     imgElement.style.opacity = 1;
                 }
             }, 10);
-
+    
             // 4. Logic to reset the timer every time the user clicks an arrow (manual navigation)
-            if (n !== 0) {
+            // Only restart the timer if we are NOT currently paused by a mouse hover.
+            if (n !== 0 && !isPaused) {
                 clearInterval(slideshowInterval);
                 autoShowSlides(); // Restart the cycle
             }
         }
-
+    
         function autoShowSlides() {
-            // Cycles every 8000 milliseconds (4 seconds)
-            slideshowInterval = setInterval(() => {
-                showSlides(1); // Advance to the next slide
-            }, 8000);
+            // Only set the interval if we are not paused.
+            if (!isPaused) {
+                // Cycles every 4000 milliseconds (4 seconds)
+                slideshowInterval = setInterval(() => {
+                    showSlides(1); // Advance to the next slide
+                }, 4000);
+            }
         }
-
+        
+        // New function to pause the cycle
+        function pauseSlideshow() {
+            clearInterval(slideshowInterval); // Stop the automatic timer
+            isPaused = true;
+            console.log('Slideshow paused.');
+        }
+    
+        // New function to resume the cycle
+        function resumeSlideshow() {
+            if (isPaused) {
+                isPaused = false;
+                autoShowSlides(); // Restart the automatic timer
+                console.log('Slideshow resumed.');
+            }
+        }
+    
         function plusSlides(n) {
             showSlides(n);
         }
-
-        // Initialize slideshow
+    
+        // Initialize slideshow and setup event listeners for hover
         window.addEventListener('load', () => {
-            slideIndex = -1; // Start before the first slide
-            showSlides(1); // Advance to the first slide (index 0)
+            slideIndex = 0;
+            showSlides(0); // Display the first slide (n=0)
             autoShowSlides(); // START the automatic cycle
+    
+            // Get the main container element
+            const container = document.querySelector('.slideshow-container');
+            
+            // Setup Event Listeners on the container
+            if (container) {
+                // mouseenter event: when the cursor moves over the container
+                container.addEventListener('mouseenter', pauseSlideshow);
+                
+                // mouseleave event: when the cursor moves off the container
+                container.addEventListener('mouseleave', resumeSlideshow);
+            }
         });
         // SLIDESHOW SCRIPTING END
     </script>
