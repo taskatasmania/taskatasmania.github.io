@@ -80,13 +80,16 @@
         <div class="slideshow-container my-6">
             <!-- This DIV will contain the dynamically injected image and caption -->
             <div class="aspect-square w-full rounded-lg shadow-xl overflow-hidden">
-                <div id="slideshow-content" class="h-full w-full flex flex-col items-center justify-center">
+                <div id="slideshow-image" class="h-full w-full flex items-center justify-center">
+                    </div>
             </div>
-
-            <!-- Navigation Anchors -->
+        
+            <div id="slideshow-caption" class="mt-2 p-2 w-full text-center">
+                </div>
+        <!-- Navigation Anchors -->
             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-    <a class="next" onclick="plusSlides(1)">&#10095;</a>
-</div>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
         <!-- END SLIDESHOW HTML STRUCTURE -->
     </div>
 
@@ -111,41 +114,45 @@
         ];
     
         function showSlides(n) {
-            if (slides.length === 0) return;
-    
-            // 1. Calculate the new slide index (wraps around)
-            // Check if n is 0. If it is, we only want to display the current slideIndex, not change it.
-            if (n !== 0) {
-                slideIndex += n;
+        if (slides.length === 0) return;
+
+        // 1. Calculate the new slide index (wraps around)
+        if (n !== 0) {
+            slideIndex += n;
+        }
+        
+        if (slideIndex > slides.length - 1) { slideIndex = 0 }
+        if (slideIndex < 0) { slideIndex = slides.length - 1 }
+
+        const currentSlide = slides[slideIndex];
+        const slideshowImage = document.getElementById('slideshow-image'); // NEW ID
+        const slideshowCaption = document.getElementById('slideshow-caption'); // NEW ID
+
+        // 2a. Inject the new IMAGE HTML into the image container
+        slideshowImage.innerHTML = `
+            <img
+                src="${currentSlide.path}"
+                alt="${currentSlide.caption}"
+                class="slideshow-img h-full w-full object-contain transition-opacity duration-1000"
+                style="display: block; opacity: 0;"
+                onerror="this.onerror=null; this.src='https://placehold.co/400x400/cccccc/333333?text=Image+Error';"
+            />
+        `;
+
+        // 2b. Inject the new CAPTION HTML into the caption container
+        slideshowCaption.innerHTML = `
+            <p class="text-xl font-semibold text-lime-700">
+                ${currentSlide.caption}
+            </p>
+        `;
+
+        // 3. Trigger the fade-in after a very short delay (10ms)
+        setTimeout(() => {
+            const imgElement = slideshowImage.querySelector('img');
+            if(imgElement) {
+                imgElement.style.opacity = 1;
             }
-            
-            if (slideIndex > slides.length - 1) { slideIndex = 0 }
-            if (slideIndex < 0) { slideIndex = slides.length - 1 }
-    
-            const currentSlide = slides[slideIndex];
-            const slideshowContent = document.getElementById('slideshow-content');
-    
-            // 2. Inject the new slide HTML
-            slideshowContent.innerHTML = `
-                <img
-                    src="${currentSlide.path}"
-                    alt="${currentSlide.caption}"
-                    class="slideshow-img rounded-lg shadow-md cursor-pointer w-full transition-opacity duration-1000"
-                    style="display: block; opacity: 0;"
-                    onerror="this.onerror=null; this.src='https://placehold.co/400x400/cccccc/333333?text=Image+Error';"
-                />
-                <p class="text-xl font-semibold text-lime-700 mt-2 p-2 text-center">
-                    ${currentSlide.caption}
-                </p>
-            `;
-    
-            // 3. Trigger the fade-in after a very short delay (10ms)
-            setTimeout(() => {
-                const imgElement = slideshowContent.querySelector('img');
-                if(imgElement) {
-                    imgElement.style.opacity = 1;
-                }
-            }, 10);
+        }, 10);
     
             // 4. Logic to reset the timer every time the user clicks an arrow (manual navigation)
             // Only restart the timer if we are NOT currently paused by a mouse hover.
