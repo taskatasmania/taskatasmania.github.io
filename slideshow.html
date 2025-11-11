@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Slideshow Only</title>
+    <!-- Load Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for the slideshow component */
+        .slideshow-container {
+            position: relative;
+            max-width: 400px; /* Constrain the slideshow width */
+            margin: auto;
+            /* Added padding-top to prevent margin collapse with body/outer container */
+            padding-top: 1px;
+        }
+
+        /* Styles are mostly handled by the dynamic injection in JS now, but keeping definitions */
+        .slideshow-img {
+            display: none; /* Hidden by default */
+            width: 100%;
+            height: auto;
+        }
+
+        /* Navigation Arrows (Prev/Next) */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px; /* Pulls element up by half its height for vertical centering */
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            user-select: none;
+            background-color: rgba(0,0,0,0.5);
+            /* Add some Tailwind-like rounded corners to look consistent */
+            border-radius: 0.5rem; 
+        }
+        
+        .next {
+            right: 0;
+            border-radius: 0.5rem;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+
+        /* Ensure the body looks decent */
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #f3f4f6; /* bg-neutral-100 */
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="p-6 md:p-10 w-full max-w-lg bg-white shadow-xl rounded-xl border border-gray-100">
+        <h2 class="text-3xl font-bold text-lime-700 tracking-tight mb-6 pb-4 border-b-2 border-lime-200 text-center">
+            Featured Products Slideshow
+        </h2>
+
+        <!-- SLIDESHOW HTML STRUCTURE -->
+        <div class="slideshow-container my-6">
+            <!-- This DIV will contain the dynamically injected image and caption -->
+            <div id="slideshow-content" class="rounded-lg shadow-xl overflow-hidden flex flex-col items-center justify-center">
+            </div>
+
+            <!-- Navigation Anchors -->
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+        <!-- END SLIDESHOW HTML STRUCTURE -->
+    </div>
+
+    <script>
+        // SLIDESHOW SCRIPTING START
+        let slideIndex = 0;
+        let slideshowInterval;
+
+        // Data array with placeholder image URLs
+        const slides = [
+            // Replaced local paths with dynamic placeholder images
+            { path: 'https://placehold.co/400x400/77DD77/FFFFFF?text=Bows', caption: 'Bows' },
+            { path: 'https://placehold.co/400x400/ADD8E6/333333?text=Boxies', caption: 'Boxies' },
+            { path: 'https://placehold.co/400x400/FFB6C1/333333?text=Card+Holders', caption: 'Card Holders' },
+            { path: 'https://placehold.co/400x400/FFA07A/333333?text=Headbands', caption: 'Headbands' },
+            { path: 'https://placehold.co/400x400/87CEFA/333333?text=Lanyards', caption: 'Lanyards' },
+            { path: 'https://placehold.co/400x400/DA70D6/FFFFFF?text=Makeup+Bags', caption: 'Makeup Bags' },
+            { path: 'https://placehold.co/400x400/F0E68C/333333?text=Scrunchies', caption: 'Scrunchies' },
+            { path: 'https://placehold.co/400x400/F4A460/333333?text=Tea+Towels', caption: 'Tea Towels' },
+            { path: 'https://placehold.co/400x400/4682B4/FFFFFF?text=Tote+Bags', caption: 'Tote Bags' }
+        ];
+
+        function showSlides(n) {
+            if (slides.length === 0) return;
+
+            // 1. Calculate the new slide index (wraps around)
+            slideIndex += n;
+            if (slideIndex > slides.length - 1) { slideIndex = 0 }
+            if (slideIndex < 0) { slideIndex = slides.length - 1 }
+
+            const currentSlide = slides[slideIndex];
+            const slideshowContent = document.getElementById('slideshow-content');
+
+            // 2. Inject the new slide HTML (Simplified: removed the openModal onclick)
+            slideshowContent.innerHTML = `
+                <img
+                    src="${currentSlide.path}"
+                    alt="${currentSlide.caption}"
+                    class="slideshow-img rounded-lg shadow-md cursor-pointer h-96 w-full object-contain transition-opacity duration-1000"
+                    style="display: block; opacity: 0;"
+                    onerror="this.onerror=null; this.src='https://placehold.co/400x400/cccccc/333333?text=Image+Error';"
+                />
+                <p class="text-xl font-semibold text-lime-700 mt-2 p-2 text-center">
+                    ${currentSlide.caption}
+                </p>
+            `;
+
+            // 3. Trigger the fade-in after a very short delay (10ms)
+            setTimeout(() => {
+                const imgElement = slideshowContent.querySelector('img');
+                if(imgElement) {
+                    imgElement.style.opacity = 1;
+                }
+            }, 10);
+
+            // 4. Logic to reset the timer every time the user clicks an arrow (manual navigation)
+            if (n !== 0) {
+                clearInterval(slideshowInterval);
+                autoShowSlides(); // Restart the cycle
+            }
+        }
+
+        function autoShowSlides() {
+            // Cycles every 4000 milliseconds (4 seconds)
+            slideshowInterval = setInterval(() => {
+                showSlides(1); // Advance to the next slide
+            }, 4000);
+        }
+
+        function plusSlides(n) {
+            showSlides(n);
+        }
+
+        // Initialize slideshow
+        window.addEventListener('load', () => {
+            slideIndex = -1; // Start before the first slide
+            showSlides(1); // Advance to the first slide (index 0)
+            autoShowSlides(); // START the automatic cycle
+        });
+        // SLIDESHOW SCRIPTING END
+    </script>
+</body>
+</html>
