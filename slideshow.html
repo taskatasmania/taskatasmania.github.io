@@ -54,21 +54,24 @@
             background-color: rgba(0,0,0,0.8);
         }
 
-        /* Ensure the body looks decent */
         body {
-            font-family: 'Georgia', serif;
-            background-color: #f3f4f6; /* bg-neutral-100 */
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+    font-family: 'Georgia', serif;
+    background-color: #f3f4f6; /* bg-neutral-100 */
+    min-height: 100vh;
+    /* REMOVE: display: flex; */
+    /* REMOVE: align-items: center; */
+    /* REMOVE: justify-content: center; */
+}
     </style>
 </head>
 
 <body>
+    <body class="p-4 sm:p-6 md:p-10"> 
+        <div class="w-full max-w-lg bg-white shadow-xl rounded-xl border border-gray-100">
+            </div>
+        </body>
 
-    <div class="p-6 md:p-10 w-full max-w-lg bg-white shadow-xl rounded-xl border border-gray-100">
+    <div class="w-full max-w-lg bg-white shadow-xl rounded-xl border border-gray-100">
         <h2 class="text-3xl font-bold text-lime-700 tracking-tight mb-6 pb-4 border-b-2 border-lime-200 text-center">
             Featured Products Slideshow
         </h2>
