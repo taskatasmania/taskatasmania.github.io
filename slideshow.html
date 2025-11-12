@@ -228,23 +228,28 @@
             showSlides(n);
         }
     
-        // Initialize slideshow and setup event listeners for hover
-        window.addEventListener('load', () => {
-            // Draw the dots before showing the first slide
-            drawDots(); 
+        // Initialize slideshow and setup event listeners for hover and touch
+    window.addEventListener('load', () => {
+        // Draw the dots before showing the first slide
+        drawDots(); 
+        
+        slideIndex = 0;
+        showSlides(0); 
+        autoShowSlides(); 
+
+        // Get the main container element
+        const container = document.querySelector('.slideshow-container');
+        
+        if (container) {
+            // MOUSE EVENTS (for desktop/mouse users)
+            container.addEventListener('mouseenter', pauseSlideshow);
+            container.addEventListener('mouseleave', resumeSlideshow);
             
-            slideIndex = 0;
-            showSlides(0); 
-            autoShowSlides(); 
-    
-            // Get the main container element
-            const container = document.querySelector('.slideshow-container');
-            
-            if (container) {
-                container.addEventListener('mouseenter', pauseSlideshow);
-                container.addEventListener('mouseleave', resumeSlideshow);
-            }
-        });
+            // NEW: TOUCH EVENTS (for smartphone/tablet users)
+            container.addEventListener('touchstart', pauseSlideshow);
+            container.addEventListener('touchend', resumeSlideshow);
+        }
+    });
         // SLIDESHOW SCRIPTING END
     </script>
 </body>
