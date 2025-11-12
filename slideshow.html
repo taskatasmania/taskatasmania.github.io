@@ -108,7 +108,7 @@
         let slideIndex = 0;
         let slideshowInterval;
         let isPaused = false; 
-    
+        
         // Data array with placeholder image URLs (Insert your actual paths here!)
         const slides = [
             { path: 'https://placehold.co/400x400/77DD77/FFFFFF?text=Bows', caption: 'Bows' },
@@ -136,9 +136,9 @@
             const currentSlide = slides[slideIndex];
             const slideshowImage = document.getElementById('slideshow-image'); 
             const slideshowCaption = document.getElementById('slideshow-caption'); 
-            const dots = document.getElementsByClassName("dot"); // Get all dots
+            const dots = document.getElementsByClassName("dot"); 
     
-            // 2a. Inject the new IMAGE HTML (unchanged)
+            // 2a. Inject the new IMAGE HTML 
             slideshowImage.innerHTML = `
                 <img
                     src="${currentSlide.path}"
@@ -149,7 +149,7 @@
                 />
             `;
     
-            // 2b. Inject the new CAPTION HTML (unchanged)
+            // 2b. Inject the new CAPTION HTML 
             slideshowCaption.innerHTML = `
                 <p class="text-xl font-semibold text-lime-700">
                     ${currentSlide.caption}
@@ -157,17 +157,14 @@
             `;
     
             // 3. Highlight the correct dot
-            // Remove 'active-dot' class from all dots
             for (let i = 0; i < dots.length; i++) {
                 dots[i].className = dots[i].className.replace(" active-dot", "");
             }
-            // Add 'active-dot' class to the current slide's dot
             if (dots.length > 0) {
                 dots[slideIndex].className += " active-dot";
             }
     
-    
-            // 4. Trigger the fade-in (unchanged)
+            // 4. Trigger the fade-in 
             setTimeout(() => {
                 const imgElement = slideshowImage.querySelector('img');
                 if(imgElement) {
@@ -175,18 +172,17 @@
                 }
             }, 10);
     
-            // 5. Logic to reset the timer (unchanged)
+            // 5. Logic to reset the timer 
             if (n !== 0 && !isPaused) {
                 clearInterval(slideshowInterval);
                 autoShowSlides(); 
             }
         }
         
-        // NEW: Function to navigate directly to a slide index
+        // CORRECTED: Function to navigate directly to a slide index
         function currentSlide(n) {
-          // n is the index (0, 1, 2, etc.). Set n-1 because showSlides(1) advances the index.
-          slideIndex = n - 1; 
-          showSlides(1);
+          slideIndex = n; 
+          showSlides(0); // Display the index without advancing
         }
         
         // NEW: Function to create and draw the dots on load
@@ -196,18 +192,17 @@
     
             let dotHTML = '';
             for (let i = 0; i < slides.length; i++) {
-                // Add an onclick handler that calls currentSlide with the dot's number (i+1)
+                // Passes the zero-based index (i)
                 dotHTML += `<span class="dot" onclick="currentSlide(${i})"></span>`;
             }
             dotContainer.innerHTML = dotHTML;
         }
     
-    
         function autoShowSlides() {
             if (!isPaused) {
                 // Cycles every 8000 milliseconds (8 seconds)
                 slideshowInterval = setInterval(() => {
-                    showSlides(1); // Advance to the next slide
+                    showSlides(1); 
                 }, 8000); 
             }
         }
@@ -229,27 +224,25 @@
         }
     
         // Initialize slideshow and setup event listeners for hover and touch
-    window.addEventListener('load', () => {
-        // Draw the dots before showing the first slide
-        drawDots(); 
-        
-        slideIndex = 0;
-        showSlides(0); 
-        autoShowSlides(); 
-
-        // Get the main container element
-        const container = document.querySelector('.slideshow-container');
-        
-        if (container) {
-            // MOUSE EVENTS (for desktop/mouse users)
-            container.addEventListener('mouseenter', pauseSlideshow);
-            container.addEventListener('mouseleave', resumeSlideshow);
+        window.addEventListener('load', () => {
+            drawDots(); 
             
-            // NEW: TOUCH EVENTS (for smartphone/tablet users)
-            container.addEventListener('touchstart', pauseSlideshow);
-            container.addEventListener('touchend', resumeSlideshow);
-        }
-    });
+            slideIndex = 0;
+            showSlides(0); 
+            autoShowSlides(); 
+    
+            const container = document.querySelector('.slideshow-container');
+            
+            if (container) {
+                // MOUSE EVENTS (for desktop/mouse users)
+                container.addEventListener('mouseenter', pauseSlideshow);
+                container.addEventListener('mouseleave', resumeSlideshow);
+                
+                // TOUCH EVENTS (for smartphone/tablet users)
+                container.addEventListener('touchstart', pauseSlideshow);
+                container.addEventListener('touchend', resumeSlideshow);
+            }
+        });
         // SLIDESHOW SCRIPTING END
     </script>
 </body>
