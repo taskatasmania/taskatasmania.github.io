@@ -62,25 +62,44 @@
     /* REMOVE: align-items: center; */
     /* REMOVE: justify-content: center; */
 }
-    </style>
+/* New styles for the dots */
+.dot {
+        cursor: pointer;
+        height: 12px;
+        width: 12px;
+        margin: 0 4px;
+        background-color: #bbb; /* A light grey color */
+        border-radius: 50%;
+        display: inline-block;
+        transition: background-color 0.6s ease;
+    }
+
+    .active-dot, .dot:hover {
+        background-color: #65a30d; /* A lime green color */
+    }
+</style>
 </head>
 
-<body>
-    <body class="p-4 sm:p-6 md:p-10"> 
-        <div class="w-full max-w-lg bg-white shadow-xl rounded-xl border border-gray-100 mx-auto p-6 md:p-10">
-            <div class="slideshow-container mt-6 mb-0">
-                <div class="aspect-square w-full rounded-lg shadow-xl overflow-hidden">
-                    <div id="slideshow-image" class="h-full w-full flex items-center justify-center">
-                    </div>
+<body class="p-4 sm:p-6 md:p-10"> 
+    <div class="w-full max-w-lg bg-white shadow-xl rounded-xl border border-gray-100 mx-auto p-6 md:p-10">
+        
+        <div class="slideshow-container mt-6 mb-0">
+            
+            <div class="aspect-square w-full rounded-lg shadow-xl overflow-hidden">
+                <div id="slideshow-image" class="h-full w-full flex items-center justify-center">
                 </div>
-                
-                <div id="slideshow-caption" class="mt-2 p-2 w-full text-center">
-                </div>
-    
-                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                <a class="next" onclick="plusSlides(1)">&#10095;</a>
             </div>
-            </div> </body> 
+            
+            <div id="slideshow-caption" class="mt-2 py-1 px-2 mb-0 w-full text-center">
+            </div>
+            
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+
+        <div id="dot-container" class="flex justify-center p-4">
+        </div>
+    </div> </body>
         <!-- END SLIDESHOW HTML STRUCTURE -->
     </div>
 
@@ -88,94 +107,120 @@
         // SLIDESHOW SCRIPTING START
         let slideIndex = 0;
         let slideshowInterval;
-        let isPaused = false; // New flag to track pause state
+        let isPaused = false; 
     
-        // Data array with placeholder image URLs
+        // Data array with placeholder image URLs (Insert your actual paths here!)
         const slides = [
-            // Replaced local paths with dynamic placeholder images
             { path: 'https://placehold.co/400x400/77DD77/FFFFFF?text=Bows', caption: 'Bows' },
             { path: 'https://placehold.co/400x400/ADD8E6/333333?text=Boxies', caption: 'Boxies' },
             { path: 'https://placehold.co/400x400/FFB6C1/333333?text=Card+Holders', caption: 'Card Holders' },
             { path: 'https://placehold.co/400x400/FFA07A/333333?text=Headbands', caption: 'Headbands' },
             { path: 'https://placehold.co/400x400/87CEFA/333333?text=Lanyards', caption: 'Lanyards' },
-            { path: 'https://placehold.co/400x400/DA70D6/FFFFFF?text=Makeup+Bags', caption: 'Makeup Wipes' },
+            { path: 'https://placehold.co/400x400/DA70D6/FFFFFF?text=Makeup+Bags', caption: 'Makeup Bags' },
             { path: 'https://placehold.co/400x400/F0E68C/333333?text=Scrunchies', caption: 'Scrunchies' },
             { path: 'https://placehold.co/400x400/F4A460/333333?text=Tea+Towels', caption: 'Tea Towels' },
             { path: 'https://placehold.co/400x400/4682B4/FFFFFF?text=Tote+Bags', caption: 'Tote Bags' }
         ];
     
         function showSlides(n) {
-        if (slides.length === 0) return;
-
-        // 1. Calculate the new slide index (wraps around)
-        if (n !== 0) {
-            slideIndex += n;
-        }
-        
-        if (slideIndex > slides.length - 1) { slideIndex = 0 }
-        if (slideIndex < 0) { slideIndex = slides.length - 1 }
-
-        const currentSlide = slides[slideIndex];
-        const slideshowImage = document.getElementById('slideshow-image'); // NEW ID
-        const slideshowCaption = document.getElementById('slideshow-caption'); // NEW ID
-
-        // 2a. Inject the new IMAGE HTML into the image container
-        slideshowImage.innerHTML = `
-            <img
-                src="${currentSlide.path}"
-                alt="${currentSlide.caption}"
-                class="slideshow-img h-full w-full object-contain transition-opacity duration-1000"
-                style="display: block; opacity: 0;"
-                onerror="this.onerror=null; this.src='https://placehold.co/400x400/cccccc/333333?text=Image+Error';"
-            />
-        `;
-
-        // 2b. Inject the new CAPTION HTML into the caption container
-        slideshowCaption.innerHTML = `
-            <p class="text-3xl font-semibold text-lime-700">
-                ${currentSlide.caption}
-            </p>
-        `;
-
-        // 3. Trigger the fade-in after a very short delay (10ms)
-        setTimeout(() => {
-            const imgElement = slideshowImage.querySelector('img');
-            if(imgElement) {
-                imgElement.style.opacity = 1;
-            }
-        }, 10);
+            if (slides.length === 0) return;
     
-            // 4. Logic to reset the timer every time the user clicks an arrow (manual navigation)
-            // Only restart the timer if we are NOT currently paused by a mouse hover.
+            // 1. Calculate the new slide index (wraps around)
+            if (n !== 0) {
+                slideIndex += n;
+            }
+            
+            if (slideIndex > slides.length - 1) { slideIndex = 0 }
+            if (slideIndex < 0) { slideIndex = slides.length - 1 }
+    
+            const currentSlide = slides[slideIndex];
+            const slideshowImage = document.getElementById('slideshow-image'); 
+            const slideshowCaption = document.getElementById('slideshow-caption'); 
+            const dots = document.getElementsByClassName("dot"); // Get all dots
+    
+            // 2a. Inject the new IMAGE HTML (unchanged)
+            slideshowImage.innerHTML = `
+                <img
+                    src="${currentSlide.path}"
+                    alt="${currentSlide.caption}"
+                    class="slideshow-img h-full w-full object-contain transition-opacity duration-1000"
+                    style="display: block; opacity: 0;"
+                    onerror="this.onerror=null; this.src='https://placehold.co/400x400/cccccc/333333?text=Image+Error';"
+                />
+            `;
+    
+            // 2b. Inject the new CAPTION HTML (unchanged)
+            slideshowCaption.innerHTML = `
+                <p class="text-xl font-semibold text-lime-700">
+                    ${currentSlide.caption}
+                </p>
+            `;
+    
+            // 3. Highlight the correct dot
+            // Remove 'active-dot' class from all dots
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active-dot", "");
+            }
+            // Add 'active-dot' class to the current slide's dot
+            if (dots.length > 0) {
+                dots[slideIndex].className += " active-dot";
+            }
+    
+    
+            // 4. Trigger the fade-in (unchanged)
+            setTimeout(() => {
+                const imgElement = slideshowImage.querySelector('img');
+                if(imgElement) {
+                    imgElement.style.opacity = 1;
+                }
+            }, 10);
+    
+            // 5. Logic to reset the timer (unchanged)
             if (n !== 0 && !isPaused) {
                 clearInterval(slideshowInterval);
-                autoShowSlides(); // Restart the cycle
-            }
-        }
-    
-        function autoShowSlides() {
-            // Only set the interval if we are not paused.
-            if (!isPaused) {
-                // Cycles every 8000 milliseconds (4 seconds)
-                slideshowInterval = setInterval(() => {
-                    showSlides(1); // Advance to the next slide
-                }, 8000);
+                autoShowSlides(); 
             }
         }
         
-        // New function to pause the cycle
-        function pauseSlideshow() {
-            clearInterval(slideshowInterval); // Stop the automatic timer
-            isPaused = true;
-            console.log('Slideshow paused.');
+        // NEW: Function to navigate directly to a slide index
+        function currentSlide(n) {
+          // n is the index (0, 1, 2, etc.). Set n-1 because showSlides(1) advances the index.
+          slideIndex = n - 1; 
+          showSlides(1);
+        }
+        
+        // NEW: Function to create and draw the dots on load
+        function drawDots() {
+            const dotContainer = document.getElementById('dot-container');
+            if (!dotContainer) return;
+    
+            let dotHTML = '';
+            for (let i = 0; i < slides.length; i++) {
+                // Add an onclick handler that calls currentSlide with the dot's number (i+1)
+                dotHTML += `<span class="dot" onclick="currentSlide(${i})"></span>`;
+            }
+            dotContainer.innerHTML = dotHTML;
         }
     
-        // New function to resume the cycle
+    
+        function autoShowSlides() {
+            if (!isPaused) {
+                // Cycles every 8000 milliseconds (8 seconds)
+                slideshowInterval = setInterval(() => {
+                    showSlides(1); // Advance to the next slide
+                }, 8000); 
+            }
+        }
+        
+        function pauseSlideshow() {
+            clearInterval(slideshowInterval);
+            isPaused = true;
+        }
+    
         function resumeSlideshow() {
             if (isPaused) {
                 isPaused = false;
-                autoShowSlides(); // Restart the automatic timer
-                console.log('Slideshow resumed.');
+                autoShowSlides();
             }
         }
     
@@ -185,19 +230,18 @@
     
         // Initialize slideshow and setup event listeners for hover
         window.addEventListener('load', () => {
+            // Draw the dots before showing the first slide
+            drawDots(); 
+            
             slideIndex = 0;
-            showSlides(0); // Display the first slide (n=0)
-            autoShowSlides(); // START the automatic cycle
+            showSlides(0); 
+            autoShowSlides(); 
     
             // Get the main container element
             const container = document.querySelector('.slideshow-container');
             
-            // Setup Event Listeners on the container
             if (container) {
-                // mouseenter event: when the cursor moves over the container
                 container.addEventListener('mouseenter', pauseSlideshow);
-                
-                // mouseleave event: when the cursor moves off the container
                 container.addEventListener('mouseleave', resumeSlideshow);
             }
         });
