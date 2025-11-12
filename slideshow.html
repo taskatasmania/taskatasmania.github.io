@@ -22,10 +22,13 @@
 
         /* Styles are mostly handled by the dynamic injection in JS now, but keeping definitions */
         .slideshow-img {
-            display: none; /* Hidden by default */
-            width: 100%;
-            height: auto;
-        }
+        display: none; 
+        width: 100%;
+        height: 100%;
+        /* NEW: Add touch-action for better mobile gesture handling */
+        touch-action: manipulation; 
+    }
+
 
         /* Navigation Arrows (Prev/Next) */
         .prev, .next {
@@ -140,14 +143,17 @@
     
             // 2a. Inject the new IMAGE HTML 
             slideshowImage.innerHTML = `
-                <img
-                    src="${currentSlide.path}"
-                    alt="${currentSlide.caption}"
-                    class="slideshow-img h-full w-full object-contain transition-opacity duration-1000"
-                    style="display: block; opacity: 0;"
-                    onerror="this.onerror=null; this.src='https://placehold.co/400x400/cccccc/333333?text=Image+Error';"
-                />
-            `;
+            <img
+            src="${currentSlide.path}"
+            alt="${currentSlide.caption}"
+            class="slideshow-img h-full w-full object-contain transition-opacity duration-1000"
+            style="display: block; opacity: 0;"
+            onerror="this.onerror=null; this.src='https://placehold.co/400x400/cccccc/333333?text=Image+Error';"
+        
+            /* NEW: Block the right-click/long-press menu */
+            oncontextmenu="return false;"
+            />
+        `;
     
             // 2b. Inject the new CAPTION HTML 
             slideshowCaption.innerHTML = `
