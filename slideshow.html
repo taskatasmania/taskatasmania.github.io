@@ -1,12 +1,9 @@
-<!-- 1. Structural Layer: HTML (<!DOCTYPE html> to </html>) -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Slideshow Only</title>
-    <!-- Load Tailwind CSS for utility classes -->
+    <title>Product Slideshow</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* Custom styles for the slideshow component */
@@ -14,21 +11,18 @@
             position: relative;
             max-width: 400px; /* Constrain the slideshow width */
             margin: auto;
-            /* Added padding-top to prevent margin collapse with body/outer container */
             padding-top: 1px;
         }
 
-
-
-        /* Styles are mostly handled by the dynamic injection in JS now, but keeping definitions */
+        /* Styles for the dynamic image element */
         .slideshow-img {
-        display: none; 
-        width: 100%;
-        height: 100%;
-        /* NEW: Add touch-action for better mobile gesture handling */
-        touch-action: manipulation; 
-    }
-
+            display: none; 
+            width: 100%;
+            height: 100%;
+            touch-action: manipulation; 
+            -webkit-touch-callout: none; /* iOS/Safari: Blocks long-press menu */
+            user-select: none;           /* Prevents text/image selection interference */
+        }
 
         /* Navigation Arrows (Prev/Next) */
         .prev, .next {
@@ -44,7 +38,6 @@
             transition: 0.6s ease;
             user-select: none;
             background-color: rgba(0,0,0,0.5);
-            /* Add some Tailwind-like rounded corners to look consistent */
             border-radius: 0.5rem; 
         }
         
@@ -57,30 +50,29 @@
             background-color: rgba(0,0,0,0.8);
         }
 
+        /* General Body Styling */
         body {
-    font-family: 'Georgia', serif;
-    background-color: #f3f4f6; /* bg-neutral-100 */
-    min-height: 100vh;
-    /* REMOVE: display: flex; */
-    /* REMOVE: align-items: center; */
-    /* REMOVE: justify-content: center; */
-}
-/* New styles for the dots */
-.dot {
-        cursor: pointer;
-        height: 12px;
-        width: 12px;
-        margin: 0 4px;
-        background-color: #bbb; /* A light grey color */
-        border-radius: 50%;
-        display: inline-block;
-        transition: background-color 0.6s ease;
-    }
+            font-family: 'Georgia', serif;
+            background-color: #f3f4f6; /* bg-neutral-100 */
+            min-height: 100vh;
+        }
+        
+        /* Styles for the dots */
+        .dot {
+            cursor: pointer;
+            height: 12px;
+            width: 12px;
+            margin: 0 4px;
+            background-color: #bbb; /* A light grey color */
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
 
-    .active-dot, .dot:hover {
-        background-color: #65a30d; /* A lime green color */
-    }
-</style>
+        .active-dot, .dot:hover {
+            background-color: #65a30d; /* A lime green color */
+        }
+    </style>
 </head>
 
 <body class="p-4 sm:p-6 md:p-10"> 
@@ -102,17 +94,15 @@
 
         <div id="dot-container" class="flex justify-center p-4">
         </div>
-    </div> </body>
-        <!-- END SLIDESHOW HTML STRUCTURE -->
-    </div>
-
+    </div> 
+    
     <script>
         // SLIDESHOW SCRIPTING START
         let slideIndex = 0;
         let slideshowInterval;
         let isPaused = false; 
         
-        // Data array with placeholder image URLs (Insert your actual paths here!)
+        // Data array with your product image paths
         const slides = [
             { path: 'products/bows.jpg', caption: 'Bows' },
             { path: 'products/boxies.jpg', caption: 'Boxies' },
@@ -124,10 +114,18 @@
             { path: 'products/teas.jpg', caption: 'Tea Towels' },
             { path: 'products/tote_bags.jpg', caption: 'Tote Bags' }
         ];
-    
+
+        // Function to set up touch events directly on the image element
+        function setupTouchEvents(imgElement) {
+            if (imgElement) {
+                imgElement.addEventListener('touchstart', pauseSlideshow);
+                imgElement.addEventListener('touchend', resumeSlideshow);
+            }
+        }
+
         function showSlides(n) {
             if (slides.length === 0) return;
-    
+
             // 1. Calculate the new slide index (wraps around)
             if (n !== 0) {
                 slideIndex += n;
@@ -135,33 +133,31 @@
             
             if (slideIndex > slides.length - 1) { slideIndex = 0 }
             if (slideIndex < 0) { slideIndex = slides.length - 1 }
-    
+
             const currentSlide = slides[slideIndex];
             const slideshowImage = document.getElementById('slideshow-image'); 
             const slideshowCaption = document.getElementById('slideshow-caption'); 
             const dots = document.getElementsByClassName("dot"); 
-    
+
             // 2a. Inject the new IMAGE HTML 
             slideshowImage.innerHTML = `
-            <img
-            src="${currentSlide.path}"
-            alt="${currentSlide.caption}"
-            class="slideshow-img h-full w-full object-contain transition-opacity duration-1000"
-            style="display: block; opacity: 0;"
-            onerror="this.onerror=null; this.src='https://placehold.co/400x400/cccccc/333333?text=Image+Error';"
-        
-            /* NEW: Block the right-click/long-press menu */
-            oncontextmenu="return false;"
-            />
-        `;
-    
-            // 2b. Inject the new CAPTION HTML 
+                <img
+                    src="${currentSlide.path}"
+                    alt="${currentSlide.caption}"
+                    class="slideshow-img h-full w-full object-contain transition-opacity duration-1000"
+                    style="display: block; opacity: 0;"
+                    onerror="this.onerror=null; this.src='https://placehold.co/400x400/cccccc/333333?text=Image+Error';"
+                    oncontextmenu="return false;" /* RESTORED: Blocks long-press download prompt */
+                />
+            `;
+
+            // 2b. Inject the new CAPTION HTML
             slideshowCaption.innerHTML = `
                 <p class="text-xl font-semibold text-lime-700">
                     ${currentSlide.caption}
                 </p>
             `;
-    
+
             // 3. Highlight the correct dot
             for (let i = 0; i < dots.length; i++) {
                 dots[i].className = dots[i].className.replace(" active-dot", "");
@@ -169,41 +165,41 @@
             if (dots.length > 0) {
                 dots[slideIndex].className += " active-dot";
             }
-    
-            // 4. Trigger the fade-in 
+
+            // 4. Trigger the fade-in and setup touch listeners
             setTimeout(() => {
                 const imgElement = slideshowImage.querySelector('img');
                 if(imgElement) {
                     imgElement.style.opacity = 1;
+                    setupTouchEvents(imgElement); /* Attaches touch events directly to the image */
                 }
             }, 10);
-    
-            // 5. Logic to reset the timer 
+
+            // 5. Logic to reset the timer
             if (n !== 0 && !isPaused) {
                 clearInterval(slideshowInterval);
                 autoShowSlides(); 
             }
         }
         
-        // CORRECTED: Function to navigate directly to a slide index
+        // Function to navigate directly to a slide index
         function currentSlide(n) {
-          slideIndex = n; 
-          showSlides(0); // Display the index without advancing
+            slideIndex = n; 
+            showSlides(0);
         }
         
-        // NEW: Function to create and draw the dots on load
+        // Function to create and draw the dots on load
         function drawDots() {
             const dotContainer = document.getElementById('dot-container');
             if (!dotContainer) return;
-    
+
             let dotHTML = '';
             for (let i = 0; i < slides.length; i++) {
-                // Passes the zero-based index (i)
                 dotHTML += `<span class="dot" onclick="currentSlide(${i})"></span>`;
             }
             dotContainer.innerHTML = dotHTML;
         }
-    
+
         function autoShowSlides() {
             if (!isPaused) {
                 // Cycles every 8000 milliseconds (8 seconds)
@@ -217,36 +213,32 @@
             clearInterval(slideshowInterval);
             isPaused = true;
         }
-    
+
         function resumeSlideshow() {
             if (isPaused) {
                 isPaused = false;
                 autoShowSlides();
             }
         }
-    
+
         function plusSlides(n) {
             showSlides(n);
         }
-    
-        // Initialize slideshow and setup event listeners for hover and touch
+
+        // Initialize slideshow and setup event listeners for hover
         window.addEventListener('load', () => {
             drawDots(); 
             
             slideIndex = 0;
             showSlides(0); 
             autoShowSlides(); 
-    
+
             const container = document.querySelector('.slideshow-container');
             
             if (container) {
-                // MOUSE EVENTS (for desktop/mouse users)
+                // MOUSE EVENTS (Touch events are handled directly by the image element)
                 container.addEventListener('mouseenter', pauseSlideshow);
                 container.addEventListener('mouseleave', resumeSlideshow);
-                
-                // TOUCH EVENTS (for smartphone/tablet users)
-                container.addEventListener('touchstart', pauseSlideshow);
-                container.addEventListener('touchend', resumeSlideshow);
             }
         });
         // SLIDESHOW SCRIPTING END
