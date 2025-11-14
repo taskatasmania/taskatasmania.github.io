@@ -101,169 +101,174 @@
     </main>
     
     <script>
-        // SLIDESHOW SCRIPTING START
-        let slideIndex = 0;
-        let slideshowInterval;
-        let isPaused = false; 
+    // SLIDESHOW SCRIPTING START
+    let slideIndex = 0;
+    let slideshowInterval;
+    let isPaused = false; 
+    
+    // Data array with your product image paths
+    const slides = [
+        { path: 'products/bows.jpg', caption: 'Bows' },
+        { path: 'products/boxies.jpg', caption: 'Boxies' },
+        { path: 'products/card_holders.jpg', caption: 'Card Holders' },
+        { path: 'products/headbands.jpg', caption: 'Headbands' },
+        { path: 'products/lanyards.jpg', caption: 'Lanyards' },
+        { path: 'products/makeup.jpg', caption: 'Makeup Wipes' },
+        { path: 'products/scrunchies.jpg', caption: 'Scrunchies' },
+        { path: 'products/teas.jpg', caption: 'Tea Towels' },
+        { path: 'products/tote_bags.jpg', caption: 'Tote Bags' }
+    ];
+
+    // FUNCTION FOR IFRAME COMMUNICATION
+    function sendHeightToParent() {
+        // Get the total height required by the <body> content
+        const contentHeight = document.body.scrollHeight;
         
-        // Data array with your product image paths
-        const slides = [
-            { path: 'products/bows.jpg', caption: 'Bows' },
-            { path: 'products/boxies.jpg', caption: 'Boxies' },
-            { path: 'products/card_holders.jpg', caption: 'Card Holders' },
-            { path: 'products/headbands.jpg', caption: 'Headbands' },
-            { path: 'products/lanyards.jpg', caption: 'Lanyards' },
-            { path: 'products/makeup.jpg', caption: 'Makeup Wipes' },
-            { path: 'products/scrunchies.jpg', caption: 'Scrunchies' },
-            { path: 'products/teas.jpg', caption: 'Tea Towels' },
-            { path: 'products/tote_bags.jpg', caption: 'Tote Bags' }
-        ];
-
-        // FUNCTION FOR IFRAME COMMUNICATION
-        function sendHeightToParent() {
-            // Get the total height required by the <body> content
-            // This now includes the 16px padding from <main class="pb-4">
-            const contentHeight = document.body.scrollHeight;
-            
-            if (window.parent) {
-                window.parent.postMessage({
-                    iframeHeight: contentHeight
-                }, '*'); 
-            }
+        if (window.parent) {
+            window.parent.postMessage({
+                iframeHeight: contentHeight
+            }, '*'); 
         }
-        
-        // Function to set up touch events directly on the image element
-        function setupTouchEvents(imgElement) {
-            if (imgElement) {
-                imgElement.addEventListener('touchstart', pauseSlideshow);
-                imgElement.addEventListener('touchend', resumeSlideshow);
-            }
+    }
+    
+    // Function to set up touch events directly on the image element
+    function setupTouchEvents(imgElement) {
+        if (imgElement) {
+            imgElement.addEventListener('touchstart', pauseSlideshow);
+            imgElement.addEventListener('touchend', resumeSlideshow);
         }
+    }
 
-        function showSlides(n) {
-            if (slides.length === 0) return;
+    function showSlides(n) {
+        if (slides.length === 0) return;
 
-            // 1. Calculate the new slide index (wraps around)
-            if (n !== 0) {
-                slideIndex += n;
-            }
-            
-            if (slideIndex > slides.length - 1) { slideIndex = 0 }
-            if (slideIndex < 0) { slideIndex = slides.length - 1 }
-
-            const currentSlide = slides[slideIndex];
-            const slideshowImage = document.getElementById('slideshow-image'); 
-            const slideshowCaption = document.getElementById('slideshow-caption'); 
-            const dots = document.getElementsByClassName("dot"); 
-
-            // 2a. Inject the new IMAGE HTML 
-            slideshowImage.innerHTML = `
-                <img
-                    src="${currentSlide.path}"
-                    alt="${currentSlide.caption}"
-                    class="slideshow-img h-full w-full object-contain transition-opacity duration-1000"
-                    style="display: block; opacity: 0;"
-                    onerror="this.onerror=null; this.src='https://placehold.co/400x400/cccccc/333333?text=Image+Error';"
-                    oncontextmenu="return false;" /* Blocks long-press download prompt */
-                />
-            `;
-
-            // 2b. Inject the new CAPTION HTML
-            slideshowCaption.innerHTML = `
-                <p class="text-xl font-semibold text-lime-700">
-                    ${currentSlide.caption}
-                </p>
-            `;
-
-            // 3. Highlight the correct dot
-            for (let i = 0; i < dots.length; i++) {
-                dots[i].className = dots[i].className.replace(" active-dot", "");
-            }
-            if (dots.length > 0) {
-                dots[slideIndex].className += " active-dot";
-            }
-
-            // 4. Trigger the fade-in and setup touch listeners
-            setTimeout(() => {
-                const imgElement = slideshowImage.querySelector('img');
-                if(imgElement) {
-                    imgElement.style.opacity = 1;
-                    setupTouchEvents(imgElement); /* Attaches touch events directly to the image */
-                }
-            }, 10);
-
-            // 5. Logic to reset the timer
-            if (n !== 0 && !isPaused) {
-                clearInterval(slideshowInterval);
-                autoShowSlides(); 
-            }
-            
-            // 6. Send height after slide content is updated
-            sendHeightToParent();
-        }
-
-        // Function to navigate directly to a slide index
-        function currentSlide(n) {
-            slideIndex = n; 
-            showSlides(0);
+        // 1. Calculate the new slide index (wraps around)
+        if (n !== 0) {
+            slideIndex += n;
         }
         
-        // Function to create and draw the dots on load
-        function drawDots() {
-            const dotContainer = document.getElementById('dot-container');
-            if (!dotContainer) return;
+        if (slideIndex > slides.length - 1) { slideIndex = 0 }
+        if (slideIndex < 0) { slideIndex = slides.length - 1 }
 
-            let dotHTML = '';
-            for (let i = 0; i < slides.length; i++) {
-                dotHTML += `<span class="dot" onclick="currentSlide(${i})"></span>`;
-            }
-            dotContainer.innerHTML = dotHTML;
+        const currentSlide = slides[slideIndex];
+        const slideshowImage = document.getElementById('slideshow-image'); 
+        const slideshowCaption = document.getElementById('slideshow-caption'); 
+        const dots = document.getElementsByClassName("dot"); 
+
+        // 2a. Inject the new IMAGE HTML 
+        slideshowImage.innerHTML = `
+            <img
+                src="${currentSlide.path}"
+                alt="${currentSlide.caption}"
+                class="slideshow-img h-full w-full object-contain transition-opacity duration-1000"
+                style="display: block; opacity: 0;"
+                onerror="this.onerror=null; this.src='https://placehold.co/400x400/cccccc/333333?text=Image+Error';"
+                oncontextmenu="return false;" /* Blocks long-press download prompt */
+            />
+        `;
+
+        // 2b. Inject the new CAPTION HTML
+        slideshowCaption.innerHTML = `
+            <p class="text-xl font-semibold text-lime-700">
+                ${currentSlide.caption}
+            </p>
+        `;
+
+        // 3. Highlight the correct dot
+        for (let i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active-dot", "");
+        }
+        if (dots.length > 0) {
+            dots[slideIndex].className += " active-dot";
         }
 
-        function autoShowSlides() {
-            if (!isPaused) {
-                // Cycles every 8000 milliseconds (8 seconds)
-                slideshowInterval = setInterval(() => {
-                    showSlides(1); 
-                }, 8000); 
+        // 4. Trigger the fade-in and setup touch listeners
+        setTimeout(() => {
+            const imgElement = slideshowImage.querySelector('img');
+            if(imgElement) {
+                imgElement.style.opacity = 1;
+                setupTouchEvents(imgElement); /* Attaches touch events directly to the image */
             }
-        }
-        
-        function pauseSlideshow() {
+        }, 10);
+
+        // 5. Logic to reset the timer
+        if (n !== 0 && !isPaused) {
             clearInterval(slideshowInterval);
-            isPaused = true;
-        }
-
-        function resumeSlideshow() {
-            if (isPaused) {
-                isPaused = false;
-                autoShowSlides();
-            }
-        }
-
-        function plusSlides(n) {
-            showSlides(n);
-        }
-
-        // Initialize slideshow and setup event listeners for hover
-        window.addEventListener('load', () => {
-            // Initial calls
-            drawDots(); 
-            slideIndex = 0;
-            showSlides(0); 
             autoShowSlides(); 
-            // Send initial height on load
-            sendHeightToParent();
+        }
+        
+        // 6. Send height after slide content is updated
+        sendHeightToParent();
+    }
 
-            const container = document.querySelector('.slideshow-container');
-            
-            if (container) {
-                // MOUSE EVENTS 
-                container.addEventListener('mouseenter', pauseSlideshow);
-                container.addEventListener('mouseleave', resumeSlideshow);
-            }
+    // Function to navigate directly to a slide index
+    function currentSlide(n) {
+        slideIndex = n; 
+        showSlides(0);
+    }
+    
+    // Function to create and draw the dots on load
+    function drawDots() {
+        const dotContainer = document.getElementById('dot-container');
+        if (!dotContainer) return;
+
+        let dotHTML = '';
+        for (let i = 0; i < slides.length; i++) {
+            dotHTML += `<span class="dot" onclick="currentSlide(${i})"></span>`;
+        }
+        dotContainer.innerHTML = dotHTML;
+    }
+
+    function autoShowSlides() {
+        if (!isPaused) {
+            // Cycles every 8000 milliseconds (8 seconds)
+            slideshowInterval = setInterval(() => {
+                showSlides(1); 
+            }, 8000); 
+        }
+    }
+    
+    function pauseSlideshow() {
+        clearInterval(slideshowInterval);
+        isPaused = true;
+    }
+
+    function resumeSlideshow() {
+        if (isPaused) {
+            isPaused = false;
+            autoShowSlides();
+        }
+    }
+
+    function plusSlides(n) {
+        showSlides(n);
+    }
+
+    // Initialize slideshow and setup event listeners for hover and resize
+    window.addEventListener('load', () => {
+        // Initial calls
+        drawDots(); 
+        slideIndex = 0;
+        showSlides(0); 
+        autoShowSlides(); 
+        sendHeightToParent(); // Initial send
+
+        const container = document.querySelector('.slideshow-container');
+        
+        if (container) {
+            // MOUSE EVENTS 
+            container.addEventListener('mouseenter', pauseSlideshow);
+            container.addEventListener('mouseleave', resumeSlideshow);
+        }
+        
+        // *** FIX FOR ROTATION: Listen for window resize/rotation events and re-send height ***
+        window.addEventListener('resize', () => {
+            // Use a small delay (debounce) to ensure elements have settled before calculation.
+            setTimeout(sendHeightToParent, 100); 
         });
-        // SLIDESHOW SCRIPTING END
-    </script>
+        // *** END FIX ***
+    });
+    // SLIDESHOW SCRIPTING END
+</script>
 </body>
 </html>
