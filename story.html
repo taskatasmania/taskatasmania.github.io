@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Taska Story</title>
-        <!-- FAVICON LINK ADDED HERE -->
-            <link rel="icon" type="image/png" href="graphics/favicon.png">
+    <link rel="icon" type="image/png" href="graphics/favicon.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* Matches the Georgia serif font used in the schedule */
         body {
             font-family: 'Georgia', serif; 
         }
+        
         /* Custom CSS to hide scrollbar specifically on the modal's inner content */
         .hide-scrollbar::-webkit-scrollbar {
             display: none; /* For Chrome, Safari, and Opera */
@@ -20,26 +20,26 @@
             -ms-overflow-style: none;  /* For Internet Explorer and Edge */
             scrollbar-width: none;  /* For Firefox */
         }
-        /* Slideshow CSS REMOVED - will be loaded via Iframe */
-
         
-        /* Fix  new rule for Iframe container in story.html */
-.iframe-aspect-ratio {
-    position: relative;
-    width: 100%;
-    /* Increase height to 120% of the width (adjust as needed) */
-    padding-bottom: 108%; 
-    height: 0; 
-}
-
-
-        .iframe-aspect-ratio iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
+        /* --- NEW CSS FOR IFRAME CONTAINER (Simplified for JS Height Control) --- */
+        
+        /* New wrapper to constrain max width (was previously on the parent div) */
+        .iframe-container {
             width: 100%;
-            height: 100%;
+            max-width: 512px; /* Adjust this max-width if needed */
+            margin-left: auto;
+            margin-right: auto;
         }
+
+        /* The actual iframe element */
+        #slideshow-iframe {
+            /* Set basic width, but height will be controlled by JS PostMessage */
+            width: 100%;
+            height: auto; /* Allow JS to override this */
+            display: block; 
+        }
+
+        /* --- REMOVED OLD iframe-aspect-ratio CSS --- */
 
     </style>
 </head>
@@ -97,26 +97,18 @@
             – with occasional excursions.
         </p>
 
-<!-- ------------------------IFRAME CODE----------------------------- -->
-
-
 <div class="my-6">
-    <div class="w-full max-w-lg bg-white shadow-xl rounded-xl border border-gray-100 mx-auto">
-        <div class="iframe-aspect-ratio">
-            <iframe
-                src="slideshow.html"
-                style="border: none; overflow: hidden;" 
-                scrolling="no"
-                title="Product Slideshow"
-            >
-                Your browser does not support iframes.
-            </iframe>
-        </div>
+    <div class="iframe-container bg-white shadow-xl rounded-xl border border-gray-100">
+        <iframe
+            id="slideshow-iframe"  src="slideshow.html"
+            style="border: none; overflow: hidden;" 
+            scrolling="no"
+            title="Product Slideshow"
+        >
+            Your browser does not support iframes.
+        </iframe>
     </div>
 </div>
-
-
-<!-- ---------------------END IFRAME CODE------------------------------- -->
 
 
 <div class="my-10 flex flex-col items-center">
@@ -177,16 +169,10 @@
 
 
 
-<!-- ADDED THIS LINK -->
-
 <p class="mb-6 text-lime-800 leading-relaxed text-center">
             <a href="index.html" class="text-lime-800 hover:text-amber-500 font-medium underline transition duration-150">Markets you'll find us 
                 at this month</a> 
         </p>
-
-<!-- END OF LINK -->
-    
-
 
 <hr class="my-4 border-lime-200">
         
@@ -254,10 +240,10 @@
 <div id="modalContainer" class="relative p-4 overflow-auto hide-scrollbar flex items-center justify-center" onclick="event.stopPropagation()">
             
             <button onclick="closeModal()" class="absolute top-4 right-4 
-                                            text-amber-300 bg-amber-600 bg-opacity-85 
-                                            p-2 rounded-full h-10 w-10 flex items-center justify-center 
-                                            text-2xl font-bold leading-none 
-                                            hover:bg-opacity-100 transition-opacity drop-shadow-lg">
+                                         text-amber-300 bg-amber-600 bg-opacity-85 
+                                         p-2 rounded-full h-10 w-10 flex items-center justify-center 
+                                         text-2xl font-bold leading-none 
+                                         hover:bg-opacity-100 transition-opacity drop-shadow-lg">
                 &times;
             </button>
             
@@ -270,15 +256,30 @@
         const modalImage = document.getElementById('modalImage');
         const modalContainer = document.getElementById('modalContainer');
 
-        // ALL SLIDESHOW JAVASCRIPT IS REMOVED FROM THIS SCRIPT BLOCK.
-        // The modal functions remain as they are unrelated to the slideshow.
+        // --- NEW JAVASCRIPT FOR IFRAME HEIGHT COMMUNICATION ---
+
+        // Find the iframe element
+        const iframe = document.getElementById('slideshow-iframe');
+
+        // Listener for messages sent from the iframe
+        window.addEventListener('message', function(event) {
+            // Check if the message contains the expected height data
+            // Also, only accept messages from the expected origin if you were using a different domain,
+            // but since you are using the same origin, the '*' is fine in slideshow.html.
+            if (event.data && event.data.iframeHeight && iframe) {
+                // Apply the received height directly to the iframe element
+                iframe.style.height = `${event.data.iframeHeight}px`;
+            }
+        });
+
+        // ---------------------------------------------------------------------
         
         /**
-         * Opens the modal with the specified image source.
-         * @param {string} altText - Alt text for the modal image.
-         * @param {string} imgSrc - Source URL of the image to display.
-         * @param {boolean} [isFullSize=false] - If true, displays the image full size with container scrolling.
-         */
+        * Opens the modal with the specified image source.
+        * @param {string} altText - Alt text for the modal image.
+        * @param {string} imgSrc - Source URL of the image to display.
+        * @param {boolean} [isFullSize=false] - If true, displays the image full size with container scrolling.
+        */
         function openModal(altText, imgSrc, isFullSize = false) {
             modalImage.src = imgSrc;
             modalImage.alt = altText;
@@ -306,8 +307,8 @@
         }
 
         /**
-         * Closes the modal.
-         */
+        * Closes the modal.
+        */
         function closeModal() {
             modal.classList.add('hidden');
             document.body.style.overflow = '';

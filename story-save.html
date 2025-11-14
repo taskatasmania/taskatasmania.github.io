@@ -41,19 +41,6 @@
             height: 100%;
         }
 
-/* Media query to target narrow screens (typical portrait phone width) */
-@media screen and (max-width: 640px) {
-    .iframe-aspect-ratio {
-        /* Override the aspect ratio trick and ensure a minimum height.
-           Adjust 550px if needed, but this should be enough for the 400px wide slideshow
-           (max-width of .slideshow-container) plus the header/footer elements. */
-        min-height: 550px !important; 
-        /* Reset padding-bottom to 0 so min-height takes over */
-        padding-bottom: 0 !important; 
-        height: auto !important;
-    }
-}
-
     </style>
 </head>
 
