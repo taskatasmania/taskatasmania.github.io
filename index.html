@@ -189,88 +189,15 @@
 <!-- --------------------------------------------------------------------------------------------------- -->
 
 
-
-
-
-
- <!--  OLD TEXT -->
-
-        <!-- <footer class="mt-8 text-center text-lime-600 italic">       
-            <p><strong class="font-semibold">Looking forward to seeing you soon</strong></p> -->
-
-
-            <a href="#" onclick="openModal('Market Scene', 'photos/evandale.3.jpg', true); return false;" class="cursor-pointer">
+            <a href="https://taskatasmania.github.io/story.html">
                 <img 
-                    src="photos/evandale.3.jpg" 
-                    alt="Market Scene" 
-                    class="mt-8 w-full h-auto rounded-lg shadow-md"
-                    onerror="this.onerror=null; this.src='https://placehold.co/192x64/cccccc/333333?text=Fallback+Image';"
+                    src="photos/evandale.3.jpg"
+                    alt="Read the Taska Story" 
+                    class="w-full h-auto rounded-lg shadow-md"
+                    onerror="this.onerror=null; this.src='https://placehold.co/192x64/cccccc/333333?text=Fallback+Logo';"
                 />
             </a>
-            </footer>
 
 
-<!-- ------------------------------------------------------------------------------------------------------------------------------------------- -->
-
-
-    </div>
-    <div id="imageModal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-amber-300 bg-opacity-100 transition-opacity" onclick="closeModal()">
-        <div id="modalContainer" class="relative p-4 overflow-auto hide-scrollbar flex items-center justify-center" onclick="event.stopPropagation()">
-            <button onclick="closeModal()" class="absolute top-4 right-4 
-                                                 text-amber-300 bg-amber-600 bg-opacity-85 
-                                                 p-2 rounded-full h-10 w-10 flex items-center justify-center 
-                                                 text-2xl font-bold leading-none 
-                                                 hover:bg-opacity-100 transition-opacity drop-shadow-lg">
-                &times;
-            </button>
-            <img id="modalImage" src="" alt="Enlarged Image" class="block rounded-lg shadow-2xl">
-        </div>
-    </div>
-    <script>
-        // Element definitions (MUST be outside functions but inside the script block)
-        const modal = document.getElementById('imageModal');
-        const modalImage = document.getElementById('modalImage');
-        const modalContainer = document.getElementById('modalContainer');
-
-        /**
-         * Opens the modal with the specified image source.
-         * @param {string} altText - Alt text for the modal image.
-         * @param {string} imgSrc - Source URL of the image to display.
-         * @param {boolean} [isFullSize=false] - If true, displays the image full size with container scrolling.
-         */
-        function openModal(altText, imgSrc, isFullSize = false) {
-            modalImage.src = imgSrc;
-            modalImage.alt = altText;
-            
-            // Define classes for full size (allows image to be larger than viewport)
-            const fullSizeContainerClasses = ['w-full', 'h-full', 'max-w-none', 'max-h-none'];
-            const constrainedContainerClasses = ['max-w-5xl', 'max-h-[90vh]'];
-            
-            // Reset all potential size classes
-            modalContainer.classList.remove(...fullSizeContainerClasses, ...constrainedContainerClasses);
-            modalImage.classList.remove('w-full', 'h-auto', 'object-contain');
-            
-            if (isFullSize) {
-                // Apply classes for full-size, scrollable behavior
-                modalContainer.classList.add(...fullSizeContainerClasses);
-                modalImage.classList.add('w-full', 'h-auto');
-            } else {
-                // Apply classes for constrained, fit-to-screen behavior
-                modalContainer.classList.add(...constrainedContainerClasses);
-                modalImage.classList.add('w-full', 'h-auto', 'object-contain');
-            }
-
-            modal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden'; 
-        }
-
-        /**
-         * Closes the modal.
-         */
-        function closeModal() {
-            modal.classList.add('hidden');
-            document.body.style.overflow = '';
-        }
-    </script>
     </body>
 </html>
