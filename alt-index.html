@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taska Tasmania</title>
+            <link rel="icon" type="image/png" href="graphics/favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom font */
+        body {
+            font-family: 'Georgia', serif;
+        }
+        /* Custom CSS to hide scrollbar specifically on the modal's inner content */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none; /* For Chrome, Safari, and Opera */
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;  /* For Internet Explorer and Edge */
+            scrollbar-width: none;  /* For Firefox */
+        }
+    </style>
+</head>
+
+
+<!-- ------------------------------Logo---------------------------------- -->
+
+<body class="p-4 sm:p-8 bg-neutral-100 min-h-screen flex items-start justify-center">
+
+    <div class="w-full max-w-4xl bg-white shadow-xl rounded-xl p-6 md:p-10 border border-gray-100 text-lg">
+
+        <header class="mb-6 pb-4 flex justify-center">
+            <a href="https://taskatasmania.github.io/story.html">
+                <img 
+                    src="graphics/logo.colour.main.jpg"
+                    alt="Market Information Logo" 
+                    class="w-full h-auto rounded-lg shadow-md"
+                    onerror="this.onerror=null; this.src='https://placehold.co/192x64/cccccc/333333?text=Fallback+Logo';"
+                />
+            </a>
+         </header>
+
+<!-- --------------------Relocate Story button-------------------- -->
+
+<a href="story.html" class="block w-full text-center my-8">
+        <button class="bg-lime-700 text-lime-100 font-bold text-xl py-3 px-6 rounded-full shadow-lg hover:bg-lime-600 transition duration-300 transform hover:scale-105">The Taska Story 📖</button>
+        </a>
+
+<a href="slideshow.html" class="block w-full text-center my-8">
+        <button class="bg-lime-700 text-lime-100 font-bold text-xl py-3 px-6 rounded-full shadow-lg hover:bg-lime-600 transition duration-300 transform hover:scale-105">Custom Orders 📋</button>
+        </a>
+
+    <div class="my-10 flex flex-col items-center">
+                <img 
+                    src="graphics/break.png"
+                    alt="Taska Tasmania Graphic Break" 
+                    onerror="this.onerror=null; this.src='https://placehold.co/192x64/cccccc/333333?text=Fallback+Logo';"
+                />
+
+    </div>
+
+<!-- -----------------------------Information heading--------------------- -->
+
+
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-lime-700 tracking-tight mb-4 text-center">Market Information</h1>
+
+        <p class="mb-6 text-lg text-lime-800 leading-relaxed text-center">
+            This month we plan to be at the following markets
+        </p>
+
+
+<!-- ----------------------------------UPDATE MARKET SCHEDULE----------------------------------- -->
+
+
+        <div class="overflow-x-auto shadow-lg rounded-lg mb-8">
+            <table class="min-w-full divide-y divide-indigo-200">
+                <thead class="bg-lime-100">
+                    <tr>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-lime-700 uppercase tracking-wider rounded-tl-lg w-1/6">Date</th>
+                        <th scope="col" class="px-6 py-3 text-center text-xs font-semibold text-lime-700 uppercase tracking-wider">Market</th>
+                        <th scope="col" class="px-6 py-3 text-center text-xs font-semibold text-lime-700 uppercase tracking-wider rounded-tr-lg w-1/6">Time</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200 text-lime-800">
+
+                    <tr class="hover:bg-lime-50 transition duration-150">
+                        <td class="px-6 py-4 whitespace-nowrap font-medium text-lg w-1/6">02 Nov</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-lg text-center">Evandale Sunday Market</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-lg w-1/6">8am – 1:30pm</td>
+                    </tr>
+
+                    <tr class="hover:bg-lime-50 transition duration-150">
+                        <td class="px-6 py-4 whitespace-nowrap font-medium text-lg w-1/6">09 Nov</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-lg text-center">Evandale Sunday Market</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-lg w-1/6">8am – 1:30pm</td>
+                    </tr>
+
+                    <tr class="hover:bg-lime-50 transition duration-150">
+                        <td class="px-6 py-4 whitespace-nowrap font-medium text-lg w-1/6">16 Nov</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-lg text-center">Evandale Sunday Market</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-lg w-1/6">8am – 1:30pm</td>
+                    </tr>
+
+                    <tr class="hover:bg-lime-50 transition duration-150">
+                        <td class="px-6 py-4 whitespace-nowrap font-medium text-lg w-1/6">23 Nov</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-lg text-center">Evandale Sunday Market</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-lg w-1/6">8am – 1:30pm</td>
+                    </tr>
+
+                    <tr class="hover:bg-lime-50 transition duration-150">
+                        <td class="px-6 py-4 whitespace-nowrap font-medium text-lg rounded-bl-lg w-1/6">30 Nov</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-lg text-center">Evandale Sunday Market</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-lg rounded-br-lg w-1/6">8am – 1:30pm</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+
+<!-- ----------------------------------END UPDATE MARKET SCHEDULE----------------------------------- -->
+
+
+
+<!-- ---------------Weather Warning------------ -->
+
+        <p class="my-6 p-4 bg-yellow-50 border-l-4 border-yellow-400 text-lg text-amber-600 rounded-md">
+            Since rain, very strong winds etc play havoc with our shop, we may have to miss a market every now and then. If we are not going to be able to attend any of the above markets we will notify Facebook followers and <span class="line-through">cross out that date</span> on this page as soon as we know.
+        </p>
+
+
+<!------------------Intro to contact form---------------->
+
+
+        <p class="mb-6 text-lime-700 leading-relaxed text-center">
+            So if you want to catch up at a particular market please check here or on our  
+            <a href="https://www.facebook.com/taskatasmania/" class="text-indigo-600 hover:text-green-800 font-medium underline transition duration-150">Facebook</a>. We don't want to disappoint!
+        </p>
+        
+<!--------------------------------CONTACT FORM--------------------------->
+
+<hr class="my-4 border-lime-200">
+        
+        <div class="max-w-md mx-auto">
+            
+            <div class="flex justify-between items-center py-4 px-1"> <a href="https://www.facebook.com/taskatasmania/" target="_blank" rel="noopener noreferrer" class="flex items-center">
+                    <img 
+                        src="graphics/facebook.jpg" 
+                        alt="Facebook Link" 
+                        class="h-8 w-auto transition-opacity hover:opacity-75"
+                        onerror="this.onerror=null; this.src='https://placehold.co/32x32/3b5998/ffffff?text=F';"
+                    />
+                </a>
+                
+                <h2 class="text-2xl font-bold text-lime-700 tracking-tight mb-0 text-center">
+                    Contact Us
+                </h2>
+                
+                <a href="https://www.instagram.com/taskatasmania" target="_blank" rel="noopener noreferrer" class="flex items-center">
+                    <img 
+                        src="graphics/instagram.jpg" 
+                        alt="Instagram Link" 
+                        class="h-8 w-auto transition-opacity hover:opacity-75"
+                        onerror="this.onerror=null; this.src='https://placehold.co/32x32/c32aa3/ffffff?text=I';"
+                    />
+                </a>
+
+            </div>
+            
+        </div>
+        <hr class="my-4 border-lime-200">
+
+
+        
+
+        <form action="https://formsubmit.co/26fcd88ad65fed7c6558a2aad6e3cd12" method="POST" class="max-w-md mx-auto p-4 bg-lime-50 rounded-lg shadow-inner">
+            
+
+
+            <input type="hidden" name="_next" value="https://taskatasmania.github.io/index.html">
+            
+
+
+
+            <div class="mb-4">
+                <label for="name" class="block text-sm font-medium text-lime-800 mb-1">Your Name</label>
+                <input type="text" id="name" name="Name" required class="w-full px-3 py-2 border border-lime-300 rounded-md focus:outline-none focus:ring-2 focus:ring-lime-500">
+            </div>
+
+            <div class="mb-4">
+                <label for="email" class="block text-sm font-medium text-lime-800 mb-1">Your Email</label>
+                <input type="email" id="email" name="Email" required class="w-full px-3 py-2 border border-lime-300 rounded-md focus:outline-none focus:ring-2 focus:ring-lime-500">
+            </div>
+
+            <div class="mb-6">
+                <label for="message" class="block text-sm font-medium text-lime-800 mb-1">Message</label>
+                <textarea id="message" name="Message" rows="4" required class="w-full px-3 py-2 border border-lime-300 rounded-md focus:outline-none focus:ring-2 focus:ring-lime-500"></textarea>
+            </div>
+
+
+            <button type="submit" class="w-full bg-lime-700 text-lime-100 font-bold py-2 px-4 rounded-md hover:bg-lime-600 transition duration-200">
+                Send Message
+            </button>
+        </form>
+        <hr class="my-8 border-lime-200">
+
+
+<!-- -----------------------------BUTTON POINTING TO STORY.HTML-- 📖 --------------------------------- -->
+<!--
+<a href="story.html" class="block w-full text-center my-8">
+        <button class="bg-lime-700 text-lime-100 font-bold text-xl py-3 px-6 rounded-full shadow-lg hover:bg-lime-600 transition duration-300 transform hover:scale-105">The Taska Story 📖</button>
+        </a>
+-->
+<!-- --------------------------------------------------------------------------------------------------- -->
+
+
+            <a href="https://taskatasmania.github.io/story.html">
+                <img 
+                    src="photos/evandale.3.jpg"
+                    alt="Read the Taska Story" 
+                    class="w-full h-auto rounded-lg shadow-md"
+                    onerror="this.onerror=null; this.src='https://placehold.co/192x64/cccccc/333333?text=Fallback+Logo';"
+                />
+            </a>
+
+
+    </body>
+</html>
