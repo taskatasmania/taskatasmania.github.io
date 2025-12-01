@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taska Tasmania</title>
+    <link rel="icon" type="image/png" href="graphics/favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom font */
+        body {
+            font-family: 'Georgia', serif;
+        }
+        /* Custom CSS to hide scrollbar specifically on the modal's inner content */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none; /* For Chrome, Safari, and Opera */
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none; /* For Internet Explorer and Edge */
+            scrollbar-width: none; /* For Firefox */
+        }
+    </style>
+</head>
+
+
+<body class="p-4 sm:p-8 bg-neutral-100 min-h-screen flex items-start justify-center">
+
+    <div class="w-full max-w-7xl bg-white shadow-xl rounded-xl p-6 md:p-10 border border-gray-100 text-lg">
+
+<header class="mb-6 pb-4 flex justify-center">
+            <a href="https://taskatasmania.github.io/story.html">
+                <img 
+                    src="graphics/logo.colour.main.png"
+                    alt="Market Information Logo" 
+                    class="max-w-xs w-auto h-auto rounded-lg lg:max-w-[50rem]"
+                    onerror="this.onerror=null; this.src='https://placehold.co/192x64/cccccc/333333?text=Fallback+Logo';"
+                />
+            </a>
+        </header>
+
+<div class="flex flex-col sm:flex-row sm:justify-center sm:space-x-4"> 
+
+    <a href="story.html" class="text-center my-4 sm:my-8 w-full md:max-w-[360px]">
+        <button class="bg-lime-700 text-lime-100 w-full font-bold text-lg py-2 px-4 rounded-md shadow-lg hover:bg-lime-600 transition duration-300 transform hover:scale-105">The Taska Story 📖</button>
+    </a>
+    
+    <a href="https://taskatasmania.bigcartel.com/product/orders" class="text-center my-4 sm:my-8 w-full md:max-w-[360px]">
+        <button class="bg-lime-700 text-lime-100 w-full font-bold text-lg py-2 px-4 rounded-md shadow-lg hover:bg-lime-600 transition duration-300 transform hover:scale-105">Apron Orders 📋</button>
+    </a>
+</div>
+
+<div class="my-10 flex flex-col items-center">
+        <img 
+            src="graphics/break-pale2.jpg"
+            alt="Taska Tasmania Graphic Break" 
+            onerror="this.onerror=null; this.src='https://placehold.co/192x64/cccccc/333333?text=Fallback+Logo';"
+        />
+    </div>
+
+<div class="md:max-w-xl mx-auto">
+    <h1 class="text-2xl sm:text-5xl font-extrabold text-lime-700 tracking-tight mb-4 text-center">Market Information</h1>
+
+    <p class="mb-6 text-lg text-lime-800 leading-relaxed text-center">
+        This month we plan to be at the following markets
+    </p>
+</div>
+
+
+<div class="overflow-x-auto mb-8">
+    <table class="divide-y divide-indigo-200 mx-auto">
+        <thead class="bg-lime-100">
+            <tr>
+                <th scope="col" class="px-5 md:px-10 py-2 text-center text-xs font-semibold text-lime-700 uppercase tracking-wider rounded-tl-lg">Date</th>
+                
+                <th scope="col" class="px-5 md:px-10 py-2 text-center text-xs font-semibold text-lime-700 uppercase tracking-wider">Market</th>
+                
+                <th scope="col" class="px-5 md:px-10 py-2 text-center text-xs font-semibold text-lime-700 uppercase tracking-wider rounded-tr-lg">Time</th>
+            </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200 text-lime-800">
+
+            <tr class="hover:bg-lime-50 transition duration-150">
+                <td class="px-5 md:px-10 py-2 whitespace-nowrap text-base text-center">07 Dec</td>
+                <td class="px-5 md:px-10 py-2 whitespace-nowrap text-base text-center">Evandale Sunday Market</td>
+                <td class="px-5 md:px-10 py-2 whitespace-nowrap text-base text-center">8am – 1:30pm</td>
+            </tr>
+
+            <tr class="hover:bg-lime-50 transition duration-150">
+                <td class="px-5 md:px-10 py-2 whitespace-nowrap text-base text-center">12 Dec</td>
+                <td class="px-5 md:px-10 py-2 whitespace-nowrap text-base text-center">George Town Xmas Market</td>
+                <td class="px-5 md:px-10 py-2 whitespace-nowrap text-base text-center">3pm – 8:00pm</td>
+            </tr>
+
+            <tr class="hover:bg-lime-50 transition duration-150">
+                <td class="px-5 md:px-10 py-2 whitespace-nowrap text-base text-center">14 Dec</td>
+                <td class="px-5 md:px-10 py-2 whitespace-nowrap text-base text-center">Evandale Sunday Market</td>
+                <td class="px-5 md:px-10 py-2 whitespace-nowrap text-base text-center">8am – 1:30pm</td>
+            </tr>
+
+            <tr class="hover:bg-lime-50 transition duration-150">
+                <td class="px-5 md:px-10 py-2 whitespace-nowrap text-base text-center">21 Dec</td>
+                <td class="px-5 md:px-10 py-2 whitespace-nowrap text-base text-center">Evandale Sunday Market</td>
+                <td class="px-5 md:px-10 py-2 whitespace-nowrap text-base text-center">8am – 1:30pm</td>
+            </tr>
+
+            <tr class="hover:bg-lime-50 transition duration-150">
+                <td class="px-5 md:px-10 py-2 whitespace-nowrap text-base rounded-bl-lg text-center">28 Dec</td>
+                <td class="px-5 md:px-10 py-2 whitespace-nowrap text-base text-center">Evandale Sunday Market</td>
+                <td class="px-5 md:px-10 py-2 whitespace-nowrap text-base rounded-br-lg text-center">8am – 1:30pm</td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+
+<div class="my-10 flex flex-col items-center mx-auto md:max-w-4xl">
+    
+    <div class="my-1 flex flex-col items-center">
+        <img 
+            src="markets/George Town 25.jpg"
+            alt="George Town Xmas Market" 
+            
+            class="max-w-full w-auto h-auto rounded-lg block max-h-96"
+            
+            onerror="this.onerror=null; this.src='https://placehold.co/192x64/cccccc/333333?text=Fallback+Logo';"
+        />
+    </div> 
+</div>
+
+
+<div class="my-10 flex flex-col items-center">
+        <img 
+            src="graphics/break-pale2.jpg"
+            alt="Taska Tasmania Graphic Break" 
+            onerror="this.onerror=null; this.src='https://placehold.co/192x64/cccccc/333333?text=Fallback+Logo';"
+        />
+    </div>
+
+<p class="my-6 p-4 bg-lime-100 border-l-4 border-lime-600 text-sm text-lime-700 rounded-md max-w-4xl mx-auto"> 
+Since rain, very strong winds etc play havoc with our shop, we may have to miss a market every now and then. If we are not going to be able to attend any of the above markets we will notify Facebook followers and <span class="line-through">cross out that date</span> on this page as soon as we know.
+<span class="block mt-3">So if you want to catch up at a particular market please check here, on our <a href="https://www.facebook.com/taskatasmania/" class="text-lime-950 hover:text-amber-500 font-medium underline transition duration-150">Facebook</a> or feel free to use <a href="contact.html" class="text-lime-950 hover:text-amber-500 font-medium underline transition duration-150">this contact form</a>  for any extra information. We don't want to disappoint!</span>
+</p>
+
+<div class="my-10 flex justify-center">
+    <a href="https://taskatasmania.github.io/story.html" class="block w-full text-center">
+        <img 
+            src="photos/evandale.3.jpg"
+            alt="Read the Taska Story" 
+            class="w-full h-auto rounded-lg shadow-md lg:max-w-5xl mx-auto"
+            onerror="this.onerror=null; this.src='https://placehold.co/192x64/cccccc/333333?text=Fallback+Logo';"
+        />
+    </a>
+</div>
+<footer class="mt-12 pt-6 border-t-2 border-lime-200 text-center text-sm">
+    <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-8">
+        
+        <a href="story.v.1.1.html" class="text-lime-700 hover:text-lime-900 font-bold transition duration-150">
+            The Taska Story
+        </a>
+        
+        <span class="hidden sm:inline text-lime-400">|</span>
+        
+        <a href="https://taskatasmania.bigcartel.com/product/orders" class="text-lime-700 hover:text-lime-900 font-bold transition duration-150" target="_blank" rel="noopener noreferrer">
+            Apron Orders
+        </a>
+        
+        <span class="hidden sm:inline text-lime-400">|</span>
+        
+        <a href="contact.html" class="text-lime-700 hover:text-lime-900 font-bold transition duration-150">
+            Contact Us
+        </a>
+        
+    </div>
+    <p class="mt-4 text-xs text-lime-600">
+        &copy; 2025 Taska Tasmania
+    </p>
+</footer>
+</div> 
+
+</body>
+</html>
