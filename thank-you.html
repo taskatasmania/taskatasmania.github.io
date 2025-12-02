@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You - Taska Tasmania</title>
+    <link rel="icon" type="image/png" href="graphics/favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom font */
+        body {
+            font-family: 'Georgia', serif;
+        }
+        /* Custom CSS to hide scrollbar */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none; 
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body class="p-4 sm:p-8 min-h-screen flex items-start justify-center">
+
+    <div class="w-full max-w-4xl p-6 md:p-10 text-lg">
+
+        <header class="mb-6 pb-4 flex justify-center">
+            <a href="index.html">
+                <img 
+                    src="graphics/logo.colour.main.png"
+                    alt="Market Information Logo" 
+                    class="max-w-xs w-auto h-auto rounded-lg lg:max-w-[44rem]"
+                    onerror="this.onerror=null; this.src='https://placehold.co/192x64/cccccc/333333?text=Fallback+Logo';"
+                />
+            </a>
+        </header>
+        
+        <div class="md:max-w-xl mx-auto text-center mt-12 mb-16">
+            <h1 class="text-4xl sm:text-6xl font-extrabold text-lime-700 tracking-tight mb-4">Message Sent!</h1>
+        
+            <p class="mb-6 text-xl text-lime-800 leading-relaxed">
+                Thank you for reaching out to Taska Tasmania.
+            </p>
+
+            <p class="mb-8 text-lg text-gray-700 leading-relaxed">
+                We have received your message and will respond to your email shortly.
+            </p>
+
+            <a href="index.html" class="inline-block bg-lime-700 text-lime-100 font-bold py-3 px-6 rounded-md hover:bg-lime-600 transition duration-200 shadow-lg">
+                Return to Home Page
+            </a>
+        </div>
+    
+        
+        <footer class="mt-8 bg-white shadow-lg rounded-xl p-4 md:p-6 border border-gray-100 text-sm">
+            <div class="flex flex-col sm:flex-row justify-center items-center space-x-6">
+
+                <a href="index.html" class="text-lime-700 hover:text-lime-900 font-bold transition duration-150">Market Information / Home
+                </a>
+                <span class="text-lime-700">-</span>
+
+                <a href="https://taskatasmania.bigcartel.com/product/orders" class="text-lime-700 hover:text-lime-900 font-bold transition duration-150" target="_blank" rel="noopener noreferrer">
+                Apron Orders
+                </a>
+                <span class="text-lime-700">-</span>
+
+                <a href="story.v.1.1.html" class="text-lime-700 hover:text-lime-900 font-bold transition duration-150">
+                The Taska Story
+                </a>
+            </div>
+
+        </footer>
+        </div> 
+
+</body>
+</html>
