@@ -4,19 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boxies | Taska Tasmania</title>
-     <link rel="icon" type="image/png" href="graphics/favicon.png">
+    <link rel="icon" type="image/png" href="graphics/favicon.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* Custom font from index.html */
         body {
             font-family: 'Georgia', serif;
         }
+        
+        /* Modal CSS added for scrollbar hiding */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none; /* For Chrome, Safari, and Opera */
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;  /* For Internet Explorer and Edge */
+            scrollbar-width: none;  /* For Firefox */
+        }
     </style>
 </head>
 
 <body class="p-4 sm:p-8 bg-neutral-100 min-h-screen flex items-start justify-center">
-
-    
 
     <div class="w-full max-w-6xl bg-white shadow-xl rounded-xl p-6 md:p-10 border border-gray-100 text-lg">
 
@@ -31,8 +38,6 @@
             </a>
         </header>
 
-
-
         <div class="md:max-w-xl mx-auto mb-8">
             <h1 class="text-3xl sm:text-5xl font-extrabold text-lime-700 tracking-tight mb-4 text-center">
                 Boxies
@@ -43,150 +48,232 @@
             <p class="text-lime-800 leading-relaxed mb-6">
                 Magda makes a range of &ldquo;Boxies&rdquo; (that's what she likes to call them, other people call them all sorts of things: utility pouches, makeup / cosmetic bags, toiletry cases, hairdryer covers, travel / shoe bags &hellip;.). Depending on size they have a wide range of uses, they're washable gently and all fully lined with water resistant fabric.
             </p>
-       <div class="my-8 md:max-w-4xl mx-auto">
-            <h2 class="text-xl font-bold text-lime-700 tracking-tight mb-4 text-center">
-                Boxies are available in four sizes:
-            </h2>
+            <div class="my-8 md:max-w-4xl mx-auto">
+                <h2 class="text-xl font-bold text-lime-700 tracking-tight mb-4 text-center">
+                    Boxies are available in four sizes:
+                </h2>
 
-        <div class="my-6 flex justify-center">
-            <img src="products/boxies/sizes.jpg" alt="Four different sizes of Boxies" class="max-w-full w-auto h-auto rounded-lg shadow-md lg:max-w-4xl" />
-        </div>        
+                <div class="my-6 flex justify-center">
+                    <a href="#" onclick="openModal('Four different sizes of Boxies', 'products/boxies/sizes.jpg', false); return false;" class="cursor-pointer overflow-hidden rounded-lg">
+                        <img src="products/boxies/sizes.jpg" alt="Four different sizes of Boxies" class="max-w-full w-auto h-auto rounded-lg shadow-md lg:max-w-4xl" />
+                    </a>
+                </div>        
 
-<!---------------------------------Sizes table-------------------------------------->
-    
-        <div class="md:max-w-4xl mx-auto mb-8">
-    
-    <div class="hidden sm:grid grid-cols-4 bg-lime-100 rounded-t-lg border border-gray-200">
-        <div class="px-5 md:px-10 py-2 text-center text-xs font-semibold text-lime-700 uppercase tracking-wider">S - Small</div>
-        <div class="px-5 md:px-10 py-2 text-center text-xs font-semibold text-lime-700 uppercase tracking-wider">M - Medium</div>
-        <div class="px-5 md:px-10 py-2 text-center text-xs font-semibold text-lime-700 uppercase tracking-wider">L - Large</div>
-        <div class="px-5 md:px-10 py-2 text-center text-xs font-semibold text-lime-700 uppercase tracking-wider">XL - Extra Large</div>
-    </div>
+                <div class="md:max-w-4xl mx-auto mb-8">
+            
+                    <div class="hidden sm:grid grid-cols-4 bg-lime-100 rounded-t-lg border border-gray-200">
+                        <div class="px-5 md:px-10 py-2 text-center text-xs font-semibold text-lime-700 uppercase tracking-wider">S - Small</div>
+                        <div class="px-5 md:px-10 py-2 text-center text-xs font-semibold text-lime-700 uppercase tracking-wider">M - Medium</div>
+                        <div class="px-5 md:px-10 py-2 text-center text-xs font-semibold text-lime-700 uppercase tracking-wider">L - Large</div>
+                        <div class="px-5 md:px-10 py-2 text-center text-xs font-semibold text-lime-700 uppercase tracking-wider">XL - Extra Large</div>
+                    </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-4 bg-white divide-y divide-gray-200 sm:divide-x sm:divide-y-0 border border-gray-200 sm:border-t-0 rounded-b-lg text-lime-800">
+                    <div class="grid grid-cols-1 sm:grid-cols-4 bg-white divide-y divide-gray-200 sm:divide-x sm:divide-y-0 border border-gray-200 sm:border-t-0 rounded-b-lg text-lime-800">
 
-        <div class="p-4 sm:p-2 text-center hover:bg-lime-50 transition duration-150">
-            <p class="sm:hidden font-bold text-sm mb-1 text-lime-700">S - Small</p>
-            <p class="text-base">L 215 x W 115 x H 90 mm</p>
-        </div>
+                        <div class="p-4 sm:p-2 text-center hover:bg-lime-50 transition duration-150">
+                            <p class="sm:hidden font-bold text-sm mb-1 text-lime-700">S - Small</p>
+                            <p class="text-base">L 215 x W 115 x H 90 mm</p>
+                        </div>
 
-        <div class="p-4 sm:p-2 text-center hover:bg-lime-50 transition duration-150">
-            <p class="sm:hidden font-bold text-sm mb-1 text-lime-700">M - Medium</p>
-            <p class="text-base">L 215 x W 115 x H 90 mm</p>
-        </div>
+                        <div class="p-4 sm:p-2 text-center hover:bg-lime-50 transition duration-150">
+                            <p class="sm:hidden font-bold text-sm mb-1 text-lime-700">M - Medium</p>
+                            <p class="text-base">L 215 x W 115 x H 90 mm</p>
+                        </div>
 
-        <div class="p-4 sm:p-2 text-center hover:bg-lime-50 transition duration-150">
-            <p class="sm:hidden font-bold text-sm mb-1 text-lime-700">L - Large</p>
-            <p class="text-base">L 215 x W 115 x H 90 mm</p>
-        </div>
+                        <div class="p-4 sm:p-2 text-center hover:bg-lime-50 transition duration-150">
+                            <p class="sm:hidden font-bold text-sm mb-1 text-lime-700">L - Large</p>
+                            <p class="text-base">L 215 x W 115 x H 90 mm</p>
+                        </div>
 
-        <div class="p-4 sm:p-2 text-center hover:bg-lime-50 transition duration-150">
-            <p class="sm:hidden font-bold text-sm mb-1 text-lime-700">XL - Extra Large</p>
-            <p class="text-base">L 215 x W 115 x H 90 mm</p>
-        </div>
-    </div>
-</div>
-
-<!-----------------------------End sizes table-------------------------------------------------------->
-
-        <p class="my-6 p-4 bg-lime-100 border-l-4 border-lime-600 text-sm text-lime-700 rounded-md max-w-4xl mx-auto">
-            <span class="font-bold">Please note:</span> since all Boxies are handmade the above measurements may vary slightly &ndash; that's what is special about handmade, no two items are exactly the same.
-        </p>
-
-        <div class="my-6 flex justify-center">
-            <img src="products/boxies/sewing.jpg" alt="Sewing a Boxie" class="max-w-xs w-auto h-auto rounded-lg shadow-md" />
-        </div>
-
-<!-----------------------------Fabrics table---------------------------------------------------------->
-
-        <div class="my-8 md:max-w-4xl mx-auto">
-            <h2 class="text-xl font-bold text-lime-700 tracking-tight mb-4 text-center">
-                Boxies in these fabrics are currently* available made to order:
-            </h2>
-        </div>
-
-        <div class="md:max-w-4xl mx-auto mb-8 border border-gray-300">
-            <div class="grid grid-cols-2 sm:grid-cols-4 divide-x divide-y divide-gray-300">
-                <div class="p-2 text-center">
-                    <p class="text-sm font-semibold text-lime-700 mb-1">1</p>
-                    <img src="products/boxies/f1.jpg" alt="Fabric Sample 1" class="w-full h-auto max-w-[153px] inline-block" />
+                        <div class="p-4 sm:p-2 text-center hover:bg-lime-50 transition duration-150">
+                            <p class="sm:hidden font-bold text-sm mb-1 text-lime-700">XL - Extra Large</p>
+                            <p class="text-base">L 215 x W 115 x H 90 mm</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="p-2 text-center">
-                    <p class="text-sm font-semibold text-lime-700 mb-1">2</p>
-                    <img src="products/boxies/f2.jpg" alt="Fabric Sample 2" class="w-full h-auto max-w-[153px] inline-block" />
+                <p class="my-6 p-4 bg-lime-100 border-l-4 border-lime-600 text-sm text-lime-700 rounded-md max-w-4xl mx-auto">
+                    <span class="font-bold">Please note:</span> since all Boxies are handmade the above measurements may vary slightly &ndash; that's what is special about handmade, no two items are exactly the same.
+                </p>
+
+                <div class="my-6 flex justify-center">
+                    <img src="products/boxies/sewing.jpg" alt="Sewing a Boxie" class="max-w-xs w-auto h-auto rounded-lg shadow-md" />
                 </div>
-                <div class="p-2 text-center">
-                    <p class="text-sm font-semibold text-lime-700 mb-1">3</p>
-                    <img src="products/boxies/f3.jpg" alt="Fabric Sample 3" class="w-full h-auto max-w-[153px] inline-block" />
+
+                <div class="my-8 md:max-w-4xl mx-auto">
+                    <h2 class="text-xl font-bold text-lime-700 tracking-tight mb-4 text-center">
+                        Boxies in these fabrics are currently* available made to order:
+                    </h2>
                 </div>
-                <div class="p-2 text-center">
-                    <p class="text-sm font-semibold text-lime-700 mb-1">4</p>
-                    <img src="products/boxies/f4.jpg" alt="Fabric Sample 4" class="w-full h-auto max-w-[153px] inline-block" />
+
+                <div class="md:max-w-4xl mx-auto mb-8 border border-gray-300">
+                    <div class="grid grid-cols-2 sm:grid-cols-4 divide-x divide-y divide-gray-300">
+                        <div class="p-2 text-center">
+                            <p class="text-sm font-semibold text-lime-700 mb-1">1</p>
+                            <a href="#" onclick="openModal('Fabric Sample 1', 'products/boxies/f1.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
+                                <img src="products/boxies/f1.jpg" alt="Fabric Sample 1" class="w-full h-auto max-w-[153px] inline-block" />
+                            </a>
+                        </div>
+                        <div class="p-2 text-center">
+                            <p class="text-sm font-semibold text-lime-700 mb-1">2</p>
+                            <a href="#" onclick="openModal('Fabric Sample 2', 'products/boxies/f2.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
+                                <img src="products/boxies/f2.jpg" alt="Fabric Sample 2" class="w-full h-auto max-w-[153px] inline-block" />
+                            </a>
+                        </div>
+                        <div class="p-2 text-center">
+                            <p class="text-sm font-semibold text-lime-700 mb-1">3</p>
+                            <a href="#" onclick="openModal('Fabric Sample 3', 'products/boxies/f3.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
+                                <img src="products/boxies/f3.jpg" alt="Fabric Sample 3" class="w-full h-auto max-w-[153px] inline-block" />
+                            </a>
+                        </div>
+                        <div class="p-2 text-center">
+                            <p class="text-sm font-semibold text-lime-700 mb-1">4</p>
+                            <a href="#" onclick="openModal('Fabric Sample 4', 'products/boxies/f4.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
+                                <img src="products/boxies/f4.jpg" alt="Fabric Sample 4" class="w-full h-auto max-w-[153px] inline-block" />
+                            </a>
+                        </div>
+                        
+                        <!--<div class="p-2 text-center">
+                            <p class="text-sm font-semibold text-lime-700 mb-1">5</p>
+                            <a href="#" onclick="openModal('Fabric Sample 5', 'products/boxies/f5.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
+                                <img src="products/boxies/f5.jpg" alt="Fabric Sample 5" class="w-full h-auto max-w-[153px] inline-block" onerror="this.onerror=null; this.src='graphics/placeholder.png'; this.parentElement.title='[fig. f5] Placeholder';" />
+                            </a>
+                        </div>
+                        <div class="p-2 text-center">
+                            <p class="text-sm font-semibold text-lime-700 mb-1">6</p>
+                            <a href="#" onclick="openModal('Fabric Sample 6', 'products/boxies/f6.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
+                                <img src="products/boxies/f6.jpg" alt="Fabric Sample 6" class="w-full h-auto max-w-[153px] inline-block" onerror="this.onerror=null; this.src='graphics/placeholder.png'; this.parentElement.title='[fig. f6] Placeholder';" />
+                            </a>
+                        </div>
+                        <div class="p-2 text-center">
+                            <p class="text-sm font-semibold text-lime-700 mb-1">7</p>
+                            <a href="#" onclick="openModal('Fabric Sample 7', 'products/boxies/f7.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
+                                <img src="products/boxies/f7.jpg" alt="Fabric Sample 7" class="w-full h-auto max-w-[153px] inline-block" onerror="this.onerror=null; this.src='graphics/placeholder.png'; this.parentElement.title='[fig. f7] Placeholder';" />
+                            </a>
+                        </div>
+                        <div class="p-2 text-center">
+                            <p class="text-sm font-semibold text-lime-700 mb-1">8</p>
+                            <a href="#" onclick="openModal('Fabric Sample 8', 'products/boxies/f8.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
+                                <img src="products/boxies/f8.jpg" alt="Fabric Sample 8" class="w-full h-auto max-w-[153px] inline-block" onerror="this.onerror=null; this.src='graphics/placeholder.png'; this.parentElement.title='[fig. f8] Placeholder';" />
+                            </a>
+                        </div>
+                        <div class="p-2 text-center">
+                            <p class="text-sm font-semibold text-lime-700 mb-1">9</p>
+                            <a href="#" onclick="openModal('Fabric Sample 9', 'products/boxies/f9.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
+                                <img src="products/boxies/f9.jpg" alt="Fabric Sample 9" class="w-full h-auto max-w-[153px] inline-block" onerror="this.onerror=null; this.src='graphics/placeholder.png'; this.parentElement.title='[fig. f9] Placeholder';" />
+                            </a>
+                        </div>
+                        <div class="p-2 text-center">
+                            <p class="text-sm font-semibold text-lime-700 mb-1">10</p>
+                            <a href="#" onclick="openModal('Fabric Sample 10', 'products/boxies/f10.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
+                                <img src="products/boxies/f10.jpg" alt="Fabric Sample 10" class="w-full h-auto max-w-[153px] inline-block" onerror="this.onerror=null; this.src='graphics/placeholder.png'; this.parentElement.title='[fig. f10] Placeholder';" />
+                            </a>
+                        </div>
+                        <div class="p-2 text-center">
+                            <p class="text-sm font-semibold text-lime-700 mb-1">11</p>
+                            <a href="#" onclick="openModal('Fabric Sample 11', 'products/boxies/f11.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
+                                <img src="products/boxies/f11.jpg" alt="Fabric Sample 11" class="w-full h-auto max-w-[153px] inline-block" onerror="this.onerror=null; this.src='graphics/placeholder.png'; this.parentElement.title='[fig. f11] Placeholder';" />
+                            </a>
+                        </div>
+                        <div class="p-2 text-center">
+                            <p class="text-sm font-semibold text-lime-700 mb-1">12</p>
+                            <a href="#" onclick="openModal('Fabric Sample 12', 'products/boxies/f12.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
+                                <img src="products/boxies/f12.jpg" alt="Fabric Sample 12" class="w-full h-auto max-w-[153px] inline-block" onerror="this.onerror=null; this.src='graphics/placeholder.png'; this.parentElement.title='[fig. f12] Placeholder';" />
+                            </a>
+                        </div>-->
+                    </div>
                 </div>
-                <!--<div class="p-2 text-center">
-                    <p class="text-sm font-semibold text-lime-700 mb-1">5</p>
-                    <p class="text-xs text-lime-600">[fig. f5]</p>
+                <p class="my-6 p-4 bg-lime-100 border-l-4 border-lime-600 text-sm text-lime-700 rounded-md max-w-4xl mx-auto text-center">
+                    <span class="font-bold">* Please note:</span> available fabrics change from time to time as they sell out and / or can no longer be sourced.
+                </p>
+
+                <div class="md:max-w-4xl mx-auto my-8 text-lime-800 leading-relaxed">
+                    <p>
+                        To order on line, choose your preferred size(s) (sets of 2, 3 or 4 sizes are available) and fabric, then head over to our <a href="https://taskatasmania.bigcartel.com/products" class="text-lime-700 hover:text-amber-500 font-medium underline transition duration-150">Shop</a>. If you want to choose more than one boxy with different fabrics, you'll need to do that as separate orders - send us a <a href="contact.html" class="text-lime-700 hover:text-amber-500 font-medium underline transition duration-150">message</a> first.
+                    </p>
+                    <p class="mt-4">
+                        There is always a selection of boxies on offer at our popup shop at <a href="https://www.instagram.com/p/DJ3VdF5TdBX/" class="text-lime-700 hover:text-amber-500 font-medium underline transition duration-150">Evandale Sunday Market</a> &ndash; we're there every Sunday (weather permitting &ndash; <a href="https://taskatasmania.github.io/index.html" class="text-lime-700 hover:text-amber-500 font-medium underline transition duration-150">you can always check here</a>) so come and see us there, if your don't want to order online.
+                    </p>
                 </div>
-                <div class="p-2 text-center">
-                    <p class="text-sm font-semibold text-lime-700 mb-1">6</p>
-                    <p class="text-xs text-lime-600">[fig. f6]</p>
-                </div>
-                <div class="p-2 text-center">
-                    <p class="text-sm font-semibold text-lime-700 mb-1">7</p>
-                    <p class="text-xs text-lime-600">[fig. f7]</p>
-                </div>
-                <div class="p-2 text-center">
-                    <p class="text-sm font-semibold text-lime-700 mb-1">8</p>
-                    <p class="text-xs text-lime-600">[fig. f8]</p>
-                </div>
-                <div class="p-2 text-center">
-                    <p class="text-sm font-semibold text-lime-700 mb-1">9</p>
-                    <p class="text-xs text-lime-600">[fig. f9]</p>
-                </div>
-                <div class="p-2 text-center">
-                    <p class="text-sm font-semibold text-lime-700 mb-1">10</p>
-                    <p class="text-xs text-lime-600">[fig. f10]</p>
-                </div>
-                <div class="p-2 text-center">
-                    <p class="text-sm font-semibold text-lime-700 mb-1">11</p>
-                    <p class="text-xs text-lime-600">[fig. f11]</p>
-                </div>
-                <div class="p-2 text-center">
-                    <p class="text-sm font-semibold text-lime-700 mb-1">12</p>
-                    <p class="text-xs text-lime-600">[fig. f12]</p>-->
-                </div>
+
+                <footer class="mt-8 bg-white shadow-lg rounded-xl p-4 md:p-6 border border-gray-100 text-sm">
+                    <div class="flex flex-col sm:flex-row justify-center items-center space-x-6">
+
+                        <a href="index.html" class="text-lime-700 hover:text-amber-500 font-bold transition duration-150">Market Information</a>
+                        <span class="text-lime-700">-</span>
+                        <a href="story.v.1.1.html" class="text-lime-700 hover:text-amber-500 font-bold transition duration-150">The Taska Story</a>
+                        <span class="text-lime-700">-</span>
+                        <a href="https://taskatasmania.bigcartel.com/product/orders" class="text-lime-700 hover:text-amber-500 font-bold transition duration-150" target="_blank" rel="noopener noreferrer">Custom Orders</a>
+                        <span class="text-lime-700">-</span>
+                        <a href="contact.html" class="text-lime-700 hover:text-amber-500 font-bold transition duration-150">Contact Us</a>
+                    </div>
+                </footer>
             </div>
         </div>
-
-<!-----------------------------End fabrics table---------------------------------------------------------->
-
-        <p class="my-6 p-4 bg-lime-100 border-l-4 border-lime-600 text-sm text-lime-700 rounded-md max-w-4xl mx-auto text-center">
-            <span class="font-bold">* Please note:</span> available fabrics change from time to time as they sell out and / or can no longer be sourced.
-        </p>
-
-        <div class="md:max-w-4xl mx-auto my-8 text-lime-800 leading-relaxed">
-            <p>
-                To order on line, choose your preferred size(s) (sets of 2, 3 or 4 sizes are available) and fabric, then head over to our <a href="https://taskatasmania.bigcartel.com/products" class="text-lime-700 hover:text-amber-500 font-medium underline transition duration-150">Shop</a>. If you want to choose more than one boxy with different fabrics, you'll need to do that as separate orders - send us a <a href="contact.html" class="text-lime-700 hover:text-amber-500 font-medium underline transition duration-150">message</a> first.
-            </p>
-            <p class="mt-4">
-                There is always a selection of boxies on offer at our popup shop at <a href="https://www.instagram.com/p/DJ3VdF5TdBX/" class="text-lime-700 hover:text-amber-500 font-medium underline transition duration-150">Evandale Sunday Market</a> &ndash; we're there every Sunday (weather permitting &ndash; <a href="https://taskatasmania.github.io/index.html" class="text-lime-700 hover:text-amber-500 font-medium underline transition duration-150">you can always check here</a>) so come and see us there, if your don't want to order online.
-            </p>
-        </div>
-
-<!---------------------------------Footer------------------------------------------------>
-
-        <footer class="mt-8 bg-white shadow-lg rounded-xl p-4 md:p-6 border border-gray-100 text-sm">
-            <div class="flex flex-col sm:flex-row justify-center items-center space-x-6">
-
-                <a href="index.html" class="text-lime-700 hover:text-amber-500 font-bold transition duration-150">Market Information</a>
-                <span class="text-lime-700">-</span>
-                <a href="story.v.1.1.html" class="text-lime-700 hover:text-amber-500 font-bold transition duration-150">The Taska Story</a>
-                <span class="text-lime-700">-</span>
-                <a href="https://taskatasmania.bigcartel.com/product/orders" class="text-lime-700 hover:text-amber-500 font-bold transition duration-150" target="_blank" rel="noopener noreferrer">Custom Orders</a>
-                <span class="text-lime-700">-</span>
-                <a href="contact.html" class="text-lime-700 hover:text-amber-500 font-bold transition duration-150">Contact Us</a>
-            </div>
-        </footer>
     </div>
+    
+    <div id="imageModal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-amber-300 bg-opacity-100 transition-opacity">
+
+        <div id="modalContainer" class="relative p-4 overflow-auto hide-scrollbar flex items-center justify-center" onclick="event.stopPropagation()">
+            
+            <button onclick="closeModal()" class="absolute top-4 right-4 
+                                                 text-amber-300 bg-amber-600 bg-opacity-85 
+                                                 p-2 rounded-full h-10 w-10 flex items-center justify-center 
+                                                 text-2xl font-bold leading-none 
+                                                 hover:bg-opacity-100 transition-opacity drop-shadow-lg">
+                &times;
+            </button>
+            
+            <img id="modalImage" src="" alt="Enlarged Image" class="block rounded-lg shadow-2xl">
+        </div>
+    </div>
+    
+    <script>
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalContainer = document.getElementById('modalContainer');
+
+        /**
+        * Opens the modal with the specified image source.
+        * @param {string} altText - Alt text for the modal image.
+        * @param {string} imgSrc - Source URL of the image to display.
+        * @param {boolean} [isFullSize=false] - If true, displays the image full size with container scrolling.
+        */
+        function openModal(altText, imgSrc, isFullSize = false) {
+            modalImage.src = imgSrc;
+            modalImage.alt = altText;
+            
+            // Define classes for full size (allows image to be larger than viewport)
+            const fullSizeContainerClasses = ['w-full', 'h-full', 'max-w-none', 'max-h-none'];
+            
+            // Constrained Max Width (max-w-7xl)
+            const constrainedContainerClasses = ['max-w-7xl', 'max-h-[90vh]']; 
+            
+            // Reset all potential size classes
+            modalContainer.classList.remove(...fullSizeContainerClasses, ...constrainedContainerClasses);
+            modalImage.classList.remove('w-full', 'h-auto', 'object-contain');
+            
+            if (isFullSize) {
+                // Apply classes for full-size, scrollable behavior
+                modalContainer.classList.add(...fullSizeContainerClasses);
+                modalImage.classList.add('w-full', 'h-auto');
+            } else {
+                // Apply classes for constrained, fit-to-screen behavior
+                modalContainer.classList.add(...constrainedContainerClasses);
+                modalImage.classList.add('w-full', 'h-auto', 'object-contain');
+            }
+
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        /**
+        * Closes the modal.
+        */
+        function closeModal() {
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+    </script>
+
 </body>
 </html>
