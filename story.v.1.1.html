@@ -38,12 +38,17 @@
             height: auto; /* Allow JS to override this */
             display: block; 
         }
+
+            
+        
     </style>
 </head>
 
 <body class="p-4 sm:p-8 bg-neutral-100 min-h-screen flex items-start justify-center"> 
 
     <div class="w-full max-w-6xl bg-white shadow-xl rounded-xl p-6 md:p-10 border border-gray-100 text-lg text-lime-800 leading-relaxed">
+    <!--<div class="w-full max-w-6xl bg-white shadow-xl rounded-xl p-6 md:p-10 pb-2 md:pb-8 border border-gray-100 text-lg text-lime-800 leading-relaxed">-->
+
 
 <!-----------------------------------Header------------------------------------>
 
@@ -102,17 +107,35 @@
             Magda's heritage is Hungarian and that's where the name Taska Tasmania comes from - “taska” is “bag” in Hungarian. 
         </p>
 
+<!--start-->
 
-<div class="my-10 flex flex-col items-center">
-            <img 
-                src="photos/12.12.21.jpg"
-                alt="Taska Tasmania Graphic Break" 
-                class="w-full h-auto max-w-xs rounded-lg shadow-md cursor-pointer"
-                onclick="openModal('Taska Graphic Break', 'photos/12.12.21.jpg', false)"
-                onerror="this.onerror=null; this.src='https://placehold.co/192x64/cccccc/333333?text=Fallback+Logo';"
-            />
-    <p class="text-sm font-medium text-gray-700 mt-2">Taska's first market</p>
-        </div>
+
+<div class="my-5 flex flex-col items-center">
+    <div class="relative w-full max-w-xs group">
+            <img 
+                src="photos/12.12.21.jpg"
+                alt="Taska Tasmania Graphic Break" 
+                class="w-full h-auto rounded-lg shadow-md"
+                onerror="this.onerror=null; this.src='https://placehold.co/192x64/cccccc/333333?text=Fallback+Logo';"
+            />
+
+            <button 
+                onclick="openModal('Taska Graphic Break', 'photos/12.12.21.jpg', false)" 
+                title="Expand Image"
+                class="absolute top-2 right-2 
+                      text-amber-300 bg-amber-600 bg-opacity-85 
+                      p-1 rounded-full h-10 w-10 flex items-center justify-center 
+                      cursor-pointer overflow-hidden
+                      opacity-0 group-hover:opacity-100 transition duration-300 drop-shadow-lg">
+                <img src="graphics/expand.png" alt="Expand" class="w-full h-full object-contain" />
+            </button>
+    </div>
+    <p class="text-sm font-medium text-gray-700 m-1 pt-1">Taska's first market</p>
+</div>
+
+<!--end-->
+
+
 
 <p class="mb-4 max-w-4xl mx-auto">
             It turned out people weren't keen on shopping bags and the stall had to diversify. That lead to aprons .... with off-cut material used for scrunchies .... lanyards .... and what started out as a single table in Dec 2021 became a pop up shop hosted by <a href="https://www.instagram.com/p/DJ3VdF5TdBX/" class="text-lime-800 hover:text-amber-500 text-xl font-medium underline transition duration-150">Evandale Sunday Market</a>
@@ -132,75 +155,121 @@
     </div>
 </div>
 
+<!--Start Westbury------------------------->
 
-<div class="my-10 flex flex-col items-center">
-            <img 
-                src="photos/westbury.jpg"
-                alt="Westbury Market" 
-                class="w-full h-auto max-w-xs rounded-lg shadow-md cursor-pointer"
-                onclick="openModal('Westbury Market', 'photos/westbury.jpg', false)"
-                onerror="this.onerror=null; this.src='https://placehold.co/192x64/cccccc/333333?text=Fallback+Logo';"
-            />
-            <p class="text-sm font-medium text-gray-700 mt-2">Westbury St. Patrick's Day Market</p>
-        </div>
+<div class="my-5 flex flex-col items-center">
+    <div class="relative w-full max-w-xs group">
+            <img 
+                src="photos/westbury.jpg"
+                alt="Westbury Market" 
+                class="w-full h-auto rounded-lg shadow-md"
+                                onerror="this.onerror=null; this.src='https://placehold.co/192x64/cccccc/333333?text=Fallback+Logo';"
+            />
+            
+            <button 
+                onclick="openModal('Westbury Market', 'photos/westbury.jpg', false)" 
+                title="Expand Image"
+                class="absolute top-2 right-2 
+                      text-amber-300 bg-amber-600 bg-opacity-85 
+                      p-1 rounded-full h-10 w-10 flex items-center justify-center 
+                      cursor-pointer overflow-hidden
+                      opacity-0 group-hover:opacity-100 transition duration-300 drop-shadow-lg">
+                <img src="graphics/expand.png" alt="Expand" class="w-full h-full object-contain" />
+            </button>
+    </div>
+        <p class="text-sm font-medium text-gray-700 m-1 pt-1">Westbury St. Patrick's Day Market</p>
+</div>
 
+<!--End Westbury------------------------->
 
 <p class="mb-4 max-w-4xl mx-auto">
             Everything Taska sells is handmade by Magda in what used to be our living room which has now magically transformed into the Taska workshop. The humble hobby stall has grown into the craft popup shop we're immensely proud of today.
         </p>
         
 
-<div class="my-6 flex justify-center">
-            <img 
-                src="photos/sewing.jpg"
-                alt="Mags Sewing" 
-                class="w-full h-auto max-w-xs rounded-lg shadow-md cursor-pointer"
-                onclick="openModal('Mags Sewing', 'photos/sewing.jpg', false)"
-                onerror="this.onerror=null; this.src='https://placehold.co/192x64/cccccc/333333?text=Image+Error';"
-            />
+<div class="my-3 flex justify-center">
+    <div class="relative max-w-xs group">
+            <img 
+                src="photos/sewing.jpg"
+                alt="Mags Sewing" 
+                class="w-full h-auto rounded-lg shadow-md"
+                onerror="this.onerror=null; this.src='https://placehold.co/192x64/cccccc/333333?text=Image+Error';"
+            />
 
-        </div>
+            <button 
+                onclick="openModal('Mags Sewing', 'photos/sewing.jpg', false)" 
+                title="Expand Image"
+                class="absolute top-2 right-2 
+                      text-amber-300 bg-amber-600 bg-opacity-85 
+                      p-1 rounded-full h-10 w-10 flex items-center justify-center 
+                      cursor-pointer overflow-hidden
+                      opacity-0 group-hover:opacity-100 transition duration-300 drop-shadow-lg">
+                <img src="graphics/expand.png" alt="Expand" class="w-full h-full object-contain" />
+            </button>
+    </div>
+</div>
         
 
-<p class="mb-4 max-w-4xl mx-auto">
-            Magda with her original Singer (and sewing tables), now long gone in favour of a Brother machine, an Elna machine, an overlocker, an ironing press, serious work tables .... and other stuff.
-        </p>
-
-        <div class="my-6 flex justify-center">
-            <a href="#" onclick="openModal('Studio', 'photos/studio.jpg', false); return false;" class="cursor-pointer overflow-hidden rounded-lg">
-                <img 
-                    src="photos/studio.jpg"
-                    alt="Living room studio" 
-                    class="w-full h-auto rounded-lg shadow-md transform transition duration-300 max-w-xs"
-                    onerror="this.onerror=null; this.src='https://placehold.co/192x64/cccccc/333333?text=Fallback+Logo';"
-                />
-            </a>
-        </div>
-
-
-        <div class="my-6 flex flex-col items-center">
-            <img 
-                src="photos/spooky.jpg"
-                alt="Spooky Sewer" 
-                class="w-full h-auto max-w-[12rem] rounded-lg shadow-md cursor-pointer"
-                onclick="openModal('Spooky Sewer', 'photos/spooky.jpg', false)"
-                onerror="this.onerror=null; this.src='https://placehold.co/192x64/cccccc/333333?text=Fallback+Logo';"
-            />
-            <p class="text-sm font-medium text-gray-700 mt-1 mb-2 text-center">Not Magda! 😉</p>
-        </div>
+<div class="my-3 flex justify-center">
+    <div class="relative max-w-xs group">
+            <img 
+                src="photos/studio.jpg"
+                alt="Living room studio" 
+                class="w-full h-auto rounded-lg shadow-md"
+                onerror="this.onerror=null; this.src='https://placehold.co/192x64/cccccc/333333?text=Fallback+Logo';"
+            />
+            
+            <button 
+                onclick="openModal('Studio', 'photos/studio.jpg', false)" 
+                title="Expand Image"
+                class="absolute top-2 right-2 
+                      text-amber-300 bg-amber-600 bg-opacity-85 
+                      p-1 rounded-full h-10 w-10 flex items-center justify-center 
+                      cursor-pointer overflow-hidden
+                      opacity-0 group-hover:opacity-100 transition duration-300 drop-shadow-lg">
+                <img src="graphics/expand.png" alt="Expand" class="w-full h-full object-contain" />
+            </button>
+    </div>
+        </div>
 
 
+        <div class="my-5 flex flex-col items-center">
+            <div class="relative w-full max-w-[12rem] group">
+            <img 
+                src="photos/spooky.jpg"
+                alt="Spooky Sewer" 
+                class="w-full h-auto rounded-lg shadow-md"
+                onerror="this.onerror=null; this.src='https://placehold.co/192x64/cccccc/333333?text=Fallback+Logo';"
+            />
+            
+            <button 
+                onclick="openModal('Spooky Sewer', 'photos/spooky.jpg', false)" 
+                title="Expand Image"
+                class="absolute top-2 right-2 
+                      text-amber-300 bg-amber-600 bg-opacity-85 
+                      p-1 rounded-full h-10 w-10 flex items-center justify-center 
+                      cursor-pointer overflow-hidden
+                      opacity-0 group-hover:opacity-100 transition duration-300 drop-shadow-lg">
+                <img src="graphics/expand.png" alt="Expand" class="w-full h-full object-contain" />
+            </button>
+    </div>
+                        <p class="text-sm font-medium text-gray-700 m-1 pt-1">Not Magda! 😉</p>
+                        
+        </div>
 
-<p class="mb-6 text-lime-800 leading-relaxed text-center block sm:hidden">
+
+
+<p class="text-lime-800 leading-relaxed text-center block sm:hidden">
+
 <a href="index.html" class="text-lime-800 hover:text-amber-500 text-xl font-medium underline transition duration-150">This month we'll be at these markets</a>
 </p>
 
 
 
-<!------------------Footer----------------------------------------->        
-<footer class="mt-8 bg-white shadow-lg rounded-xl p-4 md:p-4 border border-gray-100 text-sm max-w-5xl mx-auto hidden sm:block">
+<!------------------Footer----------------------------------------->   
+
+<footer class="mt-0 bg-white shadow-lg rounded-xl p-4 md:p-4 border border-gray-100 text-sm max-w-5xl mx-auto hidden sm:block">
     
-<!--turn off footer  hidden sm:block-->
 
 <div class="flex flex-col sm:flex-row justify-center items-center space-x-6">
 
