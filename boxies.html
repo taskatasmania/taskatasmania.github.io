@@ -17,26 +17,28 @@
             display: none; /* For Chrome, Safari, and Opera */
         }
         .hide-scrollbar {
-            -ms-overflow-style: none;  /* For Internet Explorer and Edge */
-            scrollbar-width: none;  /* For Firefox */
+            -ms-overflow-style: none;  /* For Internet Explorer and Edge */
+            scrollbar-width: none;  /* For Firefox */
         }
+
+        /* --- NEW CLASS FOR SQUARE IMAGE IN MODAL --- */
+        .aspect-square-max {
+            /* Ensures the element maintains a 1:1 aspect ratio */
+            aspect-ratio: 1 / 1;
+            /* Limits the size based on the smaller of the viewport dimensions, minus padding */
+            /* Using min() and viewport height/width keeps it centered and maximises size while fitting screen */
+            width: min(90vh, 90vw); 
+            height: min(90vh, 90vw);
+            max-width: 100%; 
+            max-height: 100%;
+        }
+        /* ------------------------------------------- */
     </style>
 </head>
 
 <body class="p-4 sm:p-8 bg-neutral-100 min-h-screen flex items-start justify-center">
 
     <div class="w-full max-w-6xl bg-white shadow-xl rounded-xl p-6 md:p-10 border border-gray-100 text-lg">
-
-        <!--<header class="mb-6 pb-4 flex justify-center">
-            <a href="index.html">
-                <img
-                    src="graphics/logo.colour.main.png"
-                    alt="Taska Tasmania Logo"
-                    class="max-w-xs w-auto h-auto rounded-lg lg:max-w-[55rem]"
-                    onerror="this.onerror=null; this.src='https://placehold.co/192x64/cccccc/333333?text=Fallback+Logo';"
-                />
-            </a>
-        </header>-->
 
         <header class="mb-6 pb-4 flex justify-center">
             <a>
@@ -65,12 +67,12 @@
                 </h2>
 
                 <div class="my-6 flex justify-center">
-                    <a href="#" onclick="openModal('Four different sizes of Boxies', 'products/boxies/sizes.jpg', false); return false;" class="cursor-pointer overflow-hidden rounded-lg">
-                        <img src="products/boxies/sizes.jpg" alt="Four different sizes of Boxies" class="max-w-full w-auto h-auto rounded-lg shadow-md lg:max-w-4xl" />
+                    <a href="#" onclick="openModal('Four different sizes of Boxies', 'boxies/sizes.jpg', false); return false;" class="cursor-pointer overflow-hidden rounded-lg">
+                        <img src="boxies/sizes.jpg" alt="Four different sizes of Boxies" class="max-w-full w-auto h-auto rounded-lg shadow-md lg:max-w-4xl" />
                     </a>
                 </div>        
 
-<!------------------------------------Start sizes table------------------------------------------------------->                
+               
 
                 <div class="md:max-w-4xl mx-auto mb-8">
             
@@ -105,114 +107,230 @@
                     </div>
                 </div>
 
-<!------------------------------------End sizes table------------------------------------------------------->
-
-                <p class="my-6 p-4 bg-lime-100 border-l-4 border-lime-600 text-sm text-lime-700 rounded-md max-w-4xl mx-auto">
+<p class="my-6 p-4 bg-lime-100 border-l-4 border-lime-600 text-sm text-lime-700 rounded-md max-w-4xl mx-auto">
                     <span class="font-bold">Please note:</span> since all Boxies are handmade the above measurements may vary slightly &ndash; that's what is special about handmade, no two items are exactly the same.
                 </p>
 
                 <div class="my-6 flex justify-center">
-                    <img src="products/boxies/sewing.jpg" alt="Sewing a Boxie" class="max-w-xs w-auto h-auto rounded-lg shadow-md" />
+                    <img src="boxies/sewing.jpg" alt="Sewing a Boxie" class="max-w-xs w-auto h-auto rounded-lg shadow-md" />
                 </div>
 
-                <div class="my-8 md:max-w-4xl mx-auto">
+                <div class="mb-0 mt-8 md:max-w-4xl mx-auto">
                     <h2 class="text-xl font-bold text-lime-700 tracking-tight mb-4 text-center">
-                        Boxies in these fabrics are currently* available made to order:
+                        Boxies made to order are currently* available in these fabrics
                     </h2>
                 </div>
 
-<!------------------------------------Start fabrics table------------------------------------------------------->
+                <p class="mb-2 mt-0 text-sm text-lime-700 mx-auto text-center">
+                    <span class="font-bold">(Click any image to enlarge it)</span>
+                </p>
 
-                <div class="md:max-w-4xl mx-auto mb-8 border border-gray-300">
+<div class="md:max-w-4xl mx-auto mb-8 border border-gray-300">
                     <div class="grid grid-cols-2 sm:grid-cols-4 divide-x divide-y divide-gray-300">
+                        
                         <div class="p-2 text-center">
                             <p class="text-sm font-semibold text-lime-700 mb-1">1</p>
-                            <a href="#" onclick="openModal('Fabric Sample 1', 'products/boxies/f1.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
-                                <img src="products/boxies/f1.jpg" alt="Fabric Sample 1" class="w-full h-auto max-w-[153px] inline-block" />
+                            <a href="#" onclick="openModal('Fabric Sample 1', 'boxies/01.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
+                                <img src="boxies/01.jpg" alt="Fabric Sample 1" class="w-full h-auto max-w-[153px] inline-block" />
                             </a>
                         </div>
                         <div class="p-2 text-center">
                             <p class="text-sm font-semibold text-lime-700 mb-1">2</p>
-                            <a href="#" onclick="openModal('Fabric Sample 2', 'products/boxies/f2.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
-                                <img src="products/boxies/f2.jpg" alt="Fabric Sample 2" class="w-full h-auto max-w-[153px] inline-block" />
+                            <a href="#" onclick="openModal('Fabric Sample 2', 'boxies/02.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
+                                <img src="boxies/02.jpg" alt="Fabric Sample 2" class="w-full h-auto max-w-[153px] inline-block" />
                             </a>
                         </div>
                         <div class="p-2 text-center">
                             <p class="text-sm font-semibold text-lime-700 mb-1">3</p>
-                            <a href="#" onclick="openModal('Fabric Sample 3', 'products/boxies/f3.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
-                                <img src="products/boxies/f3.jpg" alt="Fabric Sample 3" class="w-full h-auto max-w-[153px] inline-block" />
+                            <a href="#" onclick="openModal('Fabric Sample 3', 'boxies/03.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
+                                <img src="boxies/03.jpg" alt="Fabric Sample 3" class="w-full h-auto max-w-[153px] inline-block" />
                             </a>
                         </div>
                         <div class="p-2 text-center">
                             <p class="text-sm font-semibold text-lime-700 mb-1">4</p>
-                            <a href="#" onclick="openModal('Fabric Sample 4', 'products/boxies/f4.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
-                                <img src="products/boxies/f4.jpg" alt="Fabric Sample 4" class="w-full h-auto max-w-[153px] inline-block" />
+                            <a href="#" onclick="openModal('Fabric Sample 4', 'boxies/04.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
+                                <img src="boxies/04.jpg" alt="Fabric Sample 4" class="w-full h-auto max-w-[153px] inline-block" />
                             </a>
                         </div>
-                        <!--
+                        
                         <div class="p-2 text-center">
                             <p class="text-sm font-semibold text-lime-700 mb-1">5</p>
-                            <a href="#" onclick="openModal('Fabric Sample 5', 'graphics/placeholder.png', false); return false;" class="cursor-pointer overflow-hidden inline-block">
-                                <img src="products/boxies/f5.jpg" alt="Fabric Sample 5" class="w-full h-auto max-w-[153px] inline-block" onerror="this.onerror=null; this.src='graphics/placeholder.png'; this.parentElement.title='[fig. f5] Placeholder';" />
+                            <a href="#" onclick="openModal('Fabric Sample 5', 'boxies/05.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
+                                <img src="boxies/05.jpg" alt="Fabric Sample 5" class="w-full h-auto max-w-[153px] inline-block" onerror="this.onerror=null; this.src='graphics/placeholder.png'; this.parentElement.title='[fig. f5] Placeholder';" />
                             </a>
                         </div>
                         <div class="p-2 text-center">
                             <p class="text-sm font-semibold text-lime-700 mb-1">6</p>
-                            <a href="#" onclick="openModal('Fabric Sample 6', 'products/boxies/f6.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
-                                <img src="products/boxies/f6.jpg" alt="Fabric Sample 6" class="w-full h-auto max-w-[153px] inline-block" onerror="this.onerror=null; this.src='graphics/placeholder.png'; this.parentElement.title='[fig. f6] Placeholder';" />
+                            <a href="#" onclick="openModal('Fabric Sample 6', 'boxies/06.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
+                                <img src="boxies/06.jpg" alt="Fabric Sample 6" class="w-full h-auto max-w-[153px] inline-block" onerror="this.onerror=null; this.src='graphics/placeholder.png'; this.parentElement.title='[fig. f6] Placeholder';" />
                             </a>
                         </div>
                         <div class="p-2 text-center">
                             <p class="text-sm font-semibold text-lime-700 mb-1">7</p>
-                            <a href="#" onclick="openModal('Fabric Sample 7', 'products/boxies/f7.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
-                                <img src="products/boxies/f7.jpg" alt="Fabric Sample 7" class="w-full h-auto max-w-[153px] inline-block" onerror="this.onerror=null; this.src='graphics/placeholder.png'; this.parentElement.title='[fig. f7] Placeholder';" />
+                            <a href="#" onclick="openModal('Fabric Sample 7', 'boxies/07.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
+                                <img src="boxies/07.jpg" alt="Fabric Sample 7" class="w-full h-auto max-w-[153px] inline-block" onerror="this.onerror=null; this.src='graphics/placeholder.png'; this.parentElement.title='[fig. f7] Placeholder';" />
                             </a>
                         </div>
                         <div class="p-2 text-center">
                             <p class="text-sm font-semibold text-lime-700 mb-1">8</p>
-                            <a href="#" onclick="openModal('Fabric Sample 8', 'products/boxies/f8.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
-                                <img src="products/boxies/f8.jpg" alt="Fabric Sample 8" class="w-full h-auto max-w-[153px] inline-block" onerror="this.onerror=null; this.src='graphics/placeholder.png'; this.parentElement.title='[fig. f8] Placeholder';" />
+                            <a href="#" onclick="openModal('Fabric Sample 8', 'boxies/08.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
+                                <img src="boxies/08.jpg" alt="Fabric Sample 8" class="w-full h-auto max-w-[153px] inline-block" onerror="this.onerror=null; this.src='graphics/placeholder.png'; this.parentElement.title='[fig. f8] Placeholder';" />
                             </a>
                         </div>
+
                         <div class="p-2 text-center">
                             <p class="text-sm font-semibold text-lime-700 mb-1">9</p>
-                            <a href="#" onclick="openModal('Fabric Sample 9', 'products/boxies/f9.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
-                                <img src="products/boxies/f9.jpg" alt="Fabric Sample 9" class="w-full h-auto max-w-[153px] inline-block" onerror="this.onerror=null; this.src='graphics/placeholder.png'; this.parentElement.title='[fig. f9] Placeholder';" />
+                            <a href="#" onclick="openModal('Fabric Sample 9', 'boxies/09.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
+                                <img src="boxies/09.jpg" alt="Fabric Sample 9" class="w-full h-auto max-w-[153px] inline-block" onerror="this.onerror=null; this.src='graphics/placeholder.png'; this.parentElement.title='[fig. f9] Placeholder';" />
                             </a>
                         </div>
                         <div class="p-2 text-center">
                             <p class="text-sm font-semibold text-lime-700 mb-1">10</p>
-                            <a href="#" onclick="openModal('Fabric Sample 10', 'products/boxies/f10.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
-                                <img src="products/boxies/f10.jpg" alt="Fabric Sample 10" class="w-full h-auto max-w-[153px] inline-block" onerror="this.onerror=null; this.src='graphics/placeholder.png'; this.parentElement.title='[fig. f10] Placeholder';" />
+                            <a href="#" onclick="openModal('Fabric Sample 10', 'boxies/10.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
+                                <img src="boxies/10.jpg" alt="Fabric Sample 10" class="w-full h-auto max-w-[153px] inline-block" onerror="this.onerror=null; this.src='graphics/placeholder.png'; this.parentElement.title='[fig. f10] Placeholder';" />
                             </a>
                         </div>
                         <div class="p-2 text-center">
                             <p class="text-sm font-semibold text-lime-700 mb-1">11</p>
-                            <a href="#" onclick="openModal('Fabric Sample 11', 'products/boxies/f11.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
-                                <img src="products/boxies/f11.jpg" alt="Fabric Sample 11" class="w-full h-auto max-w-[153px] inline-block" onerror="this.onerror=null; this.src='graphics/placeholder.png'; this.parentElement.title='[fig. f11] Placeholder';" />
+                            <a href="#" onclick="openModal('Fabric Sample 11', 'boxies/11.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
+                                <img src="boxies/11.jpg" alt="Fabric Sample 11" class="w-full h-auto max-w-[153px] inline-block" onerror="this.onerror=null; this.src='graphics/placeholder.png'; this.parentElement.title='[fig. f11] Placeholder';" />
                             </a>
                         </div>
                         <div class="p-2 text-center">
                             <p class="text-sm font-semibold text-lime-700 mb-1">12</p>
-                            <a href="#" onclick="openModal('Fabric Sample 12', 'products/boxies/f12.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
-                                <img src="products/boxies/f12.jpg" alt="Fabric Sample 12" class="w-full h-auto max-w-[153px] inline-block" onerror="this.onerror=null; this.src='graphics/placeholder.png'; this.parentElement.title='[fig. f12] Placeholder';" />
+                            <a href="#" onclick="openModal('Fabric Sample 12', 'boxies/12.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
+                                <img src="boxies/12.jpg" alt="Fabric Sample 12" class="w-full h-auto max-w-[153px] inline-block" onerror="this.onerror=null; this.src='graphics/placeholder.png'; this.parentElement.title='[fig. f12] Placeholder';" />
                             </a>
-                        </div>-->
+                        </div>
+
+                        <div class="p-2 text-center">
+                            <p class="text-sm font-semibold text-lime-700 mb-1">13</p>
+                            <a href="#" onclick="openModal('Fabric Sample 13', 'boxies/13.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
+                                <img src="boxies/13.jpg" alt="Fabric Sample 13" class="w-full h-auto max-w-[153px] inline-block" onerror="this.onerror=null; this.src='graphics/placeholder.png'; this.parentElement.title='[fig. f13] Placeholder';" />
+                            </a>
+                        </div>
+                        <div class="p-2 text-center">
+                            <p class="text-sm font-semibold text-lime-700 mb-1">14</p>
+                            <a href="#" onclick="openModal('Fabric Sample 14', 'boxies/14.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
+                                <img src="boxies/14.jpg" alt="Fabric Sample 14" class="w-full h-auto max-w-[153px] inline-block" onerror="this.onerror=null; this.src='graphics/placeholder.png'; this.parentElement.title='[fig. f14] Placeholder';" />
+                            </a>
+                        </div>
+                        <div class="p-2 text-center">
+                            <p class="text-sm font-semibold text-lime-700 mb-1">15</p>
+                            <a href="#" onclick="openModal('Fabric Sample 15', 'boxies/15.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
+                                <img src="boxies/15.jpg" alt="Fabric Sample 15" class="w-full h-auto max-w-[153px] inline-block" onerror="this.onerror=null; this.src='graphics/placeholder.png'; this.parentElement.title='[fig. f15] Placeholder';" />
+                            </a>
+                        </div>
+                        <div class="p-2 text-center">
+                            <p class="text-sm font-semibold text-lime-700 mb-1">16</p>
+                            <a href="#" onclick="openModal('Fabric Sample 16', 'boxies/16.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
+                                <img src="boxies/16.jpg" alt="Fabric Sample 16" class="w-full h-auto max-w-[153px] inline-block" onerror="this.onerror=null; this.src='graphics/placeholder.png'; this.parentElement.title='[fig. f16] Placeholder';" />
+                            </a>
+                        </div>
+
+                        <div class="p-2 text-center">
+                            <p class="text-sm font-semibold text-lime-700 mb-1">17</p>
+                            <a href="#" onclick="openModal('Fabric Sample 17', 'boxies/17.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
+                                <img src="boxies/17.jpg" alt="Fabric Sample 17" class="w-full h-auto max-w-[153px] inline-block" onerror="this.onerror=null; this.src='graphics/placeholder.png'; this.parentElement.title='[fig. f17] Placeholder';" />
+                            </a>
+                        </div>
+                        <div class="p-2 text-center">
+                            <p class="text-sm font-semibold text-lime-700 mb-1">18</p>
+                            <a href="#" onclick="openModal('Fabric Sample 18', 'boxies/18.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
+                            <img src="boxies/18.jpg" alt="Fabric Sample 18" class="w-full h-auto max-w-[153px] inline-block" onerror="this.onerror=null; this.src='graphics/placeholder.png'; this.parentElement.title='[fig. f18] Placeholder';" />
+                            </a>
+                        </div>
+                        <div class="p-2 text-center">
+                            <p class="text-sm font-semibold text-lime-700 mb-1">19</p>
+                            <a href="#" onclick="openModal('Fabric Sample 19', 'boxies/19.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
+                            <img src="boxies/19.jpg" alt="Fabric Sample 19" class="w-full h-auto max-w-[153px] inline-block" onerror="this.onerror=null; this.src='graphics/placeholder.png'; this.parentElement.title='[fig. f19] Placeholder';" />
+                            </a>
+                        </div>
+                        <div class="p-2 text-center">
+                            <p class="text-sm font-semibold text-lime-700 mb-1">20</p>
+                            <a href="#" onclick="openModal('Fabric Sample 20', 'boxies/20.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
+                            <img src="boxies/20.jpg" alt="Fabric Sample 20" class="w-full h-auto max-w-[153px] inline-block" onerror="this.onerror=null; this.src='graphics/placeholder.png'; this.parentElement.title='[fig. f20] Placeholder';" />
+                            </a>
+                        </div>
+
+                        <div class="p-2 text-center">
+                            <p class="text-sm font-semibold text-lime-700 mb-1">21</p>
+                            <a href="#" onclick="openModal('Fabric Sample 21', 'boxies/21.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
+                            <img src="boxies/21.jpg" alt="Fabric Sample 21" class="w-full h-auto max-w-[153px] inline-block" onerror="this.onerror=null; this.src='graphics/placeholder.png'; this.parentElement.title='[fig. f21] Placeholder';" />
+                            </a>
+                        </div>
+                        <div class="p-2 text-center">
+                            <p class="text-sm font-semibold text-lime-700 mb-1">22</p>
+                            <a href="#" onclick="openModal('Fabric Sample 22', 'boxies/22.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
+                            <img src="boxies/22.jpg" alt="Fabric Sample 22" class="w-full h-auto max-w-[153px] inline-block" onerror="this.onerror=null; this.src='graphics/placeholder.png'; this.parentElement.title='[fig. f22] Placeholder';" />
+                            </a>
+                        </div>
+                        <div class="p-2 text-center">
+                            <p class="text-sm font-semibold text-lime-700 mb-1">23</p>
+                            <a href="#" onclick="openModal('Fabric Sample 23', 'boxies/23.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
+                            <img src="boxies/23.jpg" alt="Fabric Sample 23" class="w-full h-auto max-w-[153px] inline-block" onerror="this.onerror=null; this.src='graphics/placeholder.png'; this.parentElement.title='[fig. f23] Placeholder';" />
+                            </a>
+                        </div>
+                        <div class="p-2 text-center">
+                            <p class="text-sm font-semibold text-lime-700 mb-1">24</p>
+                            <a href="#" onclick="openModal('Fabric Sample 24', 'boxies/24.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
+                            <img src="boxies/24.jpg" alt="Fabric Sample 24" class="w-full h-auto max-w-[153px] inline-block" onerror="this.onerror=null; this.src='graphics/placeholder.png'; this.parentElement.title='[fig. f24] Placeholder';" />
+                            </a>
+                        </div>
+
+                        <div class="p-2 text-center">
+                            <p class="text-sm font-semibold text-lime-700 mb-1">25</p>
+                            <a href="#" onclick="openModal('Fabric Sample 25', 'boxies/25.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
+                            <img src="boxies/25.jpg" alt="Fabric Sample 25" class="w-full h-auto max-w-[153px] inline-block" onerror="this.onerror=null; this.src='graphics/placeholder.png'; this.parentElement.title='[fig. f25] Placeholder';" />
+                            </a>
+                        </div>
+                        <div class="p-2 text-center">
+                            <p class="text-sm font-semibold text-lime-700 mb-1">26</p>
+                            <a href="#" onclick="openModal('Fabric Sample 26', 'boxies/26.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
+                            <img src="boxies/26.jpg" alt="Fabric Sample 26" class="w-full h-auto max-w-[153px] inline-block" onerror="this.onerror=null; this.src='graphics/placeholder.png'; this.parentElement.title='[fig. f26] Placeholder';" />
+                            </a>
+                        </div>
+                        <div class="p-2 text-center">
+                            <p class="text-sm font-semibold text-lime-700 mb-1">27</p>
+                            <a href="#" onclick="openModal('Fabric Sample 27', 'boxies/27.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
+                            <img src="boxies/27.jpg" alt="Fabric Sample 27" class="w-full h-auto max-w-[153px] inline-block" onerror="this.onerror=null; this.src='graphics/placeholder.png'; this.parentElement.title='[fig. f27] Placeholder';" />
+                            </a>
+                        </div>
+                        <div class="p-2 text-center">
+                            <p class="text-sm font-semibold text-lime-700 mb-1">28</p>
+                            <a href="#" onclick="openModal('Fabric Sample 28', 'boxies/28.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
+                            <img src="boxies/28.jpg" alt="Fabric Sample 28" class="w-full h-auto max-w-[153px] inline-block" onerror="this.onerror=null; this.src='graphics/placeholder.png'; this.parentElement.title='[fig. f28] Placeholder';" />
+                            </a>
+                        </div>
+
+                        <div class="p-2 text-center">
+                            <p class="text-sm font-semibold text-lime-700 mb-1">29</p>
+                            <a href="#" onclick="openModal('Fabric Sample 29', 'boxies/29.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
+                            <img src="boxies/29.jpg" alt="Fabric Sample 29" class="w-full h-auto max-w-[153px] inline-block" onerror="this.onerror=null; this.src='graphics/placeholder.png'; this.parentElement.title='[fig. f29] Placeholder';" />
+                            </a>
+                        </div>
+                        <div class="p-2 text-center">
+                            <p class="text-sm font-semibold text-lime-700 mb-1">30</p>
+                            <a href="#" onclick="openModal('Fabric Sample 30', 'boxies/30.jpg', false); return false;" class="cursor-pointer overflow-hidden inline-block">
+                            <img src="boxies/30.jpg" alt="Fabric Sample 30" class="w-full h-auto max-w-[153px] inline-block" onerror="this.onerror=null; this.src='graphics/placeholder.png'; this.parentElement.title='[fig. f30] Placeholder';" />
+                            </a>
+                        </div>
+                        <div class="p-2 text-center"></div>
+                        <div class="p-2 text-center"></div>
+                        
                     </div>
                 </div>
 
-<!------------------------------------End fabrics table------------------------------------------------------->
-
-                <p class="my-6 p-4 bg-lime-100 border-l-4 border-lime-600 text-sm text-lime-700 rounded-md max-w-4xl mx-auto text-center">
+<p class="my-6 p-4 bg-lime-100 border-l-4 border-lime-600 text-sm text-lime-700 rounded-md max-w-4xl mx-auto text-center">
                     <span class="font-bold">* Please note:</span> available fabrics change from time to time as they sell out and / or can no longer be sourced.
                 </p>
 
                 <div class="md:max-w-4xl mx-auto my-8 text-lime-800 leading-relaxed">
                     <p>
-                        To order online, make a note of your preferred size(s) (sets of 2, 3 or 4 sizes are available) and fabric(s), then head over to our  <a href="https://taskatasmania.bigcartel.com/product/boxies" class="text-lime-700 hover:text-amber-500 font-extrabold underline transition duration-150">online Shop</a> to place your order.
+                        To order online, make a note of your preferred size(s) (sets of 2, 3 or 4 sizes are available) and fabric(s), then head over to our  <a href="https://taskatasmania.bigcartel.com/product/boxies" class="text-lime-700 hover:text-amber-500 font-extrabold underline transition duration-150">online Shop</a> to place your order.
                     </p>
                     <p class="mt-4">
-                        There is always a selection of boxies on offer at our popup shop at <a href="https://www.instagram.com/p/DJ3VdF5TdBX/" class="text-lime-700 hover:text-amber-500 font-medium underline transition duration-150">Evandale Sunday Market</a>. <!--&ndash;--> Weather permitting we're there every Sunday (you can <a href="https://taskatasmania.github.io/index.html" class="text-lime-700 hover:text-amber-500 font-medium underline transition duration-150">check here</a> to make sure where we are) so come and see us on Sunday if your don't want to order online.
+                        There is always a selection of boxies on offer at our popup shop at <a href="https://www.instagram.com/p/DJ3VdF5TdBX/" class="text-lime-700 hover:text-amber-500 font-medium underline transition duration-150">Evandale Sunday Market</a>. Weather permitting we're there every Sunday (you can <a href="https://taskatasmania.github.io/index.html" class="text-lime-700 hover:text-amber-500 font-medium underline transition duration-150">check here</a> to make sure where we are) so come and see us on Sunday if your don't want to order online.
                     </p>
                 </div>
 
@@ -233,9 +351,9 @@
     </div>
 
     
-<!---------------------------------------Start Java----------------------------------------->    
+   
     
-    <div id="imageModal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-amber-300 bg-opacity-100 transition-opacity">
+    <div id="imageModal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-neutral-100 bg-opacity-100 transition-opacity">
 
         <div id="modalContainer" class="relative p-4 overflow-auto hide-scrollbar flex items-center justify-center" onclick="event.stopPropagation()">
             
@@ -270,21 +388,24 @@
             // Define classes for full size (allows image to be larger than viewport)
             const fullSizeContainerClasses = ['w-full', 'h-full', 'max-w-none', 'max-h-none'];
             
-            // Constrained Max Width (max-w-7xl)
+            // Constrained Max Width (max-w-7xl) and Height (max-h-[90vh])
             const constrainedContainerClasses = ['max-w-7xl', 'max-h-[90vh]']; 
-            
-            // Reset all potential size classes
+            const constrainedImageClasses = ['w-full', 'h-auto', 'object-contain', 'max-h-full', 'max-w-full'];
+
+            // Reset all potential size/aspect classes and inline styles
             modalContainer.classList.remove(...fullSizeContainerClasses, ...constrainedContainerClasses);
-            modalImage.classList.remove('w-full', 'h-auto', 'object-contain');
+            modalImage.classList.remove(...constrainedImageClasses, 'aspect-square-max');
             
             if (isFullSize) {
                 // Apply classes for full-size, scrollable behavior
                 modalContainer.classList.add(...fullSizeContainerClasses);
                 modalImage.classList.add('w-full', 'h-auto');
             } else {
-                // Apply classes for constrained, fit-to-screen behavior
+                // Apply classes for constrained, **square** fit-to-screen behavior
                 modalContainer.classList.add(...constrainedContainerClasses);
-                modalImage.classList.add('w-full', 'h-auto', 'object-contain');
+                // The custom CSS class 'aspect-square-max' forces the image element to be square.
+                // 'object-contain' ensures the image fits inside this square element.
+                modalImage.classList.add('aspect-square-max', 'object-contain');
             }
 
             modal.classList.remove('hidden');
