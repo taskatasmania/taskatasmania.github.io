@@ -38,21 +38,66 @@
             height: auto; /* Allow JS to override this */
             display: block; 
         }
-
-            
         
+
+        /* New style for the table to make borders temporarily visible */
+
+        /* TABLE WIDTH*/
+
+        .market-gallery table {
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 800px; /* Constrain the max width of the table */
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .market-gallery th, .market-gallery td {
+            /*border: 1px solid red; /* TEMPORARY VISIBLE BORDER */
+            padding: 8px;
+            text-align: center;
+            vertical-align: top; /* Align images/content to the top if their height differs */
+        }
+        .market-gallery .image-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .market-gallery .caption {
+            font-size: 0.875rem; /* text-sm */
+            font-weight: 500; /* font-medium */
+            color: rgb(75 85 99); /* text-gray-700 */
+            margin-top: 0.25rem; /* pt-1 */
+        }
+            
+        /* Media query for screens smaller than or equal to a tablet breakpoint (e.g., 640px) */
+/* This covers typical "phone portrait mode" widths */
+@media (max-width: 640px) {
+    /* Target the table row within the market-gallery */
+    .market-gallery tr {
+        display: flex; /* Change the table row to a flex container */
+        flex-direction: column; /* Stack the columns vertically */
+        width: 100%; /* Ensure the flex container takes full width */
+    }
+
+    /* Target the table data cells (the columns) */
+    .market-gallery td {
+        display: block; /* Change the table cell to a block element */
+        width: 100%; /* Each cell now takes the full width */
+        box-sizing: border-box; /* Include padding/border in width calculation */
+    }
+
+    /* Optional: Remove temporary border to see final result more clearly */
+    /* .market-gallery th, .market-gallery td {
+        border: none !important;
+    } */
+}
     </style>
 </head>
 
 <body class="p-4 sm:p-8 bg-neutral-100 min-h-screen flex items-start justify-center"> 
 
     <div class="w-full max-w-6xl bg-white shadow-xl rounded-xl p-6 md:p-10 border border-gray-100 text-xl text-lime-800 leading-relaxed">
-    <!--<div class="w-full max-w-6xl bg-white shadow-xl rounded-xl p-6 md:p-10 pb-2 md:pb-8 border border-gray-100 text-lg text-lime-800 leading-relaxed">-->
-
-
-<!-----------------------------------Header------------------------------------>
-
-<header class="w-full max-w-5xl bg-white shadow-lg rounded-xl mb-6 p-2 md:p-3 border border-gray-100 mx-auto text-sm">
+    <header class="w-full max-w-5xl bg-white shadow-lg rounded-xl mb-6 p-2 md:p-3 border border-gray-100 mx-auto text-sm">
     <nav>
         <div class="flex flex-col sm:flex-row justify-center items-center space-x-6">
     
@@ -75,8 +120,6 @@
     </nav>
 </header>
 
-<!-----------------------------------End Header------------------------------------>
-
 <header class="mb-6 flex justify-center">
     <div class="relative max-w-5xl rounded-lg group"> 
         <img 
@@ -90,15 +133,14 @@
             onclick="openModal('Evandale Market', 'photos/evandale.3.jpg', true)" 
             title="Expand Image"
             class="absolute top-0 right-0
-                   text-amber-300 bg-amber-600 bg-opacity-85 
-                   p-1 rounded-full h-10 w-10 flex items-center justify-center 
-                   cursor-pointer overflow-hidden
-                   opacity-60 group-hover:opacity-100 transition duration-300 drop-shadow-lg">
+                    text-amber-300 bg-amber-600 bg-opacity-85 
+                    p-1 rounded-full h-10 w-10 flex items-center justify-center 
+                    cursor-pointer overflow-hidden
+                    opacity-60 group-hover:opacity-100 transition duration-300 drop-shadow-lg">
             <img src="graphics/expand.png" alt="Expand" class="w-full h-full object-contain" />
         </button>
     </div>
 </header>
-
 
 
         
@@ -106,7 +148,6 @@
             The Taska Tasmania Story
         </h1>
         
-
 
 
 <p class="mb-4 max-w-4xl mx-auto">
@@ -121,9 +162,6 @@
             Magda's heritage is Hungarian and that's where the name Taska Tasmania comes from - “taska” is “bag” in Hungarian. 
         </p>
 
-<!--------------------start 12.12.21------------------------------------------>
-
-
 <div class="my-5 flex flex-col items-center">
     <div class="relative w-full max-w-xs group">
         <img 
@@ -137,19 +175,15 @@
     onclick="openModal('Taska Graphic Break', 'photos/12.12.21.jpg', false)" 
     title="Expand Image"
     class="absolute top-0 right-0 
-                   text-amber-300 bg-amber-600 bg-opacity-85 
-                   p-1 rounded-full h-10 w-10 flex items-center justify-center 
-                   cursor-pointer overflow-hidden
-                   opacity-90 group-hover:opacity-100 transition duration-300 drop-shadow-lg">
+                    text-amber-300 bg-amber-600 bg-opacity-85 
+                    p-1 rounded-full h-10 w-10 flex items-center justify-center 
+                    cursor-pointer overflow-hidden
+                    opacity-90 group-hover:opacity-100 transition duration-300 drop-shadow-lg">
     <img src="graphics/expand.png" alt="Expand" class="w-full h-full object-contain" />
 </button>
     </div>
     <p class="text-sm font-medium text-gray-700 m-1 pt-1">Taska's first market</p>
 </div>
-
-<!--end-->
-
-
 
 <p class="mb-8 max-w-4xl mx-auto">
             It turned out people weren't keen on shopping bags and the stall had to diversify. That lead to aprons .... with off-cut material used for scrunchies .... lanyards .... and what started out as a single table in Dec 2021 became a pop up shop hosted by <a href="https://www.instagram.com/p/DJ3VdF5TdBX/" class="text-lime-800 hover:text-amber-500 text-xl font-medium underline transition duration-150">Evandale Sunday Market</a>
@@ -169,36 +203,64 @@
     </div>
 </div>
 
-<!--------------------------------------------------------Start Westbury------------------------->
+<div class="market-gallery mt-6 mb-4">
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    <div class="image-container">
+                        <div class="relative w-full max-w-md group">
+                            <img
+                                src="photos/westbury.jpg"
+                                alt="Westbury St. Patrick's Day Market" 
+                                class="w-full h-auto rounded-lg shadow-md"
+                                onerror="this.onerror=null; this.src='https://placehold.co/192x64/cccccc/333333?text=Fallback+Logo';"
+                            />
 
+                            <button 
+                                onclick="openModal('Westbury Market', 'photos/westbury.jpg', true)" 
+                                title="Expand Image"
+                                class="absolute top-0 right-0
+                                        text-amber-300 bg-amber-600 bg-opacity-85 
+                                        p-1 rounded-full h-10 w-10 flex items-center justify-center 
+                                        cursor-pointer overflow-hidden
+                                        opacity-80 group-hover:opacity-100 transition duration-300 drop-shadow-lg">
+                                <img src="graphics/expand.png" alt="Expand" class="w-full h-full object-contain" />
+                            </button>
+                        </div>
+                        <p class="caption">Westbury St. Patrick's Day Market</p>
+                    </div>
+                </td>
 
-<div class="mt-6 mb-4 flex flex-col items-center">
-    
-    <div class="relative w-full max-w-xs group">
-        <img 
-            src="photos/westbury.jpg"
-            alt="Taska Tasmania Graphic Break" 
-            class="w-full h-auto rounded-lg shadow-md"
-            onerror="this.onerror=null; this.src='https://placehold.co/192x64/cccccc/333333?text=Fallback+Logo';"
-        />
+                <td>
+                    <div class="image-container">
+                        <div class="relative w-full max-w-md group">
+                            <img 
+                                src="photos/gt25.jpg"
+                                alt="George Town Xmas Market '25" 
+                                class="w-full h-auto rounded-lg shadow-md"
+                                onerror="this.onerror=null; this.src='https://placehold.co/192x64/cccccc/333333?text=Fallback+Logo';"
+                            />
 
-        <button 
-            onclick="openModal('Westbury Market', 'photos/westbury.jpg', true)" 
-            title="Expand Image"
-            class="absolute top-0 right-0
-                   text-amber-300 bg-amber-600 bg-opacity-85 
-                   p-1 rounded-full h-10 w-10 flex items-center justify-center 
-                   cursor-pointer overflow-hidden
-                   opacity-80 group-hover:opacity-100 transition duration-300 drop-shadow-lg">
-            <img src="graphics/expand.png" alt="Expand" class="w-full h-full object-contain" />
-        </button>
-
-
-    </div>
-    <p class="text-sm font-medium text-gray-700 m-1 pt-1">Westbury St. Patrick's Day Market</p>
+                            <button 
+                                onclick="openModal('George Town Xmas Market', 'photos/gt25.jpg', true)" 
+                                title="Expand Image"
+                                class="absolute top-0 right-0
+                                        text-amber-300 bg-amber-600 bg-opacity-85 
+                                        p-1 rounded-full h-10 w-10 flex items-center justify-center 
+                                        cursor-pointer overflow-hidden
+                                        opacity-80 group-hover:opacity-100 transition duration-300 drop-shadow-lg">
+                                <img src="graphics/expand.png" alt="Expand" class="w-full h-full object-contain" />
+                            </button>
+                        </div>
+                        <p class="caption">George Town Xmas Market '25</p>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 
-<!--End Westbury------------------------->
 
 <p class="mb-4 max-w-4xl mx-auto">
             Everything Taska sells is handmade by Magda in what used to be our living room which has now magically transformed into the Taska workshop. The humble hobby stall has grown into the craft popup shop we're immensely proud of today.
@@ -219,15 +281,15 @@
     onclick="openModal('Taska Graphic Break', 'photos/sewing.jpg', false)" 
     title="Expand Image"
     class="absolute top-0 right-0 
-                   text-amber-300 bg-amber-600 bg-opacity-85 
-                   p-1 rounded-full h-10 w-10 flex items-center justify-center 
-                   cursor-pointer overflow-hidden
-                   opacity-60 group-hover:opacity-100 transition duration-300 drop-shadow-lg">
+                    text-amber-300 bg-amber-600 bg-opacity-85 
+                    p-1 rounded-full h-10 w-10 flex items-center justify-center 
+                    cursor-pointer overflow-hidden
+                    opacity-60 group-hover:opacity-100 transition duration-300 drop-shadow-lg">
     <img src="graphics/expand.png" alt="Expand" class="w-full h-full object-contain" />
 </button>
     </div>
     
-</div>   
+</div>    
 
 
 <p class="mb-0 max-w-4xl mx-auto">
@@ -248,17 +310,17 @@
     onclick="openModal('Studio', 'photos/studio.jpg', false)" 
     title="Expand Image"
     class="absolute top-0 right-0 
-                   text-amber-300 bg-amber-600 bg-opacity-85 
-                   p-1 rounded-full h-10 w-10 flex items-center justify-center 
-                   cursor-pointer overflow-hidden
-                   opacity-60 group-hover:opacity-100 transition duration-300 drop-shadow-lg">
+                    text-amber-300 bg-amber-600 bg-opacity-85 
+                    p-1 rounded-full h-10 w-10 flex items-center justify-center 
+                    cursor-pointer overflow-hidden
+                    opacity-60 group-hover:opacity-100 transition duration-300 drop-shadow-lg">
     <img src="graphics/expand.png" alt="Expand" class="w-full h-full object-contain" />
 </button>
     </div>
 </div>
 
 <div class="mt-8 mb-4 flex flex-col items-center">
-     <div class="relative w-full max-w-[12rem] group">
+       <div class="relative w-full max-w-[12rem] group">
         <img 
             src="photos/spooky.jpg"
             alt="Spooky Sewer" 
@@ -270,10 +332,10 @@
     onclick="openModal('Spooky Sewer', 'photos/spooky.jpg', false)" 
     title="Expand Image"
     class="absolute top-0 right-0 
-                   text-amber-300 bg-amber-600 bg-opacity-85 
-                   p-1 rounded-full h-10 w-10 flex items-center justify-center 
-                   cursor-pointer overflow-hidden
-                   opacity-60 group-hover:opacity-100 transition duration-300 drop-shadow-lg">
+                    text-amber-300 bg-amber-600 bg-opacity-85 
+                    p-1 rounded-full h-10 w-10 flex items-center justify-center 
+                    cursor-pointer overflow-hidden
+                    opacity-60 group-hover:opacity-100 transition duration-300 drop-shadow-lg">
     <img src="graphics/expand.png" alt="Expand" class="w-full h-full object-contain" />
 </button>
     </div>
@@ -287,8 +349,6 @@
 </p>
 
 
-
-<!------------------Footer----------------------------------------->   
 
 <footer class="mt-0 bg-white shadow-lg rounded-xl p-4 md:p-4 border border-gray-100 text-sm max-w-5xl mx-auto hidden sm:block">
     
@@ -311,18 +371,16 @@ Contact Us
 
 </footer>
         
-<!------------------End Footer-----------------------------------------> 
-
-        <div id="imageModal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-neutral-100 bg-opacity-100 transition-opacity">
+<div id="imageModal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-neutral-100 bg-opacity-100 transition-opacity">
 
 
 <div id="modalContainer" class="relative p-4 overflow-auto hide-scrollbar flex items-center justify-center" onclick="event.stopPropagation()">
             
             <button onclick="closeModal()" class="absolute top-4 right-4 
-                                         text-amber-300 bg-amber-600 bg-opacity-85 
-                                         p-2 rounded-full h-10 w-10 flex items-center justify-center 
-                                         text-2xl font-bold leading-none 
-                                         hover:bg-opacity-100 transition-opacity drop-shadow-lg">
+                                            text-amber-300 bg-amber-600 bg-opacity-85 
+                                            p-2 rounded-full h-10 w-10 flex items-center justify-center 
+                                            text-2xl font-bold leading-none 
+                                            hover:bg-opacity-100 transition-opacity drop-shadow-lg">
                 &times;
             </button>
             
