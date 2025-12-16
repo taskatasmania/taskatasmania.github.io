@@ -38,7 +38,8 @@
             height: auto; /* Allow JS to override this */
             display: block; 
         }
-        
+
+/*-----------------------------------market-gallery table start---------------------------------------------*/        
 
         /* New style for the table to make borders temporarily visible */
 
@@ -65,13 +66,15 @@
         .market-gallery .caption {
             font-size: 0.875rem; /* text-sm */
             font-weight: 500; /* font-medium */
-            color: rgb(75 85 99); /* text-gray-700 */
+            color: rgb(22,101,52); /* text-green-800 */
             margin-top: 0.25rem; /* pt-1 */
         }
             
-        /* Media query for screens smaller than or equal to a tablet breakpoint (e.g., 640px) */
+/* ------------------Media query for screens smaller than or equal to a tablet breakpoint (e.g., 640px)------------------------- */
 /* This covers typical "phone portrait mode" widths */
-@media (max-width: 640px) {
+
+
+    @media (max-width: 640px) {
     /* Target the table row within the market-gallery */
     .market-gallery tr {
         display: flex; /* Change the table row to a flex container */
@@ -91,6 +94,8 @@
         border: none !important;
     } */
 }
+ 
+/*-----------------------------------market-gallery table end---------------------------------------------*/ 
     </style>
 </head>
 
@@ -182,7 +187,7 @@
     <img src="graphics/expand.png" alt="Expand" class="w-full h-full object-contain" />
 </button>
     </div>
-    <p class="text-sm font-medium text-gray-700 m-1 pt-1">Taska's first market</p>
+    <p class="text-sm font-medium m-1 pt-1">Taska's first market</p>
 </div>
 
 <p class="mb-8 max-w-4xl mx-auto">
@@ -339,7 +344,7 @@
     <img src="graphics/expand.png" alt="Expand" class="w-full h-full object-contain" />
 </button>
     </div>
-    <p class="text-sm font-medium text-gray-700 m-1 pt-1">Not Magda! 😉</p>
+    <p class="text-sm font-medium m-1 pt-1">Not Magda! 😉</p>
 </div>
 
 
