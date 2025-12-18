@@ -23,8 +23,16 @@
         /* Styling for a cancelled market row */
         .cancelled-market {
             text-decoration: line-through;
-            opacity: 0.6; /* Makes it look faded */
-            color: #ef4444 !important; /* Forces text to red-500 color */
+            opacity: 0.6;
+            color: #ef4444 !important;
+        }
+
+        /* New rule: Disable links inside a cancelled row */
+        .cancelled-market a {
+            pointer-events: none;    /* Makes the link unclickable */
+            cursor: default;         /* Prevents the 'pointer' hand icon */
+            text-decoration: none;   /* Optional: removes underline if desired */
+            color: inherit;          /* Makes link color match the red of the row */
         }
     </style>
 </head>
