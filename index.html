@@ -88,9 +88,40 @@
     <h1 class="text-2xl sm:text-5xl font-extrabold text-lime-700 tracking-tight mt-8 mb-8 text-center">Market Information</h1>
 
 <p class="mb-4 max-w-4xl mx-auto">
-            We are really proud to be hosted by the <a href="https://www.instagram.com/evandalesundaymarket/" target="_blank" rel="noopener noreferrer" class="text-lime-950 hover:text-amber-500 font-medium underline transition duration-150">Evandale Sunday Market</a>, Tasmania's longest-running and largest Sunday market. You can find us at the <a href="https://goo.gl/maps/kQtzhpYkGtv8ADvp9" target="_blank" rel="noopener noreferrer" class="text-lime-950 hover:text-amber-500 font-medium underline transition duration-150">Collins St / Huxtables Lane</a> end of the Market every Sunday*.
+            We are really proud to be hosted by the <a href="https://www.instagram.com/evandalesundaymarket/" target="_blank" rel="noopener noreferrer" class="text-lime-950 hover:text-amber-500 font-medium underline transition duration-150">Evandale Sunday Market</a>, Tasmania's longest-running and largest Sunday market. You can find us at the <a href="https://goo.gl/maps/kQtzhpYkGtv8ADvp9" target="_blank" rel="noopener noreferrer" class="text-lime-950 hover:text-amber-500 font-medium underline transition duration-150">Collins St / Huxtables Lane</a> end of the Market (just behind that Falls Park sign) every Sunday*.
            </p>
         <!---------------------------Embeded map---------------------------------------->
+
+
+<div class="my-6 flex justify-center">
+    <div class="map-container w-full max-w-2xl overflow-hidden rounded-lg shadow-md border border-gray-200">
+        <style>
+            /* Default for Desktop and Portrait */
+            .map-iframe {
+                width: 100%;
+                height: 400px;
+            }
+
+            /* Adjustments for Phone Landscape View */
+            @media (max-height: 500px) and (orientation: landscape) {
+                .map-container {
+                    max-width: 450px; /* Reduces container width by 25% from 600px */
+                }
+                .map-iframe {
+                    height: 300px;    /* Reduces height by 25% from 400px */
+                }
+            }
+        </style>
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!4v1767596358345!6m8!1m7!1sQ1qYO8tPmCvpiYGgQk9Kfw!2m2!1d-41.57141217409297!2d147.2532047130767!3f101.38349008040623!4f13.571049277409614!5f1.5134084384006923"
+            class="map-iframe"
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </div>
+</div>
 
 <div class="my-6 flex justify-center">
     <div class="map-container w-full max-w-2xl overflow-hidden rounded-lg shadow-md border border-gray-200">
@@ -121,6 +152,7 @@
         </iframe>
     </div>
 </div>
+
 
 <p class="mb-8 max-w-4xl mx-auto">   
             <a href="https://visitnortherntasmania.com.au/search/results?q=evandale" target="_blank" rel="noopener noreferrer" class="text-lime-950 hover:text-amber-500 font-medium underline transition duration-150">Evandale</a> is a picturesque and historic village in Northern Tasmania, 20 min drive from central Launceston and 7 min from the airport. It is home to the renowned <a href="https://www.johnglover.com.au/" target="_blank" rel="noopener noreferrer" class="text-lime-950 hover:text-amber-500 font-medium underline transition duration-150">Glover Prize</a> for landscape painting and the annual <a href="https://visitnortherntasmania.com.au/events/2026-evandale-national-penny-farthing-championships" target="_blank" rel="noopener noreferrer" class="text-lime-950 hover:text-amber-500 font-medium underline transition duration-150">National Penny Farthing Championships</a>.
