@@ -306,27 +306,34 @@
         </p>
 
 
+
+<!---------------------------------------Studio Photo------------------------------------------------>
+
 <div class="my-5 flex flex-col items-center">
-    <div class="relative w-full max-w-xs group">
+    <div class="relative max-w-3xl rounded-lg group"> 
         <img 
             src="photos/studio.jpg"
-            alt="Taska Tasmania Graphic Break" 
-            class="w-full h-auto rounded-lg shadow-md"
+            alt="Living Room Studio" 
+            class="w-full h-auto rounded-lg shadow-md transform transition duration-300"
             onerror="this.onerror=null; this.src='https://placehold.co/192x64/cccccc/333333?text=Fallback+Logo';"
         />
-
+        
         <button 
-    onclick="openModal('Studio', 'photos/studio.jpg', false)" 
-    title="Expand Image"
-    class="absolute top-0 right-0 
+            onclick="openModal('Studio', 'photos/studio.jpg', true)" 
+            title="Expand Image"
+            class="absolute top-0 right-0
                     text-amber-300 bg-amber-600 bg-opacity-85 
                     p-1 rounded-full h-10 w-10 flex items-center justify-center 
                     cursor-pointer overflow-hidden
                     opacity-60 group-hover:opacity-100 transition duration-300 drop-shadow-lg">
-    <img src="graphics/expand.png" alt="Expand" class="w-full h-full object-contain" />
-</button>
+            <img src="graphics/expand.png" alt="Expand" class="w-full h-full object-contain" />
+        </button>
     </div>
+
 </div>
+
+<!---------------------------------------End Studio Photo------------------------------------------------>
+
 
 <div class="mt-8 mb-4 flex flex-col items-center">
        <div class="relative w-full max-w-[12rem] group">
