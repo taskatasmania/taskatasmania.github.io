@@ -227,7 +227,7 @@
                             />
 
                             <button 
-                                onclick="openModal('Westbury Market', 'photos/westbury.jpg', true)" 
+                                onclick="openModal('Westbury Market', 'photos/westbury.jpg', false)" 
                                 title="Expand Image"
                                 class="absolute top-0 right-0
                                         text-amber-300 bg-amber-600 bg-opacity-85 
@@ -252,7 +252,7 @@
                             />
 
                             <button 
-                                onclick="openModal('George Town Xmas Market', 'photos/gt25.jpg', true)" 
+                                onclick="openModal('George Town Xmas Market', 'photos/gt25.jpg', false)" 
                                 title="Expand Image"
                                 class="absolute top-0 right-0
                                         text-amber-300 bg-amber-600 bg-opacity-85 
@@ -461,30 +461,30 @@ Contact Us
         * @param {boolean} [isFullSize=false] - If true, displays the image full size with container scrolling.
         */
         function openModal(altText, imgSrc, isFullSize = false) {
-            modalImage.src = imgSrc;
-            modalImage.alt = altText;
-            
-            // Define classes for full size (allows image to be larger than viewport)
-            const fullSizeContainerClasses = ['w-full', 'h-full', 'max-w-none', 'max-h-none'];
-            const constrainedContainerClasses = ['max-w-5xl', 'max-h-[90vh]'];
-            
-            // Reset all potential size classes
-            modalContainer.classList.remove(...fullSizeContainerClasses, ...constrainedContainerClasses);
-            modalImage.classList.remove('w-full', 'h-auto', 'object-contain');
-            
-            if (isFullSize) {
-                // Apply classes for full-size, scrollable behavior
-                modalContainer.classList.add(...fullSizeContainerClasses);
-                modalImage.classList.add('w-full', 'h-auto');
-            } else {
-                // Apply classes for constrained, fit-to-screen behavior
-                modalContainer.classList.add(...constrainedContainerClasses);
-                modalImage.classList.add('w-full', 'h-auto', 'object-contain');
-            }
+    modalImage.src = imgSrc;
+    modalImage.alt = altText;
+    
+    // 1. Reset Classes
+    // Remove all layout-related classes from both container and image
+    modalContainer.classList.remove('w-full', 'h-full', 'max-w-none', 'max-h-none', 'max-w-5xl', 'max-h-[90vh]', 'w-[95vw]');
+    modalImage.classList.remove('w-full', 'h-auto', 'w-auto', 'max-h-[90vh]', 'object-contain', 'shadow-2xl');
 
-            modal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden'; 
-        }
+    // 2. Apply New Logic
+    if (isFullSize) {
+        // Mode: Scrollable (for studio.jpg etc.)
+        modalContainer.classList.add('w-full', 'h-full'); 
+        modalImage.classList.add('w-full', 'h-auto', 'shadow-2xl');
+    } else {
+        // Mode: Fit-to-Screen (for westbury, gt25, spooky, etc.)
+        // We use 'max-w-[95vw]' and 'max-h-[90vh]' so it's as big as possible
+        // but never forces the container to be larger than the image itself.
+        modalContainer.classList.add('max-w-[95vw]', 'max-h-[95vh]');
+        modalImage.classList.add('max-w-full', 'max-h-[90vh]', 'object-contain', 'shadow-2xl');
+    }
+
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden'; 
+}
 
         /**
         * Closes the modal.
