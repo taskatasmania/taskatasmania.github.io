@@ -375,7 +375,6 @@
     </div>
 
     
-   
     
     <div id="imageModal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-neutral-100 bg-opacity-100 transition-opacity">
 
@@ -406,35 +405,27 @@
         * @param {boolean} [isFullSize=false] - If true, displays the image full size with container scrolling.
         */
         function openModal(altText, imgSrc, isFullSize = false) {
-            modalImage.src = imgSrc;
-            modalImage.alt = altText;
-            
-            // Define classes for full size (allows image to be larger than viewport)
-            const fullSizeContainerClasses = ['w-full', 'h-full', 'max-w-none', 'max-h-none'];
-            
-            // Constrained Max Width (max-w-7xl) and Height (max-h-[90vh])
-            const constrainedContainerClasses = ['max-w-7xl', 'max-h-[90vh]']; 
-            const constrainedImageClasses = ['w-full', 'h-auto', 'object-contain', 'max-h-full', 'max-w-full'];
+    modalImage.src = imgSrc;
+    modalImage.alt = altText;
+    
+    // 1. Clean up all previous state
+    modalContainer.className = "relative p-4 overflow-auto hide-scrollbar flex items-center justify-center";
+    modalImage.className = "block rounded-lg shadow-2xl";
 
-            // Reset all potential size/aspect classes and inline styles
-            modalContainer.classList.remove(...fullSizeContainerClasses, ...constrainedContainerClasses);
-            modalImage.classList.remove(...constrainedImageClasses, 'aspect-square-max');
-            
-            if (isFullSize) {
-                // Apply classes for full-size, scrollable behavior
-                modalContainer.classList.add(...fullSizeContainerClasses);
-                modalImage.classList.add('w-full', 'h-auto');
-            } else {
-                // Apply classes for constrained, **square** fit-to-screen behavior
-                modalContainer.classList.add(...constrainedContainerClasses);
-                // The custom CSS class 'aspect-square-max' forces the image element to be square.
-                // 'object-contain' ensures the image fits inside this square element.
-                modalImage.classList.add('aspect-square-max', 'object-contain');
-            }
+    if (isFullSize) {
+        // Mode: Scrollable (Full Width)
+        modalContainer.classList.add('w-full', 'h-full');
+        modalImage.classList.add('w-full', 'h-auto');
+    } else {
+        // Mode: Fit-to-Screen (No Scrolling)
+        // We cap the height at 90vh and let width be auto.
+        // This ensures the square 940x940 image stays square and fits the screen.
+        modalImage.classList.add('max-h-[90vh]', 'max-w-[95vw]', 'w-auto', 'h-auto', 'object-contain');
+    }
 
-            modal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden'; 
-        }
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden'; 
+}
 
         /**
         * Closes the modal.
