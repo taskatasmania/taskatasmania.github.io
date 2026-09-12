@@ -196,11 +196,17 @@
 
             <!--               
             
-            To turn the cancelled market appearance on or off for a specific date, add or remove the class cancelled-market on the table row (<tr>) element for that date:
+            ####To turn the cancelled market appearance on or off for a specific date, add or remove the class cancelled-market on the table row (<tr>) element for that date:
             <tr class="hover:bg-amber-200 transition duration-150 cancelled-market">
+                What this class does:
+                As defined in <style> block:
+                        Applies a line-through to the text.
+                        Lowers opacity to 0.6.
+                        Changes text and link colors to red (#ef4444).
+                        isables clicking on any links inside that row.
              
 
-            Example of a special market:
+            ####Example of a special market:
 
             <tr class="hover:bg-lime-50 transition duration-150">
                 <td class="px-5 md:px-10 py-2 whitespace-nowrap text-base md:text-xl rounded-bl-lg text-center">01 Aug</td>
